@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Kids Learning</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: "Comic Sans MS", "Chalkboard SE", "Trebuchet MS", system-ui, sans-serif;
+    background: linear-gradient(160deg, #ffe66d 0%, #ff9f68 45%, #a0e7e5 100%);
+    background-attachment: fixed; color: #222; user-select: none;
+  }
+  header { text-align: center; padding: 22px 16px 6px; }
+  h1 { margin: 0; font-size: 64px; color: #fff; letter-spacing: 2px;
+       text-shadow: 4px 4px 0 #ff5d8f, 8px 8px 0 rgba(0,0,0,.15); }
+  .week { display: inline-block; margin-top: 12px; padding: 10px 26px; border-radius: 999px;
+          background: #fff; font-size: 30px; font-weight: bold; color: #4b3fd6;
+          box-shadow: 0 6px 0 rgba(0,0,0,.15); }
+  main { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+         gap: 28px; padding: 24px 32px 40px; max-width: 1500px; margin: 0 auto; }
+  .card { display: flex; flex-direction: column; justify-content: flex-start; padding: 0; margin: 0; text-align: left; cursor: pointer;
+          border-radius: 28px; overflow: hidden; background: #fff; font: inherit; color: inherit;
+          box-shadow: 0 10px 0 var(--c), 0 16px 26px rgba(0,0,0,.18);
+          border: 6px solid var(--c); transition: transform .12s; touch-action: manipulation; }
+  .card:active { transform: scale(.96) translateY(6px); box-shadow: 0 4px 0 var(--c); }
+  .thumb { position: relative; height: 0; padding-top: 56.25%; overflow: hidden; background: #ddd; flex: none; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .play { position: absolute; inset: 0; margin: auto; width: 92px; height: 92px; border-radius: 50%;
+          background: rgba(255,255,255,.92); display: flex; align-items: center; justify-content: center;
+          box-shadow: 0 4px 12px rgba(0,0,0,.3); }
+  .play::after { content: ""; margin-left: 10px; border-style: solid; border-width: 22px 0 22px 36px;
+                 border-color: transparent transparent transparent var(--c); }
+  .info { padding: 16px 20px 22px; }
+  .tag { display: inline-block; padding: 6px 18px; border-radius: 999px; background: var(--c);
+         color: #fff; font-size: 22px; font-weight: bold; }
+  .title { margin-top: 10px; font-size: 30px; font-weight: bold; line-height: 1.15; }
+  #overlay { position: fixed; inset: 0; background: rgba(20,10,60,.94); display: none;
+             flex-direction: column; align-items: center; justify-content: center; z-index: 10; padding: 20px; }
+  #overlay.open { display: flex; }
+  #back { position: absolute; top: 18px; left: 18px; font: inherit; font-size: 40px; font-weight: bold;
+          padding: 14px 40px; border-radius: 999px; border: none; cursor: pointer; color: #fff;
+          background: #ff5d8f; box-shadow: 0 8px 0 #c2185b; touch-action: manipulation; z-index: 2; }
+  #back:active { transform: translateY(6px); box-shadow: 0 2px 0 #c2185b; }
+  #playerWrap { width: min(92vw, calc((100vh - 150px) * 16 / 9)); height: min(calc(92vw * 9 / 16), calc(100vh - 150px)); margin-top: 80px;
+                border-radius: 20px; overflow: hidden; background: #000; }
+  #playerWrap iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .tag-Science { --c: #4b8bf5; } .tag-Building { --c: #f58b2b; }
+  .tag-Circuits { --c: #2bb673; } .tag-Art { --c: #c24bf5; } .tag-other { --c: #ff5d8f; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Kids Learning</h1>
+  <div class="week" id="week">Week 1: Pushes &amp; Pulls (Oct 19-25)</div>
+</header>
+<main id="cards"></main>
+
+<div id="overlay" role="dialog" aria-modal="true">
+  <button id="back" type="button">&#11013; Back</button>
+  <div id="playerWrap"></div>
+</div>
+
+<script id="video-data" type="application/json">{
+  "week": "Week 1: Pushes & Pulls (Oct 19-25)",
+  "videos": [
+    {
+      "id": "5-2NLHB4Gxg",
+      "title": "What Is Force?",
+      "tag": "Science"
+    },
+    {
+      "id": "oVOnRPefcno",
+      "title": "What Makes Bridges So Strong?",
+      "tag": "Building"
+    },
+    {
+      "id": "2M6uJdUqlLQ",
+      "title": "Learn About Electricity with Snap Circuits",
+      "tag": "Circuits"
+    },
+    {
+      "id": "Tzt0V7J65mQ",
+      "title": "All About Lines",
+      "tag": "Art"
+    }
+  ]
+}</script>
+<script>
+(function () {
+  var DATA = JSON.parse(document.getElementById('video-data').textContent);
+  var KNOWN = { Science: 1, Building: 1, Circuits: 1, Art: 1 };
+  var cards = document.getElementById('cards');
+  var overlay = document.getElementById('overlay');
+  var wrap = document.getElementById('playerWrap');
+  var player = null;
+
+  document.getElementById('week').textContent = DATA.week;
+
+  DATA.videos.forEach(function (v) {
+    if (!/^[A-Za-z0-9_-]{11}$/.test(v.id)) return;
+    var b = document.createElement('div');
+    b.setAttribute('role', 'button');
+    b.tabIndex = 0;
+    b.className = 'card tag-' + (KNOWN[v.tag] ? v.tag : 'other');
+    b.innerHTML = '<div class="thumb"><img alt="" loading="lazy"><span class="play"></span></div>' +
+                  '<div class="info"><span class="tag"></span><div class="title"></div></div>';
+    b.querySelector('img').src = 'https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg';
+    b.querySelector('.tag').textContent = v.tag;
+    b.querySelector('.title').textContent = v.title;
+    b.addEventListener('click', function () { openVideo(v.id); });
+    b.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openVideo(v.id); }
+    });
+    cards.appendChild(b);
+  });
+
+  function openVideo(id) {
+    closeVideo();
+    var src = 'https://www.youtube-nocookie.com/embed/' + id +
+              '?rel=0&modestbranding=1&playsinline=1&autoplay=1&enablejsapi=1';
+    if (location.protocol === 'http:' || location.protocol === 'https:') {
+      src += '&origin=' + encodeURIComponent(location.origin);
+    }
+    var f = document.createElement('iframe');
+    f.id = 'ytframe';
+    f.src = src;
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    wrap.appendChild(f);
+    overlay.classList.add('open');
+    attachApi(f);
+  }
+
+  // Hook the IFrame API to the iframe so we close when the video ends
+  // (kids come back to the page instead of tapping suggestions).
+  function attachApi(f) {
+    if (!(window.YT && YT.Player)) { pending = f; return; }
+    player = new YT.Player(f, {
+      events: {
+        onStateChange: function (e) { if (e.data === YT.PlayerState.ENDED) closeVideo(); }
+      }
+    });
+  }
+  var pending = null;
+  window.onYouTubeIframeAPIReady = function () {
+    if (pending && pending.isConnected) attachApi(pending);
+    pending = null;
+  };
+
+  function closeVideo() {
+    if (player && player.destroy) { try { player.destroy(); } catch (e) {} }
+    player = null; pending = null;
+    wrap.innerHTML = '';
+    overlay.classList.remove('open');
+  }
+
+  document.getElementById('back').addEventListener('click', closeVideo);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeVideo(); });
+})();
+</script>
+<script src="https://www.youtube.com/iframe_api" async></script>
+</body>
+</html>
