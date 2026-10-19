@@ -1,0 +1,557 @@
+{
+ "timezone": "America/Chicago",
+ "segments": [
+  {
+   "key": "amTogether",
+   "label": "Morning - Together",
+   "who": "Both brothers",
+   "icon": "sun",
+   "target": "~5 min"
+  },
+  {
+   "key": "amYounger",
+   "label": "Morning - Little Brother",
+   "who": "Little Brother",
+   "icon": "sun",
+   "target": "10-15 min"
+  },
+  {
+   "key": "pmOlder",
+   "label": "Afternoon - Big Brother",
+   "who": "Big Brother",
+   "icon": "afternoon",
+   "target": "10-15 min"
+  },
+  {
+   "key": "pmTogether",
+   "label": "Afternoon - Together",
+   "who": "Both brothers",
+   "icon": "afternoon",
+   "target": "~5 min"
+  }
+ ],
+ "weeks": [
+  {
+   "start": "2026-10-19",
+   "end": "2026-10-25",
+   "title": "Week 1: Pushes & Pulls (Oct 19-25)",
+   "weekend": {
+    "title": "Weekend favorites",
+    "note": "Saturday Art Studio: LINE. Sunday bonus: make a Scratch sprite fall.",
+    "videos": [
+     {
+      "id": "Tzt0V7J65mQ",
+      "title": "All About Lines (art lesson)",
+      "channel": "Paint It Kids",
+      "tag": "Fine Arts: Line",
+      "seconds": 244,
+      "minutes": 4.1
+     },
+     {
+      "id": "T1KRQ3RcvXA",
+      "title": "World's Largest Super Soaker (Mark Rober)",
+      "channel": "Mark Rober",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 485,
+      "minutes": 8.1
+     },
+     {
+      "id": "mz6o8b2bFd0",
+      "title": "The King of Kindergarten (read-aloud)",
+      "channel": "StorylineOnline",
+      "tag": "ELAR K.6 Retell",
+      "seconds": 379,
+      "minutes": 6.3
+     },
+     {
+      "id": "eR2OR3coiX4",
+      "title": "How High Can You Stack?",
+      "channel": "SciShow Kids",
+      "tag": "Sci K.1 Eng. practices",
+      "seconds": 246,
+      "minutes": 4.1
+     },
+     {
+      "id": "oVOnRPefcno",
+      "title": "What Makes Bridges So Strong?",
+      "channel": "SciShow Kids",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 225,
+      "minutes": 3.8
+     },
+     {
+      "id": "lgZRMptA0Lk",
+      "title": "Clark the Shark (read-aloud)",
+      "channel": "StorylineOnline",
+      "tag": "ELAR K.6/2.6 Retell",
+      "seconds": 441,
+      "minutes": 7.3
+     }
+    ]
+   }
+  }
+ ],
+ "days": {
+  "2026-10-19": {
+   "focus": "Pushes & Pulls · Break it down · LEGO beam bridge",
+   "segments": {
+    "amTogether": {
+     "prompt": "What did you push or pull this morning?",
+     "videos": [
+      {
+       "id": "E-SnC_WKsCg",
+       "title": "Forces Can Push or Pull (song)",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "tag": "Sci K.7/2.7 Force & motion",
+       "seconds": 158,
+       "minutes": 2.6
+      },
+      {
+       "id": "oVOnRPefcno",
+       "title": "What Makes Bridges So Strong?",
+       "channel": "SciShow Kids",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 225,
+       "minutes": 3.8
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "Is a swing a push or a pull? Build a tower tonight!",
+     "videos": [
+      {
+       "id": "JvSClZ3vHOI",
+       "title": "Swings, Slides, and Science",
+       "channel": "SciShow Kids",
+       "tag": "Sci K.7 Force & motion",
+       "seconds": 218,
+       "minutes": 3.6
+      },
+      {
+       "id": "eR2OR3coiX4",
+       "title": "How High Can You Stack?",
+       "channel": "SciShow Kids",
+       "tag": "Sci K.1 Eng. practices",
+       "seconds": 246,
+       "minutes": 4.1
+      },
+      {
+       "id": "6-duQqX5ECs",
+       "title": "Numberblocks: Three",
+       "channel": "Numberblocks",
+       "tag": "Math K.2 Counting",
+       "seconds": 305,
+       "minutes": 5.1
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Break your bridge build into 3 small steps. How many coins before it sags?",
+     "videos": [
+      {
+       "id": "5-2NLHB4Gxg",
+       "title": "What Is Force? (Dr. Binocs)",
+       "channel": "Peekaboo Kidz",
+       "tag": "Sci 2.7A Force & motion",
+       "seconds": 363,
+       "minutes": 6.0
+      },
+      {
+       "id": "owHF9iLyxic",
+       "title": "What's an Engineer?",
+       "channel": "Crash Course Kids",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 270,
+       "minutes": 4.5
+      },
+      {
+       "id": "fxJWin195kU",
+       "title": "The Engineering Process",
+       "channel": "Crash Course Kids",
+       "tag": "Sci 2.1 Eng. design",
+       "seconds": 317,
+       "minutes": 5.3
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "Somebody wanted... but... so...: tell the story in one sentence.",
+     "videos": [
+      {
+       "id": "7LOuUq4FT6g",
+       "title": "Rosie Revere, Engineer (read-aloud)",
+       "channel": "StorylineOnline",
+       "tag": "ELAR K.6/2.6 Retell",
+       "seconds": 456,
+       "minutes": 7.6
+      }
+     ]
+    }
+   }
+  },
+  "2026-10-20": {
+   "focus": "Magnets push AND pull · Spot the pattern · Read → word problem → self-check",
+   "segments": {
+    "amTogether": {
+     "prompt": "Which ends pushed apart? Which ends pulled together? Spot the pattern!",
+     "videos": [
+      {
+       "id": "LI90lJlqrss",
+       "title": "We Made Magnets Float in the Air!",
+       "channel": "SciShow Kids",
+       "tag": "Sci K.7 Magnets push/pull",
+       "seconds": 282,
+       "minutes": 4.7
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "What does a magnet pull? Is 6 odd or even?",
+     "videos": [
+      {
+       "id": "s236Q1nuWXg",
+       "title": "Fun with Magnets!",
+       "channel": "SciShow Kids",
+       "tag": "Sci K.7 Magnets push/pull",
+       "seconds": 301,
+       "minutes": 5.0
+      },
+      {
+       "id": "u6FU-ZO9jg8",
+       "title": "Numberblocks: Odds & Evens",
+       "channel": "Numberblocks",
+       "tag": "Math K.2 Counting/patterns",
+       "seconds": 400,
+       "minutes": 6.7
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Draw it → Solve it → Explain it. Then self-check: reread, circle the ask, estimate, check.",
+     "videos": [
+      {
+       "id": "efPbOfnbi7k",
+       "title": "Two-Step Word Problems",
+       "channel": "MightyOwl",
+       "tag": "Math 2.4C Word problems",
+       "seconds": 374,
+       "minutes": 6.2
+      },
+      {
+       "id": "Zt78cFS5isQ",
+       "title": "The Place Value Song",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "tag": "Math 2.2 Place value",
+       "seconds": 227,
+       "minutes": 3.8
+      },
+      {
+       "id": "V_c_c7sANYk",
+       "title": "Odd Squad: Patterns & Numbers",
+       "channel": "Odd Squad",
+       "tag": "Math 2.7 Patterns",
+       "seconds": 261,
+       "minutes": 4.3
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "One-sentence summary: Somebody wanted... but... so...",
+     "videos": [
+      {
+       "id": "-XFQNGJmLEk",
+       "title": "Please Please the Bees (read-aloud)",
+       "channel": "StorylineOnline",
+       "tag": "ELAR K.6/2.6 Retell",
+       "seconds": 312,
+       "minutes": 5.2
+      }
+     ]
+    }
+   }
+  },
+  "2026-10-21": {
+   "focus": "Snap Circuits: battery + switch + lamp · Think aloud",
+   "segments": {
+    "amTogether": {
+     "prompt": "Predict: will the balloon stick? Say your thinking out loud.",
+     "videos": [
+      {
+       "id": "2M6uJdUqlLQ",
+       "title": "Learn About Electricity with Snap Circuits",
+       "channel": "Snap Circuits",
+       "tag": "Build Lab: circuits",
+       "seconds": 64,
+       "minutes": 1.1
+      },
+      {
+       "id": "5TAIUCYMlIQ",
+       "title": "The Sticky Balloon Trick!",
+       "channel": "SciShow Kids",
+       "tag": "Sci 2.7 Pull without touching",
+       "seconds": 192,
+       "minutes": 3.2
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "Say the sounds! Push or pull: what makes a light switch go on?",
+     "videos": [
+      {
+       "id": "6XnDWNDpvGE",
+       "title": "Alphablocks: Episode 1",
+       "channel": "Alphablocks Full Episodes",
+       "tag": "ELAR K.2 Phonics",
+       "seconds": 190,
+       "minutes": 3.2
+      },
+      {
+       "id": "59u6KaluscI",
+       "title": "Letter Sounds Workout",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "tag": "ELAR K.2 Phonics",
+       "seconds": 306,
+       "minutes": 5.1
+      },
+      {
+       "id": "E-SnC_WKsCg",
+       "title": "Forces Can Push or Pull (song)",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "tag": "Sci K.7 Force & motion",
+       "seconds": 158,
+       "minutes": 2.6
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Think aloud: if the loop has a gap, what happens to the lamp? Predict, then test.",
+     "videos": [
+      {
+       "id": "HOFp8bHTN30",
+       "title": "The Power of Circuits!",
+       "channel": "SciShow Kids",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 282,
+       "minutes": 4.7
+      },
+      {
+       "id": "VnnpLaKsqGU",
+       "title": "Explaining an Electrical Circuit",
+       "channel": "Region 10 ESC",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 147,
+       "minutes": 2.5
+      },
+      {
+       "id": "RflPCovOCQ0",
+       "title": "Odd Squad: The Flattened Cube",
+       "channel": "Odd Squad",
+       "tag": "Math 2.8 Shapes (3D)",
+       "seconds": 177,
+       "minutes": 3.0
+      },
+      {
+       "id": "pjdfEsqbPi0",
+       "title": "Numberblocks: Ten's Place",
+       "channel": "Numberblocks",
+       "tag": "Math 2.2 Place value",
+       "seconds": 275,
+       "minutes": 4.6
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "What was Jessi's problem? What steps did she try?",
+     "videos": [
+      {
+       "id": "RM04n0-QtNo",
+       "title": "Jessi Has a Problem!",
+       "channel": "SciShow Kids",
+       "tag": "Sci 2.1 Eng. design",
+       "seconds": 307,
+       "minutes": 5.1
+      }
+     ]
+    }
+   }
+  },
+  "2026-10-22": {
+   "focus": "Stuck practice: try 3 strategies · Read → word problem → self-check",
+   "segments": {
+    "amTogether": {
+     "prompt": "Pause, breathe, what do I know, what's one thing I can try?",
+     "videos": [
+      {
+       "id": "XLeUvZvuvAs",
+       "title": "Sesame Street: The Power of Yet",
+       "channel": "Sesame Street",
+       "tag": "SEL Persistence",
+       "seconds": 162,
+       "minutes": 2.7
+      },
+      {
+       "id": "YIV9IUHqW3A",
+       "title": "Let's Get Rolling! (wheels & pulls)",
+       "channel": "SciShow Kids",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 199,
+       "minutes": 3.3
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "5 bricks, add 2 more. How many? Use your fingers!",
+     "videos": [
+      {
+       "id": "C229LUk380Q",
+       "title": "Word Problems: Add or Subtract?",
+       "channel": "MightyOwl",
+       "tag": "Math K.3 Word problems",
+       "seconds": 414,
+       "minutes": 6.9
+      },
+      {
+       "id": "9UxTopiIUvM",
+       "title": "Numberblocks Express",
+       "channel": "Numberblocks",
+       "tag": "Math K.3 Add/subtract",
+       "seconds": 276,
+       "minutes": 4.6
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Who, where, problem, solution? Then: how is a magnet a push AND a pull?",
+     "videos": [
+      {
+       "id": "-_nePjWXecQ",
+       "title": "Parts of a Story",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "tag": "ELAR 2.8 Story elements",
+       "seconds": 159,
+       "minutes": 2.6
+      },
+      {
+       "id": "NpWHZJZQDSE",
+       "title": "Plot Mountain!",
+       "channel": "Scratch Garden",
+       "tag": "ELAR 2.8 Plot",
+       "seconds": 170,
+       "minutes": 2.8
+      },
+      {
+       "id": "a4FXl4zb3E4",
+       "title": "Place Value: Ones, Tens & Hundreds",
+       "channel": "Numberock",
+       "tag": "Math 2.2 Place value",
+       "seconds": 235,
+       "minutes": 3.9
+      },
+      {
+       "id": "yXCeuSiTOug",
+       "title": "Magnetism (Dr. Binocs)",
+       "channel": "Peekaboo Kidz",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 196,
+       "minutes": 3.3
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "She got stuck and took a walk. What do YOU do when you're stuck?",
+     "videos": [
+      {
+       "id": "yt_GmmOx06Y",
+       "title": "The Most Magnificent Thing (read-aloud)",
+       "channel": "StorylineOnline",
+       "tag": "ELAR K.6/2.6 + SEL",
+       "seconds": 488,
+       "minutes": 8.1
+      }
+     ]
+    }
+   }
+  },
+  "2026-10-23": {
+   "focus": "Fun Friday · Teach-back · Scratch: move a sprite",
+   "segments": {
+    "amTogether": {
+     "prompt": "Teach-back: tell me one thing you learned this week!",
+     "videos": [
+      {
+       "id": "98awWpkx9UM",
+       "title": "Scratch!",
+       "channel": "Scratch Team",
+       "tag": "Tech Apps: coding",
+       "seconds": 58,
+       "minutes": 1.0
+      },
+      {
+       "id": "LrHEikj52Kk",
+       "title": "Odd Squad: The Missing Shapes",
+       "channel": "PBS KIDS",
+       "tag": "Math K.6/2.8 Shapes",
+       "seconds": 230,
+       "minutes": 3.8
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "Find a circle, a square and a triangle out the window!",
+     "videos": [
+      {
+       "id": "Ux_kLd7qAcY",
+       "title": "Shapes! Mini Math Movie",
+       "channel": "Scratch Garden",
+       "tag": "Math K.6 Shapes",
+       "seconds": 472,
+       "minutes": 7.9
+      },
+      {
+       "id": "q20CHXs6Q7Q",
+       "title": "Count to 100",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "tag": "Math K.2 Counting",
+       "seconds": 228,
+       "minutes": 3.8
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Teach-back: what did Mark change in each prototype? How does the game make the cat fall?",
+     "videos": [
+      {
+       "id": "M0_U1FHwACk",
+       "title": "Rock Skip Robot (Mark Rober)",
+       "channel": "Mark Rober",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 562,
+       "minutes": 9.4
+      },
+      {
+       "id": "1jHvXakt1qw",
+       "title": "Make a Jumping Game in Scratch",
+       "channel": "Scratch Team",
+       "tag": "Tech Apps: coding",
+       "seconds": 304,
+       "minutes": 5.1
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "What happened first, next, last?",
+     "videos": [
+      {
+       "id": "7j0OY3236jw",
+       "title": "Harry the Dirty Dog (read-aloud)",
+       "channel": "StorylineOnline",
+       "tag": "ELAR K.6/2.6 Retell",
+       "seconds": 292,
+       "minutes": 4.9
+      }
+     ]
+    }
+   }
+  }
+ }
+}

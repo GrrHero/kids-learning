@@ -7,159 +7,884 @@
 <title>Kids Learning</title>
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html, body { margin: 0; height: 100%; }
+  html, body { margin: 0; min-height: 100%; }
   body {
     font-family: "Comic Sans MS", "Chalkboard SE", "Trebuchet MS", system-ui, sans-serif;
     background: linear-gradient(160deg, #ffe66d 0%, #ff9f68 45%, #a0e7e5 100%);
     background-attachment: fixed; color: #222; user-select: none;
   }
-  header { text-align: center; padding: 22px 16px 6px; }
-  h1 { margin: 0; font-size: 64px; color: #fff; letter-spacing: 2px;
-       text-shadow: 4px 4px 0 #ff5d8f, 8px 8px 0 rgba(0,0,0,.15); }
-  .week { display: inline-block; margin-top: 12px; padding: 10px 26px; border-radius: 999px;
-          background: #fff; font-size: 30px; font-weight: bold; color: #4b3fd6;
-          box-shadow: 0 6px 0 rgba(0,0,0,.15); }
-  main { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-         gap: 28px; padding: 24px 32px 40px; max-width: 1500px; margin: 0 auto; }
-  .card { display: flex; flex-direction: column; justify-content: flex-start; padding: 0; margin: 0; text-align: left; cursor: pointer;
-          border-radius: 28px; overflow: hidden; background: #fff; font: inherit; color: inherit;
-          box-shadow: 0 10px 0 var(--c), 0 16px 26px rgba(0,0,0,.18);
-          border: 6px solid var(--c); transition: transform .12s; touch-action: manipulation; }
-  .card:active { transform: scale(.96) translateY(6px); box-shadow: 0 4px 0 var(--c); }
+  button { font: inherit; touch-action: manipulation; cursor: pointer; }
+  header { text-align: center; padding: 14px 16px 4px; }
+  h1 { margin: 0; font-size: 46px; color: #fff; letter-spacing: 2px;
+       text-shadow: 3px 3px 0 #ff5d8f, 6px 6px 0 rgba(0,0,0,.15); }
+  .week { display: inline-block; margin-top: 6px; padding: 6px 22px; border-radius: 999px;
+          background: #fff; font-size: 22px; font-weight: bold; color: #4b3fd6;
+          box-shadow: 0 5px 0 rgba(0,0,0,.15); }
+  nav { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 14px 16px 4px; flex-wrap: wrap; }
+  .navbtn { font-size: 30px; font-weight: bold; padding: 14px 30px; border-radius: 999px; border: none;
+            color: #fff; background: #4b3fd6; box-shadow: 0 7px 0 #2e2494; min-width: 120px; }
+  .navbtn:active { transform: translateY(5px); box-shadow: 0 2px 0 #2e2494; }
+  .navbtn.alt { background: #2bb673; box-shadow: 0 7px 0 #1b7a4b; }
+  .navbtn[disabled] { opacity: .35; }
+  .day { text-align: center; }
+  .dayname { font-size: 40px; font-weight: bold; color: #222; }
+  .focus { font-size: 22px; color: #333; margin-top: 2px; }
+  .today-pill { display: inline-block; margin-left: 10px; padding: 2px 14px; border-radius: 999px; background: #ff5d8f;
+                color: #fff; font-size: 22px; vertical-align: middle; }
+  main { padding: 10px 28px 40px; max-width: 1500px; margin: 0 auto; }
+  section.seg { background: rgba(255,255,255,.55); border-radius: 30px; margin: 18px 0; padding: 14px 18px 20px;
+                border: 6px solid var(--c); box-shadow: 0 8px 0 var(--c); }
+  .seghead { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .icon { font-size: 46px; line-height: 1; }
+  .seglabel { font-size: 36px; font-weight: bold; color: var(--c); text-shadow: 1px 1px 0 #fff; }
+  .segmins { font-size: 22px; font-weight: bold; padding: 4px 16px; border-radius: 999px; background: var(--c); color: #fff; }
+  .playall { margin-left: auto; font-size: 26px; font-weight: bold; padding: 10px 26px; border-radius: 999px; border: none;
+             color: #fff; background: var(--c); box-shadow: 0 6px 0 rgba(0,0,0,.25); }
+  .playall:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(0,0,0,.25); }
+  .prompt { font-size: 21px; margin: 6px 4px 10px; color: #333; }
+  .prompt b { color: var(--c); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+  .card { display: flex; flex-direction: column; padding: 0; margin: 0; text-align: left; cursor: pointer;
+          border-radius: 22px; overflow: hidden; background: #fff; color: inherit;
+          box-shadow: 0 7px 0 var(--c), 0 12px 20px rgba(0,0,0,.15); border: 5px solid var(--c);
+          transition: transform .12s; touch-action: manipulation; }
+  .card:active { transform: scale(.96) translateY(5px); box-shadow: 0 3px 0 var(--c); }
   .thumb { position: relative; height: 0; padding-top: 56.25%; overflow: hidden; background: #ddd; flex: none; }
   .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-  .play { position: absolute; inset: 0; margin: auto; width: 92px; height: 92px; border-radius: 50%;
+  .play { position: absolute; inset: 0; margin: auto; width: 76px; height: 76px; border-radius: 50%;
           background: rgba(255,255,255,.92); display: flex; align-items: center; justify-content: center;
           box-shadow: 0 4px 12px rgba(0,0,0,.3); }
-  .play::after { content: ""; margin-left: 10px; border-style: solid; border-width: 22px 0 22px 36px;
+  .play::after { content: ""; margin-left: 8px; border-style: solid; border-width: 18px 0 18px 30px;
                  border-color: transparent transparent transparent var(--c); }
-  .info { padding: 16px 20px 22px; }
-  .tag { display: inline-block; padding: 6px 18px; border-radius: 999px; background: var(--c);
-         color: #fff; font-size: 22px; font-weight: bold; }
-  .title { margin-top: 10px; font-size: 30px; font-weight: bold; line-height: 1.15; }
+  .dur { position: absolute; right: 8px; bottom: 8px; background: rgba(0,0,0,.78); color: #fff; font-size: 20px;
+         font-weight: bold; padding: 2px 10px; border-radius: 8px; }
+  .num { position: absolute; left: 8px; top: 8px; background: var(--c); color: #fff; font-size: 22px; font-weight: bold;
+         width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .info { padding: 10px 14px 14px; }
+  .title { font-size: 24px; font-weight: bold; line-height: 1.15; }
+  .tag { display: inline-block; margin-top: 8px; padding: 3px 12px; border-radius: 999px; background: #eee;
+         color: #444; font-size: 15px; font-family: system-ui, sans-serif; }
+  .s-amTogether { --c: #f5a300; } .s-amYounger { --c: #2bb673; }
+  .s-pmOlder { --c: #4b8bf5; } .s-pmTogether { --c: #c24bf5; } .s-weekend { --c: #ff5d8f; }
+  /* week view */
+  .weekgrid { display: grid; grid-template-columns: 210px repeat(5, 1fr); gap: 10px; }
+  .wcell { background: #fff; border-radius: 16px; padding: 10px 12px; font-size: 17px; line-height: 1.2; }
+  .wcell ul { margin: 0; padding-left: 18px; }
+  .whead { background: #4b3fd6; color: #fff; font-size: 24px; font-weight: bold; text-align: center; border: none; }
+  .whead.is-today { background: #ff5d8f; }
+  .wseg { color: #fff; background: var(--c); font-size: 20px; font-weight: bold; display: flex; align-items: center; }
   #overlay { position: fixed; inset: 0; background: rgba(20,10,60,.94); display: none;
              flex-direction: column; align-items: center; justify-content: center; z-index: 10; padding: 20px; }
   #overlay.open { display: flex; }
-  #back { position: absolute; top: 18px; left: 18px; font: inherit; font-size: 40px; font-weight: bold;
-          padding: 14px 40px; border-radius: 999px; border: none; cursor: pointer; color: #fff;
-          background: #ff5d8f; box-shadow: 0 8px 0 #c2185b; touch-action: manipulation; z-index: 2; }
+  #back { position: absolute; top: 18px; left: 18px; font-size: 40px; font-weight: bold;
+          padding: 14px 40px; border-radius: 999px; border: none; color: #fff;
+          background: #ff5d8f; box-shadow: 0 8px 0 #c2185b; z-index: 2; }
   #back:active { transform: translateY(6px); box-shadow: 0 2px 0 #c2185b; }
+  #nowplaying { position: absolute; top: 30px; right: 26px; left: 300px; text-align: right; color: #fff; font-size: 24px; }
   #playerWrap { width: min(92vw, calc((100vh - 150px) * 16 / 9)); height: min(calc(92vw * 9 / 16), calc(100vh - 150px)); margin-top: 80px;
                 border-radius: 20px; overflow: hidden; background: #000; }
   #playerWrap iframe { width: 100%; height: 100%; border: 0; display: block; }
-  .tag-Science { --c: #4b8bf5; } .tag-Building { --c: #f58b2b; }
-  .tag-Circuits { --c: #2bb673; } .tag-Art { --c: #c24bf5; } .tag-other { --c: #ff5d8f; }
+  .empty { background: #fff; border-radius: 24px; padding: 24px; font-size: 26px; text-align: center; }
 </style>
 </head>
 <body>
 <header>
   <h1>Kids Learning</h1>
-  <div class="week" id="week">Week 1: Pushes &amp; Pulls (Oct 19-25)</div>
+  <div class="week" id="weektitle">Week 1: Pushes &amp; Pulls (Oct 19-25)</div>
 </header>
-<main id="cards"></main>
+<nav>
+  <button class="navbtn" id="prev" type="button">&#9664; Prev</button>
+  <div class="day"><div class="dayname" id="dayname"></div><div class="focus" id="focus"></div></div>
+  <button class="navbtn" id="next" type="button">Next &#9654;</button>
+</nav>
+<nav>
+  <button class="navbtn alt" id="todayBtn" type="button">Today</button>
+  <button class="navbtn alt" id="weekBtn" type="button">This week</button>
+</nav>
+<main id="main"></main>
 
 <div id="overlay" role="dialog" aria-modal="true">
   <button id="back" type="button">&#11013; Back</button>
+  <div id="nowplaying"></div>
   <div id="playerWrap"></div>
 </div>
 
-<script id="video-data" type="application/json">{
-  "week": "Week 1: Pushes & Pulls (Oct 19-25)",
-  "videos": [
-    {
-      "id": "5-2NLHB4Gxg",
-      "title": "What Is Force?",
-      "tag": "Science"
-    },
-    {
+<script id="lineup-data" type="application/json">{
+ "timezone": "America/Chicago",
+ "segments": [
+  {
+   "key": "amTogether",
+   "label": "Morning - Together",
+   "icon": "sun",
+   "target": "~5 min",
+   "who": "Both brothers"
+  },
+  {
+   "key": "amYounger",
+   "label": "Morning - Little Brother",
+   "icon": "sun",
+   "target": "10-15 min",
+   "who": "Little Brother"
+  },
+  {
+   "key": "pmOlder",
+   "label": "Afternoon - Big Brother",
+   "icon": "afternoon",
+   "target": "10-15 min",
+   "who": "Big Brother"
+  },
+  {
+   "key": "pmTogether",
+   "label": "Afternoon - Together",
+   "icon": "afternoon",
+   "target": "~5 min",
+   "who": "Both brothers"
+  }
+ ],
+ "weeks": [
+  {
+   "start": "2026-10-19",
+   "end": "2026-10-25",
+   "title": "Week 1: Pushes & Pulls (Oct 19-25)",
+   "weekend": {
+    "title": "Weekend favorites",
+    "note": "Saturday Art Studio: LINE. Sunday bonus: make a Scratch sprite fall.",
+    "videos": [
+     {
+      "id": "Tzt0V7J65mQ",
+      "title": "All About Lines (art lesson)",
+      "tag": "Fine Arts: Line",
+      "channel": "Paint It Kids",
+      "seconds": 244,
+      "minutes": 4.1
+     },
+     {
+      "id": "T1KRQ3RcvXA",
+      "title": "World's Largest Super Soaker (Mark Rober)",
+      "tag": "Sci 2.1 Eng. practices",
+      "channel": "Mark Rober",
+      "seconds": 485,
+      "minutes": 8.1
+     },
+     {
+      "id": "mz6o8b2bFd0",
+      "title": "The King of Kindergarten (read-aloud)",
+      "tag": "ELAR K.6 Retell",
+      "channel": "StorylineOnline",
+      "seconds": 379,
+      "minutes": 6.3
+     },
+     {
+      "id": "eR2OR3coiX4",
+      "title": "How High Can You Stack?",
+      "tag": "Sci K.1 Eng. practices",
+      "channel": "SciShow Kids",
+      "seconds": 246,
+      "minutes": 4.1
+     },
+     {
       "id": "oVOnRPefcno",
       "title": "What Makes Bridges So Strong?",
-      "tag": "Building"
+      "tag": "Sci 2.1 Eng. practices",
+      "channel": "SciShow Kids",
+      "seconds": 225,
+      "minutes": 3.8
+     },
+     {
+      "id": "lgZRMptA0Lk",
+      "title": "Clark the Shark (read-aloud)",
+      "tag": "ELAR K.6/2.6 Retell",
+      "channel": "StorylineOnline",
+      "seconds": 441,
+      "minutes": 7.3
+     }
+    ]
+   }
+  }
+ ],
+ "days": {
+  "2026-10-19": {
+   "focus": "Pushes & Pulls · Break it down · LEGO beam bridge",
+   "segments": {
+    "amTogether": {
+     "prompt": "What did you push or pull this morning?",
+     "videos": [
+      {
+       "id": "E-SnC_WKsCg",
+       "title": "Forces Can Push or Pull (song)",
+       "tag": "Sci K.7/2.7 Force & motion",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "seconds": 158,
+       "minutes": 2.6
+      },
+      {
+       "id": "oVOnRPefcno",
+       "title": "What Makes Bridges So Strong?",
+       "tag": "Sci 2.1 Eng. practices",
+       "channel": "SciShow Kids",
+       "seconds": 225,
+       "minutes": 3.8
+      }
+     ]
     },
-    {
-      "id": "2M6uJdUqlLQ",
-      "title": "Learn About Electricity with Snap Circuits",
-      "tag": "Circuits"
+    "amYounger": {
+     "prompt": "Is a swing a push or a pull? Build a tower tonight!",
+     "videos": [
+      {
+       "id": "JvSClZ3vHOI",
+       "title": "Swings, Slides, and Science",
+       "tag": "Sci K.7 Force & motion",
+       "channel": "SciShow Kids",
+       "seconds": 218,
+       "minutes": 3.6
+      },
+      {
+       "id": "eR2OR3coiX4",
+       "title": "How High Can You Stack?",
+       "tag": "Sci K.1 Eng. practices",
+       "channel": "SciShow Kids",
+       "seconds": 246,
+       "minutes": 4.1
+      },
+      {
+       "id": "6-duQqX5ECs",
+       "title": "Numberblocks: Three",
+       "tag": "Math K.2 Counting",
+       "channel": "Numberblocks",
+       "seconds": 305,
+       "minutes": 5.1
+      }
+     ]
     },
-    {
-      "id": "Tzt0V7J65mQ",
-      "title": "All About Lines",
-      "tag": "Art"
+    "pmOlder": {
+     "prompt": "Break your bridge build into 3 small steps. How many coins before it sags?",
+     "videos": [
+      {
+       "id": "5-2NLHB4Gxg",
+       "title": "What Is Force? (Dr. Binocs)",
+       "tag": "Sci 2.7A Force & motion",
+       "channel": "Peekaboo Kidz",
+       "seconds": 363,
+       "minutes": 6.0
+      },
+      {
+       "id": "owHF9iLyxic",
+       "title": "What's an Engineer?",
+       "tag": "Sci 2.1 Eng. practices",
+       "channel": "Crash Course Kids",
+       "seconds": 270,
+       "minutes": 4.5
+      },
+      {
+       "id": "fxJWin195kU",
+       "title": "The Engineering Process",
+       "tag": "Sci 2.1 Eng. design",
+       "channel": "Crash Course Kids",
+       "seconds": 317,
+       "minutes": 5.3
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "Somebody wanted... but... so...: tell the story in one sentence.",
+     "videos": [
+      {
+       "id": "7LOuUq4FT6g",
+       "title": "Rosie Revere, Engineer (read-aloud)",
+       "tag": "ELAR K.6/2.6 Retell",
+       "channel": "StorylineOnline",
+       "seconds": 456,
+       "minutes": 7.6
+      }
+     ]
     }
-  ]
+   }
+  },
+  "2026-10-20": {
+   "focus": "Magnets push AND pull · Spot the pattern · Read → word problem → self-check",
+   "segments": {
+    "amTogether": {
+     "prompt": "Which ends pushed apart? Which ends pulled together? Spot the pattern!",
+     "videos": [
+      {
+       "id": "LI90lJlqrss",
+       "title": "We Made Magnets Float in the Air!",
+       "tag": "Sci K.7 Magnets push/pull",
+       "channel": "SciShow Kids",
+       "seconds": 282,
+       "minutes": 4.7
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "What does a magnet pull? Is 6 odd or even?",
+     "videos": [
+      {
+       "id": "s236Q1nuWXg",
+       "title": "Fun with Magnets!",
+       "tag": "Sci K.7 Magnets push/pull",
+       "channel": "SciShow Kids",
+       "seconds": 301,
+       "minutes": 5.0
+      },
+      {
+       "id": "u6FU-ZO9jg8",
+       "title": "Numberblocks: Odds & Evens",
+       "tag": "Math K.2 Counting/patterns",
+       "channel": "Numberblocks",
+       "seconds": 400,
+       "minutes": 6.7
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Draw it → Solve it → Explain it. Then self-check: reread, circle the ask, estimate, check.",
+     "videos": [
+      {
+       "id": "efPbOfnbi7k",
+       "title": "Two-Step Word Problems",
+       "tag": "Math 2.4C Word problems",
+       "channel": "MightyOwl",
+       "seconds": 374,
+       "minutes": 6.2
+      },
+      {
+       "id": "Zt78cFS5isQ",
+       "title": "The Place Value Song",
+       "tag": "Math 2.2 Place value",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "seconds": 227,
+       "minutes": 3.8
+      },
+      {
+       "id": "V_c_c7sANYk",
+       "title": "Odd Squad: Patterns & Numbers",
+       "tag": "Math 2.7 Patterns",
+       "channel": "Odd Squad",
+       "seconds": 261,
+       "minutes": 4.3
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "One-sentence summary: Somebody wanted... but... so...",
+     "videos": [
+      {
+       "id": "-XFQNGJmLEk",
+       "title": "Please Please the Bees (read-aloud)",
+       "tag": "ELAR K.6/2.6 Retell",
+       "channel": "StorylineOnline",
+       "seconds": 312,
+       "minutes": 5.2
+      }
+     ]
+    }
+   }
+  },
+  "2026-10-21": {
+   "focus": "Snap Circuits: battery + switch + lamp · Think aloud",
+   "segments": {
+    "amTogether": {
+     "prompt": "Predict: will the balloon stick? Say your thinking out loud.",
+     "videos": [
+      {
+       "id": "2M6uJdUqlLQ",
+       "title": "Learn About Electricity with Snap Circuits",
+       "tag": "Build Lab: circuits",
+       "channel": "Snap Circuits",
+       "seconds": 64,
+       "minutes": 1.1
+      },
+      {
+       "id": "5TAIUCYMlIQ",
+       "title": "The Sticky Balloon Trick!",
+       "tag": "Sci 2.7 Pull without touching",
+       "channel": "SciShow Kids",
+       "seconds": 192,
+       "minutes": 3.2
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "Say the sounds! Push or pull: what makes a light switch go on?",
+     "videos": [
+      {
+       "id": "6XnDWNDpvGE",
+       "title": "Alphablocks: Episode 1",
+       "tag": "ELAR K.2 Phonics",
+       "channel": "Alphablocks Full Episodes",
+       "seconds": 190,
+       "minutes": 3.2
+      },
+      {
+       "id": "59u6KaluscI",
+       "title": "Letter Sounds Workout",
+       "tag": "ELAR K.2 Phonics",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "seconds": 306,
+       "minutes": 5.1
+      },
+      {
+       "id": "E-SnC_WKsCg",
+       "title": "Forces Can Push or Pull (song)",
+       "tag": "Sci K.7 Force & motion",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "seconds": 158,
+       "minutes": 2.6
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Think aloud: if the loop has a gap, what happens to the lamp? Predict, then test.",
+     "videos": [
+      {
+       "id": "HOFp8bHTN30",
+       "title": "The Power of Circuits!",
+       "tag": "Sci 2.1 Eng. practices",
+       "channel": "SciShow Kids",
+       "seconds": 282,
+       "minutes": 4.7
+      },
+      {
+       "id": "VnnpLaKsqGU",
+       "title": "Explaining an Electrical Circuit",
+       "tag": "Sci 2.1 Eng. practices",
+       "channel": "Region 10 ESC",
+       "seconds": 147,
+       "minutes": 2.5
+      },
+      {
+       "id": "RflPCovOCQ0",
+       "title": "Odd Squad: The Flattened Cube",
+       "tag": "Math 2.8 Shapes (3D)",
+       "channel": "Odd Squad",
+       "seconds": 177,
+       "minutes": 3.0
+      },
+      {
+       "id": "pjdfEsqbPi0",
+       "title": "Numberblocks: Ten's Place",
+       "tag": "Math 2.2 Place value",
+       "channel": "Numberblocks",
+       "seconds": 275,
+       "minutes": 4.6
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "What was Jessi's problem? What steps did she try?",
+     "videos": [
+      {
+       "id": "RM04n0-QtNo",
+       "title": "Jessi Has a Problem!",
+       "tag": "Sci 2.1 Eng. design",
+       "channel": "SciShow Kids",
+       "seconds": 307,
+       "minutes": 5.1
+      }
+     ]
+    }
+   }
+  },
+  "2026-10-22": {
+   "focus": "Stuck practice: try 3 strategies · Read → word problem → self-check",
+   "segments": {
+    "amTogether": {
+     "prompt": "Pause, breathe, what do I know, what's one thing I can try?",
+     "videos": [
+      {
+       "id": "XLeUvZvuvAs",
+       "title": "Sesame Street: The Power of Yet",
+       "tag": "SEL Persistence",
+       "channel": "Sesame Street",
+       "seconds": 162,
+       "minutes": 2.7
+      },
+      {
+       "id": "YIV9IUHqW3A",
+       "title": "Let's Get Rolling! (wheels & pulls)",
+       "tag": "Sci 2.7 Force & motion",
+       "channel": "SciShow Kids",
+       "seconds": 199,
+       "minutes": 3.3
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "5 bricks, add 2 more. How many? Use your fingers!",
+     "videos": [
+      {
+       "id": "C229LUk380Q",
+       "title": "Word Problems: Add or Subtract?",
+       "tag": "Math K.3 Word problems",
+       "channel": "MightyOwl",
+       "seconds": 414,
+       "minutes": 6.9
+      },
+      {
+       "id": "9UxTopiIUvM",
+       "title": "Numberblocks Express",
+       "tag": "Math K.3 Add/subtract",
+       "channel": "Numberblocks",
+       "seconds": 276,
+       "minutes": 4.6
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Who, where, problem, solution? Then: how is a magnet a push AND a pull?",
+     "videos": [
+      {
+       "id": "-_nePjWXecQ",
+       "title": "Parts of a Story",
+       "tag": "ELAR 2.8 Story elements",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "seconds": 159,
+       "minutes": 2.6
+      },
+      {
+       "id": "NpWHZJZQDSE",
+       "title": "Plot Mountain!",
+       "tag": "ELAR 2.8 Plot",
+       "channel": "Scratch Garden",
+       "seconds": 170,
+       "minutes": 2.8
+      },
+      {
+       "id": "a4FXl4zb3E4",
+       "title": "Place Value: Ones, Tens & Hundreds",
+       "tag": "Math 2.2 Place value",
+       "channel": "Numberock",
+       "seconds": 235,
+       "minutes": 3.9
+      },
+      {
+       "id": "yXCeuSiTOug",
+       "title": "Magnetism (Dr. Binocs)",
+       "tag": "Sci 2.7 Force & motion",
+       "channel": "Peekaboo Kidz",
+       "seconds": 196,
+       "minutes": 3.3
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "She got stuck and took a walk. What do YOU do when you're stuck?",
+     "videos": [
+      {
+       "id": "yt_GmmOx06Y",
+       "title": "The Most Magnificent Thing (read-aloud)",
+       "tag": "ELAR K.6/2.6 + SEL",
+       "channel": "StorylineOnline",
+       "seconds": 488,
+       "minutes": 8.1
+      }
+     ]
+    }
+   }
+  },
+  "2026-10-23": {
+   "focus": "Fun Friday · Teach-back · Scratch: move a sprite",
+   "segments": {
+    "amTogether": {
+     "prompt": "Teach-back: tell me one thing you learned this week!",
+     "videos": [
+      {
+       "id": "98awWpkx9UM",
+       "title": "Scratch!",
+       "tag": "Tech Apps: coding",
+       "channel": "Scratch Team",
+       "seconds": 58,
+       "minutes": 1.0
+      },
+      {
+       "id": "LrHEikj52Kk",
+       "title": "Odd Squad: The Missing Shapes",
+       "tag": "Math K.6/2.8 Shapes",
+       "channel": "PBS KIDS",
+       "seconds": 230,
+       "minutes": 3.8
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "Find a circle, a square and a triangle out the window!",
+     "videos": [
+      {
+       "id": "Ux_kLd7qAcY",
+       "title": "Shapes! Mini Math Movie",
+       "tag": "Math K.6 Shapes",
+       "channel": "Scratch Garden",
+       "seconds": 472,
+       "minutes": 7.9
+      },
+      {
+       "id": "q20CHXs6Q7Q",
+       "title": "Count to 100",
+       "tag": "Math K.2 Counting",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "seconds": 228,
+       "minutes": 3.8
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Teach-back: what did Mark change in each prototype? How does the game make the cat fall?",
+     "videos": [
+      {
+       "id": "M0_U1FHwACk",
+       "title": "Rock Skip Robot (Mark Rober)",
+       "tag": "Sci 2.1 Eng. practices",
+       "channel": "Mark Rober",
+       "seconds": 562,
+       "minutes": 9.4
+      },
+      {
+       "id": "1jHvXakt1qw",
+       "title": "Make a Jumping Game in Scratch",
+       "tag": "Tech Apps: coding",
+       "channel": "Scratch Team",
+       "seconds": 304,
+       "minutes": 5.1
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "What happened first, next, last?",
+     "videos": [
+      {
+       "id": "7j0OY3236jw",
+       "title": "Harry the Dirty Dog (read-aloud)",
+       "tag": "ELAR K.6/2.6 Retell",
+       "channel": "StorylineOnline",
+       "seconds": 292,
+       "minutes": 4.9
+      }
+     ]
+    }
+   }
+  }
+ }
 }</script>
 <script>
 (function () {
-  var DATA = JSON.parse(document.getElementById('video-data').textContent);
-  var KNOWN = { Science: 1, Building: 1, Circuits: 1, Art: 1 };
-  var cards = document.getElementById('cards');
+  var DATA = JSON.parse(document.getElementById('lineup-data').textContent);
+  var TZ = DATA.timezone || 'America/Chicago';
+  var ICON = { sun: '\u2600\uFE0F', afternoon: '\uD83C\uDF07', star: '\u2B50' };
+  var main = document.getElementById('main');
   var overlay = document.getElementById('overlay');
   var wrap = document.getElementById('playerWrap');
-  var player = null;
+  var nowEl = document.getElementById('nowplaying');
+  var player = null, pending = null, queue = [], qi = 0;
 
-  document.getElementById('week').textContent = DATA.week;
+  // ---- dates (all as YYYY-MM-DD strings; arithmetic in UTC to avoid DST drift)
+  function todayStr() {
+    var p = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' })
+      .formatToParts(new Date());
+    var o = {}; p.forEach(function (x) { o[x.type] = x.value; });
+    return o.year + '-' + o.month + '-' + o.day;
+  }
+  function toDate(s) { var a = s.split('-'); return new Date(Date.UTC(+a[0], +a[1] - 1, +a[2])); }
+  function fmt(d) { return d.toISOString().slice(0, 10); }
+  function addDays(s, n) { var d = toDate(s); d.setUTCDate(d.getUTCDate() + n); return fmt(d); }
+  function dow(s) { return toDate(s).getUTCDay(); }
+  function niceDate(s, short) {
+    return toDate(s).toLocaleDateString('en-US', { timeZone: 'UTC', weekday: short ? 'short' : 'long', month: 'short', day: 'numeric' });
+  }
+  function weekFor(s) {
+    for (var i = 0; i < DATA.weeks.length; i++) { var w = DATA.weeks[i]; if (s >= w.start && s <= w.end) return w; }
+    return null;
+  }
+  var allDates = Object.keys(DATA.days).sort();
+  var firstDate = DATA.weeks.length ? DATA.weeks[0].start : allDates[0];
+  var lastDate = DATA.weeks.length ? DATA.weeks[DATA.weeks.length - 1].end : allDates[allDates.length - 1];
+  function nearestWeek(s) { // week containing s, else latest week before s, else first week
+    var w = weekFor(s); if (w) return w;
+    var best = DATA.weeks[0];
+    DATA.weeks.forEach(function (x) { if (x.start <= s) best = x; });
+    return best;
+  }
+  function mins(sec) { return Math.round(sec / 60); }
+  function mmss(sec) { var m = Math.floor(sec / 60), s = sec % 60; return m + ':' + (s < 10 ? '0' : '') + s; }
+  function okId(id) { return /^[A-Za-z0-9_-]{11}$/.test(id); }
 
-  DATA.videos.forEach(function (v) {
-    if (!/^[A-Za-z0-9_-]{11}$/.test(v.id)) return;
-    var b = document.createElement('div');
-    b.setAttribute('role', 'button');
-    b.tabIndex = 0;
-    b.className = 'card tag-' + (KNOWN[v.tag] ? v.tag : 'other');
-    b.innerHTML = '<div class="thumb"><img alt="" loading="lazy"><span class="play"></span></div>' +
-                  '<div class="info"><span class="tag"></span><div class="title"></div></div>';
+  // ---- rendering
+  var current = null;
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  function card(v, n, list, idx, segLabel) {
+    var b = el('div', 'card');
+    b.setAttribute('role', 'button'); b.tabIndex = 0;
+    b.innerHTML = '<div class="thumb"><img alt="" loading="lazy"><span class="play"></span><span class="num"></span><span class="dur"></span></div>' +
+                  '<div class="info"><div class="title"></div><span class="tag"></span></div>';
     b.querySelector('img').src = 'https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg';
-    b.querySelector('.tag').textContent = v.tag;
+    b.querySelector('.num').textContent = n;
+    b.querySelector('.dur').textContent = v.seconds ? mmss(v.seconds) : (v.minutes + ' min');
     b.querySelector('.title').textContent = v.title;
-    b.addEventListener('click', function () { openVideo(v.id); });
-    b.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openVideo(v.id); }
-    });
-    cards.appendChild(b);
-  });
+    b.querySelector('.tag').textContent = v.tag || '';
+    function go() { playList(list, idx, segLabel); }
+    b.addEventListener('click', go);
+    b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    return b;
+  }
 
-  function openVideo(id) {
-    closeVideo();
-    var src = 'https://www.youtube-nocookie.com/embed/' + id +
+  function segmentBox(cls, icon, label, videos, prompt, target) {
+    var vids = (videos || []).filter(function (v) { return okId(v.id); });
+    var sec = el('section', 'seg ' + cls);
+    var head = el('div', 'seghead');
+    head.appendChild(el('span', 'icon', icon));
+    head.appendChild(el('span', 'seglabel', label));
+    var total = vids.reduce(function (a, v) { return a + (v.seconds || Math.round((v.minutes || 0) * 60)); }, 0);
+    head.appendChild(el('span', 'segmins', mins(total) + ' min' + (target ? ' \u00B7 goal ' + target : '')));
+    if (vids.length) {
+      var pa = el('button', 'playall', '\u25B6 Play all');
+      pa.type = 'button';
+      pa.addEventListener('click', function () { playList(vids, 0, label); });
+      head.appendChild(pa);
+    }
+    sec.appendChild(head);
+    if (prompt) { var p = el('div', 'prompt'); p.appendChild(el('b', null, 'Car talk: ')); p.appendChild(document.createTextNode(prompt)); sec.appendChild(p); }
+    var cards = el('div', 'cards');
+    vids.forEach(function (v, i) { cards.appendChild(card(v, i + 1, vids, i, label)); });
+    sec.appendChild(cards);
+    return sec;
+  }
+
+  function setHeader(s, focus) {
+    var w = nearestWeek(s);
+    document.getElementById("weektitle").textContent = w ? w.title : '';
+    var dn = document.getElementById('dayname');
+    dn.textContent = niceDate(s);
+    if (s === todayStr()) dn.appendChild(el('span', 'today-pill', 'Today'));
+    document.getElementById('focus').textContent = focus || '';
+    document.getElementById('prev').disabled = s <= firstDate;
+    document.getElementById('next').disabled = s >= lastDate;
+  }
+
+  function showDay(s) {
+    current = s; main.innerHTML = '';
+    var day = DATA.days[s];
+    if (day) {
+      setHeader(s, day.focus);
+      DATA.segments.forEach(function (sg) {
+        var x = day.segments[sg.key];
+        if (!x) return;
+        main.appendChild(segmentBox('s-' + sg.key, ICON[sg.icon] || '', sg.label, x.videos, x.prompt, sg.target));
+      });
+      return;
+    }
+    // Weekend / no lineup: show the week's favorites.
+    var w = nearestWeek(s), wk = w && w.weekend;
+    var isWeekend = dow(s) === 0 || dow(s) === 6;
+    var note = !weekFor(s) ? 'New lineup coming soon - here are some favorites'
+             : isWeekend ? ((wk && wk.note) || 'Weekend!') : 'No lineup for this day yet - here are some favorites';
+    setHeader(s, note);
+    if (wk) main.appendChild(segmentBox('s-weekend', ICON.star, wk.title || 'Weekend favorites', wk.videos, null, null));
+    else main.appendChild(el('div', 'empty', 'No videos for this day yet.'));
+  }
+
+  function showWeek(s) {
+    current = s; main.innerHTML = '';
+    var w = nearestWeek(s);
+    document.getElementById("weektitle").textContent = w ? w.title : '';
+    document.getElementById('dayname').textContent = 'This week';
+    document.getElementById('focus').textContent = 'Tap a day to open it';
+    document.getElementById('prev').disabled = !w || w.start <= firstDate;
+    document.getElementById('next').disabled = !w || w.end >= lastDate;
+    var start = w ? w.start : s; // weeks start on Monday
+    var g = el('div', 'weekgrid'); g.appendChild(el('div', 'wcell whead', ''));
+    var t = todayStr(), dates = [];
+    for (var i = 0; i < 5; i++) dates.push(addDays(start, i));
+    dates.forEach(function (d) {
+      var h = el('button', 'wcell whead' + (d === t ? ' is-today' : ''), niceDate(d, true));
+      h.type = 'button';
+      h.addEventListener('click', function () { location.hash = d; });
+      g.appendChild(h);
+    });
+    DATA.segments.forEach(function (sg) {
+      var lab = el('div', 'wcell wseg s-' + sg.key, (ICON[sg.icon] || '') + ' ' + sg.label); g.appendChild(lab);
+      dates.forEach(function (d) {
+        var c = el('div', 'wcell'), ul = el('ul');
+        var x = DATA.days[d] && DATA.days[d].segments[sg.key];
+        (x ? x.videos : []).forEach(function (v) { ul.appendChild(el('li', null, v.title)); });
+        c.appendChild(ul); c.style.cursor = 'pointer';
+        c.addEventListener('click', function () { location.hash = d; });
+        g.appendChild(c);
+      });
+    });
+    main.appendChild(g);
+    if (w && w.weekend) main.appendChild(segmentBox('s-weekend', ICON.star, w.weekend.title || 'Weekend favorites', w.weekend.videos, w.weekend.note, null));
+  }
+
+  // ---- routing: #YYYY-MM-DD or #week or #week-YYYY-MM-DD; default = today (Chicago)
+  function route() {
+    var h = location.hash.replace(/^#/, '');
+    var m = /^week(?:-(\d{4}-\d{2}-\d{2}))?$/.exec(h);
+    if (m) showWeek(m[1] || current || todayStr());
+    else showDay(/^\d{4}-\d{2}-\d{2}$/.test(h) ? h : todayStr());
+    window.scrollTo(0, 0);
+  }
+  function inWeekView() { return /^#week/.test(location.hash); }
+  document.getElementById('prev').addEventListener('click', function () {
+    if (inWeekView()) { location.hash = 'week-' + addDays(nearestWeek(current).start, -7); return; }
+    location.hash = addDays(current, -1);
+  });
+  document.getElementById('next').addEventListener('click', function () {
+    if (inWeekView()) { location.hash = 'week-' + addDays(nearestWeek(current).start, 7); return; }
+    location.hash = addDays(current, 1);
+  });
+  document.getElementById('todayBtn').addEventListener('click', function () {
+    if (location.hash === '' || location.hash === '#') route(); else location.hash = '';
+  });
+  document.getElementById('weekBtn').addEventListener('click', function () { location.hash = 'week-' + (current || todayStr()); });
+  window.addEventListener('hashchange', route);
+  // If the page is left open overnight, roll to the new day when no date is pinned.
+  var lastToday = todayStr();
+  setInterval(function () {
+    var t = todayStr();
+    if (t !== lastToday) { lastToday = t; if (!location.hash && !overlay.classList.contains('open')) route(); }
+  }, 60000);
+
+  // ---- player (youtube-nocookie, rel=0, closes at end; autoplays next video in the same segment)
+  function playList(list, idx, label) { queue = list; qi = idx; openVideo(label); }
+  function openVideo(label) {
+    var v = queue[qi];
+    closePlayer();
+    var src = 'https://www.youtube-nocookie.com/embed/' + v.id +
               '?rel=0&modestbranding=1&playsinline=1&autoplay=1&enablejsapi=1';
     if (location.protocol === 'http:' || location.protocol === 'https:') {
       src += '&origin=' + encodeURIComponent(location.origin);
     }
     var f = document.createElement('iframe');
-    f.id = 'ytframe';
-    f.src = src;
+    f.id = 'ytframe'; f.src = src;
     f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-    f.allowFullscreen = true;
-    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    f.allowFullscreen = true; f.referrerPolicy = 'strict-origin-when-cross-origin';
     wrap.appendChild(f);
+    nowEl.textContent = (label ? label + '  \u2022  ' : '') + (qi + 1) + ' of ' + queue.length + ': ' + v.title;
+    nowEl.dataset.label = label || '';
     overlay.classList.add('open');
     attachApi(f);
   }
-
-  // Hook the IFrame API to the iframe so we close when the video ends
-  // (kids come back to the page instead of tapping suggestions).
   function attachApi(f) {
     if (!(window.YT && YT.Player)) { pending = f; return; }
-    player = new YT.Player(f, {
-      events: {
-        onStateChange: function (e) { if (e.data === YT.PlayerState.ENDED) closeVideo(); }
-      }
-    });
+    player = new YT.Player(f, { events: { onStateChange: function (e) {
+      if (e.data !== YT.PlayerState.ENDED) return;
+      if (qi + 1 < queue.length) { qi++; openVideo(nowEl.dataset.label); } else closeVideo();
+    } } });
   }
-  var pending = null;
   window.onYouTubeIframeAPIReady = function () {
     if (pending && pending.isConnected) attachApi(pending);
     pending = null;
   };
-
-  function closeVideo() {
+  function closePlayer() {
     if (player && player.destroy) { try { player.destroy(); } catch (e) {} }
-    player = null; pending = null;
-    wrap.innerHTML = '';
-    overlay.classList.remove('open');
+    player = null; pending = null; wrap.innerHTML = '';
   }
-
+  function closeVideo() { closePlayer(); queue = []; overlay.classList.remove('open'); }
   document.getElementById('back').addEventListener('click', closeVideo);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeVideo(); });
+
+  route();
 })();
 </script>
 <script src="https://www.youtube.com/iframe_api" async></script>
