@@ -89,6 +89,66 @@
      }
     ]
    }
+  },
+  {
+   "start": "2026-10-26",
+   "end": "2026-11-01",
+   "title": "Week 2: Gravity (Oct 26-Nov 1)",
+   "weekend": {
+    "title": "Weekend favorites",
+    "note": "Saturday Art Studio: SHAPE (geometric vs. organic): design a robot from shapes. Sunday bonus: give your Scratch sprite a growing y-speed. Sunday talk: \"When something's in the way, it can become the way.\"",
+    "videos": [
+     {
+      "id": "A7EEOlSJIjo",
+      "title": "All About Shapes (art lesson)",
+      "channel": "Paint It Kids",
+      "tag": "Fine Arts: Shape",
+      "seconds": 330
+     },
+     {
+      "id": "WmuFjCNGz6c",
+      "title": "Draw a Hippo with Shapes",
+      "channel": "Art for Kids Hub",
+      "tag": "Fine Arts: Shape",
+      "seconds": 391
+     },
+     {
+      "id": "PFnq0nR4CoQ",
+      "title": "Baseball Basic Rules (animated)",
+      "channel": "Smile and Learn - English",
+      "tag": "PE: Baseball",
+      "seconds": 460
+     },
+     {
+      "id": "j9AXCjF3CTA",
+      "title": "Little League Basics: Catching",
+      "channel": "Little League",
+      "tag": "PE: Baseball",
+      "seconds": 56
+     },
+     {
+      "id": "29z_cWCe1Lw",
+      "title": "Little League Basics: Hitting",
+      "channel": "Little League",
+      "tag": "PE: Baseball",
+      "seconds": 57
+     },
+     {
+      "id": "MEk1FFFRQ7o",
+      "title": "Soccer Basic Rules, Episode 1",
+      "channel": "Smile and Learn - English",
+      "tag": "PE: Soccer",
+      "seconds": 236
+     },
+     {
+      "id": "ngD2oXGy6C0",
+      "title": "Focus on What You Can Control",
+      "channel": "Airtoons",
+      "tag": "SEL",
+      "seconds": 81
+     }
+    ]
+   }
   }
  ],
  "days": {
@@ -548,6 +608,443 @@
        "tag": "ELAR K.6/2.6 Retell",
        "seconds": 292,
        "minutes": 4.9
+      }
+     ]
+    }
+   }
+  },
+  "2026-10-26": {
+   "focus": "Gravity pulls things down · Break it down · LEGO truss bridge",
+   "segments": {
+    "amTogether": {
+     "prompt": "Drop a sock and a shoe at the same time tonight. Which lands first? Guess now!",
+     "videos": [
+      {
+       "id": "ljRlB6TuMOU",
+       "title": "Defining Gravity",
+       "channel": "Crash Course Kids",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 192
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "What pulls you back down when you jump? Count stair steps: один, два, три!",
+     "videos": [
+      {
+       "id": "suQDwZcnJdg",
+       "title": "Gravity (Dr. Binocs)",
+       "channel": "Peekaboo Kidz",
+       "tag": "Sci K.7 Push & pull",
+       "seconds": 182
+      },
+      {
+       "id": "Y4Fx3z5fAWY",
+       "title": "Numberblocks: Steps Squads",
+       "channel": "Numberblocks",
+       "tag": "Math K.2 Counting",
+       "seconds": 275
+      },
+      {
+       "id": "0kZRAeLjKEw",
+       "title": "Russian Numbers Storybook",
+       "channel": "Dinolingo - Language learning for kids",
+       "tag": "World Lang: Russian",
+       "seconds": 205
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Break your truss bridge into 3 steps. Why do triangles make it stronger? What pulls a pitched ball down?",
+     "videos": [
+      {
+       "id": "BlPtF_NqIQI",
+       "title": "Down to Earth",
+       "channel": "Crash Course Kids",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 179
+      },
+      {
+       "id": "mBHJtWbsiaA",
+       "title": "Strong Structures with Triangles",
+       "channel": "Design Squad",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 303
+      },
+      {
+       "id": "BRAFjy8Hmec",
+       "title": "The Physics of Baseball: Pitching",
+       "channel": "Science Channel",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 176
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "What fell on Newton's head? Throw a ball up in the yard: what brings it back?",
+     "videos": [
+      {
+       "id": "l_HnEZf7BB4",
+       "title": "Happy Birthday, Sir Isaac Newton!",
+       "channel": "SciShow Kids",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 297
+      },
+      {
+       "id": "AmsVWgjtyns",
+       "title": "The Gravity Song",
+       "channel": "GenerationGenius",
+       "tag": "Sci K.7 Push & pull",
+       "seconds": 78
+      },
+      {
+       "id": "V73bznBe0ek",
+       "title": "Little League Basics: Throwing",
+       "channel": "Little League",
+       "tag": "PE: Baseball",
+       "seconds": 55
+      }
+     ]
+    }
+   }
+  },
+  "2026-10-27": {
+   "focus": "Falling objects · Spot the pattern · Read → \"how many more\" → self-check",
+   "segments": {
+    "amTogether": {
+     "prompt": "What's the pattern? Say the rule out loud!",
+     "videos": [
+      {
+       "id": "dxcx35x5L9Y",
+       "title": "Danger! Falling Objects",
+       "channel": "Crash Course Kids",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 213
+      },
+      {
+       "id": "Elh6dEV4rMk",
+       "title": "Odd Squad: Fish Pattern Mystery",
+       "channel": "Odd Squad",
+       "tag": "Math 2.7 Patterns",
+       "seconds": 185
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "Clap a pattern: clap, clap, stomp! When you feel wiggly, try a belly breath.",
+     "videos": [
+      {
+       "id": "Ev0TbEfkMCU",
+       "title": "Numberblocks: Pattern Palace",
+       "channel": "Numberblocks",
+       "tag": "Math K.2 Counting",
+       "seconds": 275
+      },
+      {
+       "id": "8j2sPgWVSkY",
+       "title": "Alphablocks: Top",
+       "channel": "Alphablocks",
+       "tag": "ELAR K.2 Phonics",
+       "seconds": 180
+      },
+      {
+       "id": "_mZbzDOpylA",
+       "title": "Belly Breathe with Elmo",
+       "channel": "Sesame Street",
+       "tag": "SEL",
+       "seconds": 146
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "I have 9, you have 5: how many more? Draw it, solve it, then check it. Rook: straight lines only!",
+     "videos": [
+      {
+       "id": "osIFa9zcI-w",
+       "title": "Comparison Word Problems",
+       "channel": "Khan Academy",
+       "tag": "Math 2.4C Word problems",
+       "seconds": 202
+      },
+      {
+       "id": "5IAZxm0hPN0",
+       "title": "Odd Squad: Patternista's Secret Code",
+       "channel": "Odd Squad",
+       "tag": "Math 2.7 Patterns",
+       "seconds": 230
+      },
+      {
+       "id": "jms91e5ULNI",
+       "title": "How to Move the Rook",
+       "channel": "ChessKid",
+       "tag": "Chess",
+       "seconds": 294
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "What happened first, next, last? Russian recap: how do you say red? (красный)",
+     "videos": [
+      {
+       "id": "WfM9RlGrEtM",
+       "title": "Halloween Hustle (read-aloud)",
+       "channel": "StorylineOnline",
+       "tag": "ELAR K.6/2.6 Retell",
+       "seconds": 324
+      },
+      {
+       "id": "Res2c4VAiP0",
+       "title": "Russian Colors Song",
+       "channel": "Jurussia Учим русский",
+       "tag": "World Lang: Russian",
+       "seconds": 150
+      }
+     ]
+    }
+   }
+  },
+  "2026-10-28": {
+   "focus": "Heavy vs. light: mass & weight · Think aloud · Snap Circuits: 2 lamps in series",
+   "segments": {
+    "amTogether": {
+     "prompt": "Would you weigh less on the Moon? Say your thinking out loud.",
+     "videos": [
+      {
+       "id": "L1Xw9QMxaiQ",
+       "title": "Gravity, Weight, and Mass",
+       "channel": "Free School",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 281
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "Which is heavier, a feather or a shoe? How do you know?",
+     "videos": [
+      {
+       "id": "qUOQrXmfwDM",
+       "title": "Is It Heavy or Light?",
+       "channel": "Jack Hartmann Kids Music Channel",
+       "tag": "Math K.7 Measurement",
+       "seconds": 163
+      },
+      {
+       "id": "dh5wGSLw1p4",
+       "title": "Why Do Things Float in Space?",
+       "channel": "SciShow Kids",
+       "tag": "Sci K.7 Push & pull",
+       "seconds": 438
+      },
+      {
+       "id": "IvzRvWq7uSQ",
+       "title": "The Doug Out!: A Lesson in Hitting",
+       "channel": "MLB Clubhouse",
+       "tag": "PE: Baseball",
+       "seconds": 159
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Predict: 2 lamps in a row, brighter or dimmer? Unscrew one: what happens? Think aloud!",
+     "videos": [
+      {
+       "id": "XSukRnxGy5c",
+       "title": "Series & Parallel Circuits",
+       "channel": "funsciencedemos",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 260
+      },
+      {
+       "id": "gWy2-o9uwrc",
+       "title": "The Great Escape",
+       "channel": "Crash Course Kids",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 240
+      },
+      {
+       "id": "oE_QegYAvTc",
+       "title": "Learn Russian (part 1: 0:00-5:00)",
+       "channel": "Rock 'N Learn",
+       "tag": "World Lang: Russian",
+       "seconds": 300,
+       "start": 0,
+       "end": 300
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "Why doesn't the Moon fall down? When was something in your way today?",
+     "videos": [
+      {
+       "id": "vwfbdPyzgDo",
+       "title": "Over (to) The Moon",
+       "channel": "Crash Course Kids",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 235
+      },
+      {
+       "id": "oVO485F9rrA",
+       "title": "The Obstacle Can Become the Way",
+       "channel": "Airtoons",
+       "tag": "SEL",
+       "seconds": 159
+      }
+     ]
+    }
+   }
+  },
+  "2026-10-29": {
+   "focus": "Astronaut experiment · Stuck practice: try 3 strategies · Read → \"how many more\" → self-check",
+   "segments": {
+    "amTogether": {
+     "prompt": "If you dropped a hammer and a feather on the Moon, which would land first?",
+     "videos": [
+      {
+       "id": "RrJ1-YofCaA",
+       "title": "Astronaut Experiment",
+       "channel": "Crash Course Kids",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 241
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "7 apples and 4 apples: what's the difference? Say a Russian animal word!",
+     "videos": [
+      {
+       "id": "s62mQ0oh9Lc",
+       "title": "Numberblocks: What's the Difference?",
+       "channel": "Numberblocks",
+       "tag": "Math K.3 Add/sub stories",
+       "seconds": 275
+      },
+      {
+       "id": "0MjuWvjxiLw",
+       "title": "Alphablocks: In",
+       "channel": "Alphablocks",
+       "tag": "ELAR K.2 Phonics",
+       "seconds": 300
+      },
+      {
+       "id": "p8YSL97Xi8o",
+       "title": "Russian Animals",
+       "channel": "Dinolingo - Language learning for kids",
+       "tag": "World Lang: Russian",
+       "seconds": 228
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Stuck? Try 3 ways: draw it, act it out, or work backward. How far can a rook move?",
+     "videos": [
+      {
+       "id": "BgWFceEAd2o",
+       "title": "\"How Many More\" Word Problems",
+       "channel": "Math Mammoth",
+       "tag": "Math 2.4C Word problems",
+       "seconds": 255
+      },
+      {
+       "id": "ML2oX207Mwc",
+       "title": "Understanding Nonfiction",
+       "channel": "Crash Course Kids",
+       "tag": "ELAR 2.6 Comprehension",
+       "seconds": 360
+      },
+      {
+       "id": "akj26Lvl1R8",
+       "title": "All About the Rook (part 1: 0:00-5:00)",
+       "channel": "ChessKid",
+       "tag": "Chess",
+       "seconds": 300,
+       "start": 0,
+       "end": 300
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "Jabari was scared to jump. What did he try? What do YOU do when you're stuck?",
+     "videos": [
+      {
+       "id": "XwNNlgtHFiU",
+       "title": "Jabari Jumps (read-aloud)",
+       "channel": "StorylineOnline",
+       "tag": "ELAR K.6/2.6 Retell",
+       "seconds": 490
+      },
+      {
+       "id": "EGMSjpFMMkQ",
+       "title": "Little League Basics: Fielding",
+       "channel": "Little League",
+       "tag": "PE: Baseball",
+       "seconds": 52
+      }
+     ]
+    }
+   }
+  },
+  "2026-10-30": {
+   "focus": "Fun Friday · Teach-back · Scratch: make a sprite fall with a loop",
+   "segments": {
+    "amTogether": {
+     "prompt": "Teach-back: tell me one thing gravity does!",
+     "videos": [
+      {
+       "id": "kXBbyKWJlwo",
+       "title": "The Doug Out!: World Series Explained",
+       "channel": "MLB Clubhouse",
+       "tag": "PE: Baseball",
+       "seconds": 358
+      }
+     ]
+    },
+    "amYounger": {
+     "prompt": "Find circles and triangles out the window! Say \"Привет!\" like Masha.",
+     "videos": [
+      {
+       "id": "CAxK4S2PRBs",
+       "title": "Draw Candy Using Shapes",
+       "channel": "Art for Kids Hub",
+       "tag": "Fine Arts: Shape",
+       "seconds": 382
+      },
+      {
+       "id": "1V3ZY_TXKwU",
+       "title": "Masha and the Bear: Episode 1 (Russian)",
+       "channel": "Маша и Медведь",
+       "tag": "World Lang: Russian",
+       "seconds": 394
+      }
+     ]
+    },
+    "pmOlder": {
+     "prompt": "Teach-back: how does the code make the sprite fall faster and faster? What force pulls a hit ball back down?",
+     "videos": [
+      {
+       "id": "eT_Vzoie2G4",
+       "title": "Gravity in Scratch",
+       "channel": "Scratch Team",
+       "tag": "Tech Apps: coding",
+       "seconds": 353
+      },
+      {
+       "id": "1bikp_InfQk",
+       "title": "Clever Batting Tips",
+       "channel": "MLB Clubhouse",
+       "tag": "PE: Baseball",
+       "seconds": 531
+      }
+     ]
+    },
+    "pmTogether": {
+     "prompt": "Who got on the broom? What happened first, next, last?",
+     "videos": [
+      {
+       "id": "qg6KK0iv9QI",
+       "title": "Room on the Broom (read-aloud)",
+       "channel": "StorylineOnline",
+       "tag": "ELAR K.6/2.6 Retell",
+       "seconds": 432
       }
      ]
     }

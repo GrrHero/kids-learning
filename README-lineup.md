@@ -54,6 +54,7 @@ VIDEO:
 - `id`: the 11-character YouTube id. `build.py` rejects anything else.
 - `title`: a short, kid-friendly display title (it doesn't have to match YouTube's full title).
 - `tag`: a short Texas TEKS strand tag. Conventions: `Sci K.7` magnets/push-pull (K), `Sci 2.7` force & motion, `Sci 2.1` science & engineering practices, `Math K.2` counting, `Math K.3` add/sub stories, `Math K.6` shapes, `Math 2.2` place value, `Math 2.4C` add/sub word problems, `Math 2.7` patterns/number reasoning, `Math 2.8` geometry, `ELAR K.2` phonics, `ELAR K.6/2.6` retell/comprehension, `ELAR 2.8` story elements/plot, `Tech Apps: coding`, `Fine Arts: <element>`, `SEL` (not TEKS).
+- `start` / `end` (optional, seconds): play only a chunk of a long video. Set `seconds` to the chunk length (end - start).
 - `seconds` (preferred) or `minutes`: the real length. The page shows mm:ss on each card and adds up a total per segment.
 
 `build.py` warns (it doesn't fail) when a segment's total runs outside its soft range: amTogether 3-7, amYounger 9-16, pmOlder 9-18, pmTogether 3-9 minutes.

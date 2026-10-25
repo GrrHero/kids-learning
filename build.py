@@ -310,6 +310,8 @@ TEMPLATE = r"""<!DOCTYPE html>
     closePlayer();
     var src = 'https://www.youtube-nocookie.com/embed/' + v.id +
               '?rel=0&modestbranding=1&playsinline=1&autoplay=1&enablejsapi=1';
+    if (v.start) src += '&start=' + v.start;
+    if (v.end) src += '&end=' + v.end;
     if (location.protocol === 'http:' || location.protocol === 'https:') {
       src += '&origin=' + encodeURIComponent(location.origin);
     }
@@ -358,6 +360,9 @@ def clean_video(v, where):
     out = {"id": vid, "title": str(v["title"]), "tag": str(v.get("tag", ""))}
     if v.get("channel"):
         out["channel"] = str(v["channel"])
+    for k in ("start", "end"):  # optional chunk of a long video, in seconds
+        if v.get(k) is not None:
+            out[k] = int(v[k])
     if v.get("seconds"):
         out["seconds"] = int(v["seconds"])
     if v.get("minutes") is not None:
