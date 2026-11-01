@@ -9,7 +9,7 @@
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body { margin: 0; min-height: 100%; }
   body {
-    font-family: "Comic Sans MS", "Chalkboard SE", "Trebuchet MS", system-ui, sans-serif;
+    font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
     background: linear-gradient(160deg, #ffe66d 0%, #ff9f68 45%, #a0e7e5 100%);
     background-attachment: fixed; color: #222; user-select: none;
   }
@@ -90,11 +90,35 @@
   #overlay { position: fixed; inset: 0; background: rgba(20,10,60,.94); display: none;
              flex-direction: column; align-items: center; justify-content: center; z-index: 10; padding: 20px; }
   #overlay.open { display: flex; }
-  #back { position: absolute; top: 18px; left: 18px; font-size: 40px; font-weight: bold;
-          padding: 14px 40px; border-radius: 999px; border: none; color: #fff;
-          background: #ff5d8f; box-shadow: 0 8px 0 #c2185b; z-index: 2; }
-  #back:active { transform: translateY(6px); box-shadow: 0 2px 0 #c2185b; }
-  #nowplaying { position: absolute; top: 30px; right: 26px; left: 300px; text-align: right; color: #fff; font-size: 24px; }
+  #topbar { position: absolute; top: 16px; left: 16px; right: 16px; display: flex; align-items: center; gap: 16px; z-index: 4; }
+  #back, #skip { font-size: 32px; font-weight: bold; padding: 14px 30px; border-radius: 999px; border: none; color: #fff; flex: none; }
+  #back { background: #ff5d8f; box-shadow: 0 8px 0 #c2185b; }
+  #skip { background: #4b3fd6; box-shadow: 0 8px 0 #2e2494; }
+  #back:active, #skip:active { transform: translateY(6px); box-shadow: none; }
+  #nowplaying { flex: 1; text-align: center; color: #fff; font-size: 22px; line-height: 1.2; }
+  .pdots { display: inline-flex; gap: 8px; margin-top: 6px; }
+  .pdot { width: 22px; height: 22px; border-radius: 50%; border: 3px solid #fff; display: inline-block; }
+  .pdot.done { background: #2bb673; } .pdot.skip { background: #999; } .pdot.now { background: #ffe66d; }
+  #upnext { position: absolute; inset: 110px 30px 30px; display: none; flex-direction: column; align-items: center; justify-content: center;
+            gap: 18px; z-index: 3; text-align: center; color: #fff; }
+  #upnext.open { display: flex; }
+  #unTitle { font-size: 44px; font-weight: bold; }
+  #unAsk { font-size: 30px; max-width: 1000px; background: rgba(255,255,255,.12); border-radius: 22px; padding: 16px 24px; line-height: 1.3; }
+  #unAsk:empty { display: none; }
+  .bigbtn { font-size: 32px; font-weight: bold; padding: 20px 36px; border-radius: 26px; border: none; color: #fff; max-width: 1000px;
+            background: #2bb673; box-shadow: 0 8px 0 #1b7a4b; }
+  .bigbtn.home { background: #ff5d8f; box-shadow: 0 8px 0 #c2185b; }
+  .bigbtn.pick { background: #4b8bf5; box-shadow: 0 8px 0 #2a5db3; font-size: 26px; padding: 14px 24px; }
+  .bigbtn:active { transform: translateY(6px); box-shadow: none; }
+  #unBtns, #unPicks { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
+  .progress { display: flex; align-items: center; gap: 8px; margin: 8px 4px 0; font-size: 20px; font-weight: bold; color: #333; }
+  .progress .pdot { border-color: var(--c); width: 20px; height: 20px; }
+  .progress .pdot.done { background: var(--c); }
+  .checkpoint { font-size: 20px; margin: 14px 4px 0; padding: 10px 14px; border-radius: 16px; background: #fff; border-left: 8px solid var(--c); }
+  .picks { margin-top: 14px; }
+  .picks .plabel { font-size: 22px; font-weight: bold; color: var(--c); margin: 0 4px 8px; }
+  .picks .cards { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+  .picks .card { opacity: .92; } .picks .title { font-size: 20px; }
   #playerWrap { width: min(92vw, calc((100vh - 150px) * 16 / 9)); height: min(calc(92vw * 9 / 16), calc(100vh - 150px)); margin-top: 80px;
                 border-radius: 20px; overflow: hidden; background: #000; }
   #playerWrap iframe { width: 100%; height: 100%; border: 0; display: block; }
@@ -119,9 +143,13 @@
 <main id="main"></main>
 
 <div id="overlay" role="dialog" aria-modal="true">
-  <button id="back" type="button">&#11013; Back</button>
-  <div id="nowplaying"></div>
+  <div id="topbar">
+    <button id="back" type="button">&#11013; Today's plan</button>
+    <div id="nowplaying"></div>
+    <button id="skip" type="button">Skip &#9197;</button>
+  </div>
   <div id="playerWrap"></div>
+  <div id="upnext"><div id="unTitle"></div><div id="unAsk"></div><div id="unBtns"></div><div id="unPicks"></div></div>
 </div>
 
 <script id="lineup-data" type="application/json">{
@@ -132,28 +160,32 @@
    "label": "Morning - Together",
    "icon": "sun",
    "target": "~5 min",
-   "who": "Both brothers"
+   "who": "Both brothers",
+   "checkpoint": "One sentence each: what's the big idea this morning?"
   },
   {
    "key": "amYounger",
    "label": "Morning - Little Brother",
    "icon": "sun",
    "target": "10-15 min",
-   "who": "Little Brother"
+   "who": "Little Brother",
+   "checkpoint": "Show it: one quick build, sketch or move that proves what you learned."
   },
   {
    "key": "pmOlder",
    "label": "Afternoon - Big Brother",
    "icon": "afternoon",
    "target": "10-15 min",
-   "who": "Big Brother"
+   "who": "Big Brother",
+   "checkpoint": "Coach's recap: explain it in one sentence, then name one thing to test tonight."
   },
   {
    "key": "pmTogether",
    "label": "Afternoon - Together",
    "icon": "afternoon",
    "target": "~5 min",
-   "who": "Both brothers"
+   "who": "Both brothers",
+   "checkpoint": "Pick one thing to try at home tonight."
   }
  ],
  "weeks": [
@@ -163,7 +195,7 @@
    "title": "Week 1: Pushes & Pulls (Oct 19-25)",
    "weekend": {
     "title": "Weekend favorites",
-    "note": "Saturday Art Studio: LINE. Sunday bonus: make a Scratch sprite fall.",
+    "note": "Saturday Art Studio: LINE - sketch it and label every kind of line you use. Sunday bonus: make a Scratch sprite fall.",
     "videos": [
      {
       "id": "Tzt0V7J65mQ",
@@ -182,14 +214,6 @@
       "minutes": 8.1
      },
      {
-      "id": "mz6o8b2bFd0",
-      "title": "The King of Kindergarten (read-aloud)",
-      "tag": "ELAR K.6 Retell",
-      "channel": "StorylineOnline",
-      "seconds": 379,
-      "minutes": 6.3
-     },
-     {
       "id": "eR2OR3coiX4",
       "title": "How High Can You Stack?",
       "tag": "Sci K.1 Eng. practices",
@@ -204,14 +228,6 @@
       "channel": "SciShow Kids",
       "seconds": 225,
       "minutes": 3.8
-     },
-     {
-      "id": "lgZRMptA0Lk",
-      "title": "Clark the Shark (read-aloud)",
-      "tag": "ELAR K.6/2.6 Retell",
-      "channel": "StorylineOnline",
-      "seconds": 441,
-      "minutes": 7.3
      }
     ]
    }
@@ -289,7 +305,7 @@
    "title": "Week 3: Friction (Nov 2-8)",
    "weekend": {
     "title": "Weekend favorites",
-    "note": "Saturday Art Studio: COLOR (primary/secondary mixing, warm vs. cool): paint a color wheel. Sunday bonus: add a jump and a slow sideways slide (friction!) to your Scratch game. Sunday talk: \"Worries in my head are usually bigger than real life.\"",
+    "note": "Saturday Art Studio: COLOR - mix primaries into secondaries, then paint a warm-vs-cool color wheel and label every color. Sunday bonus: add a jump and a slow sideways slide (friction!) to your Scratch game. Sunday talk: \"Worries in my head are usually bigger than real life.\"",
     "videos": [
      {
       "id": "aDbyZlVi33Y",
@@ -300,12 +316,12 @@
       "minutes": 5.6
      },
      {
-      "id": "N8yuyekP_So",
-      "title": "The Colors Song",
-      "tag": "Fine Arts: Color",
-      "channel": "Scratch Garden",
-      "seconds": 145,
-      "minutes": 2.4
+      "id": "t4GJ0KzoGRI",
+      "title": "Turning kids’ drawings into real toys (CrunchLabs)",
+      "tag": "Sci 2.1 Eng. practices",
+      "channel": "CrunchLabs",
+      "seconds": 512,
+      "minutes": 8.5
      },
      {
       "id": "DPZzrlFCD_I",
@@ -334,14 +350,78 @@
       "minutes": 5.0
      },
      {
-      "id": "r7nGtH5SNJE",
-      "title": "Smeshariki: Autumn Cozy (part 1: 0:00-5:00)",
+      "id": "oE_QegYAvTc",
+      "title": "Learn Russian (part 5: 20:00-25:00)",
       "tag": "World Lang: Russian",
-      "channel": "TVSmeshariki",
-      "start": 0,
-      "end": 300,
+      "channel": "Rock 'N Learn",
+      "start": 1200,
+      "end": 1500,
       "seconds": 300,
       "minutes": 5.0
+     }
+    ]
+   },
+   "picks": {
+    "together": [
+     {
+      "id": "NAThvwGJJoI",
+      "title": "The longest LEGO gear train",
+      "tag": "Sci 2.1 Eng. practices",
+      "channel": "Brick Experiment Channel",
+      "seconds": 244,
+      "minutes": 4.1
+     },
+     {
+      "id": "S5zjj8FWW04",
+      "title": "Numberblocks: Space Division",
+      "tag": "Math 2.4C Equal groups",
+      "channel": "Numberblocks",
+      "seconds": 305,
+      "minutes": 5.1
+     }
+    ],
+    "younger": [
+     {
+      "id": "pwglOlD7e0M",
+      "title": "LEGO car crosses gaps",
+      "tag": "Sci K.1 Eng. practices",
+      "channel": "Brick Experiment Channel",
+      "seconds": 265,
+      "minutes": 4.4
+     },
+     {
+      "id": "5ghkoxROcso",
+      "title": "Numberblocks: Grid Unlocked",
+      "tag": "Math K.2 Counting",
+      "channel": "Numberblocks",
+      "seconds": 305,
+      "minutes": 5.1
+     },
+     {
+      "id": "b8qe06QXi1Q",
+      "title": "Numberblocks: The Team Factor",
+      "tag": "Math K.2 Counting",
+      "channel": "Numberblocks",
+      "seconds": 275,
+      "minutes": 4.6
+     }
+    ],
+    "older": [
+     {
+      "id": "_R6E1_T16_g",
+      "title": "Earthquake-proof LEGO structure",
+      "tag": "Sci 2.1 Eng. practices",
+      "channel": "Brick Experiment Channel",
+      "seconds": 417,
+      "minutes": 7.0
+     },
+     {
+      "id": "M1-YeqGynlw",
+      "title": "20 mechanical principles in one LEGO machine",
+      "tag": "Sci 2.1 Eng. practices",
+      "channel": "Brick Experiment Channel",
+      "seconds": 441,
+      "minutes": 7.3
      }
     ]
    }
@@ -354,14 +434,6 @@
     "amTogether": {
      "prompt": "What did you push or pull this morning?",
      "videos": [
-      {
-       "id": "E-SnC_WKsCg",
-       "title": "Forces Can Push or Pull (song)",
-       "tag": "Sci K.7/2.7 Force & motion",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "seconds": 158,
-       "minutes": 2.6
-      },
       {
        "id": "oVOnRPefcno",
        "title": "What Makes Bridges So Strong?",
@@ -431,15 +503,15 @@
      ]
     },
     "pmTogether": {
-     "prompt": "Somebody wanted... but... so...: tell the story in one sentence.",
+     "prompt": "Real-story version: a parent tells about one build that failed first. What got changed the second time?",
      "videos": [
       {
-       "id": "7LOuUq4FT6g",
-       "title": "Rosie Revere, Engineer (read-aloud)",
-       "tag": "ELAR K.6/2.6 Retell",
-       "channel": "StorylineOnline",
-       "seconds": 456,
-       "minutes": 7.6
+       "id": "T1KRQ3RcvXA",
+       "title": "World's Largest Super Soaker (Mark Rober) (rewatch)",
+       "tag": "Sci 2.1 Eng. practices",
+       "channel": "Mark Rober",
+       "seconds": 485,
+       "minutes": 8.1
       }
      ]
     }
@@ -494,14 +566,6 @@
        "minutes": 6.2
       },
       {
-       "id": "Zt78cFS5isQ",
-       "title": "The Place Value Song",
-       "tag": "Math 2.2 Place value",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "seconds": 227,
-       "minutes": 3.8
-      },
-      {
        "id": "V_c_c7sANYk",
        "title": "Odd Squad: Patterns & Numbers",
        "tag": "Math 2.7 Patterns",
@@ -512,15 +576,15 @@
      ]
     },
     "pmTogether": {
-     "prompt": "One-sentence summary: Somebody wanted... but... so...",
+     "prompt": "Sum it up in one sentence: why are triangles and arches strong?",
      "videos": [
       {
-       "id": "-XFQNGJmLEk",
-       "title": "Please Please the Bees (read-aloud)",
-       "tag": "ELAR K.6/2.6 Retell",
-       "channel": "StorylineOnline",
-       "seconds": 312,
-       "minutes": 5.2
+       "id": "oVOnRPefcno",
+       "title": "What Makes Bridges So Strong? (rewatch)",
+       "tag": "Sci 2.1 Eng. practices",
+       "channel": "SciShow Kids",
+       "seconds": 225,
+       "minutes": 3.8
       }
      ]
     }
@@ -551,7 +615,7 @@
      ]
     },
     "amYounger": {
-     "prompt": "Say the sounds! Push or pull: what makes a light switch go on?",
+     "prompt": "Sound it out, then blend it. Push or pull: what makes a light switch go on?",
      "videos": [
       {
        "id": "6XnDWNDpvGE",
@@ -562,20 +626,12 @@
        "minutes": 3.2
       },
       {
-       "id": "59u6KaluscI",
-       "title": "Letter Sounds Workout",
-       "tag": "ELAR K.2 Phonics",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "seconds": 306,
-       "minutes": 5.1
-      },
-      {
-       "id": "E-SnC_WKsCg",
-       "title": "Forces Can Push or Pull (song)",
+       "id": "JvSClZ3vHOI",
+       "title": "Swings, Slides, and Science (rewatch)",
        "tag": "Sci K.7 Force & motion",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "seconds": 158,
-       "minutes": 2.6
+       "channel": "SciShow Kids",
+       "seconds": 218,
+       "minutes": 3.6
       }
      ]
     },
@@ -638,14 +694,6 @@
      "prompt": "Pause, breathe, what do I know, what's one thing I can try?",
      "videos": [
       {
-       "id": "XLeUvZvuvAs",
-       "title": "Sesame Street: The Power of Yet",
-       "tag": "SEL Persistence",
-       "channel": "Sesame Street",
-       "seconds": 162,
-       "minutes": 2.7
-      },
-      {
        "id": "YIV9IUHqW3A",
        "title": "Let's Get Rolling! (wheels & pulls)",
        "tag": "Sci 2.7 Force & motion",
@@ -656,7 +704,7 @@
      ]
     },
     "amYounger": {
-     "prompt": "5 bricks, add 2 more. How many? Use your fingers!",
+     "prompt": "5 bricks, add 2 more. How many? Prove it with real bricks.",
      "videos": [
       {
        "id": "C229LUk380Q",
@@ -679,14 +727,6 @@
     "pmOlder": {
      "prompt": "Who, where, problem, solution? Then: how is a magnet a push AND a pull?",
      "videos": [
-      {
-       "id": "-_nePjWXecQ",
-       "title": "Parts of a Story",
-       "tag": "ELAR 2.8 Story elements",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "seconds": 159,
-       "minutes": 2.6
-      },
       {
        "id": "NpWHZJZQDSE",
        "title": "Plot Mountain!",
@@ -714,15 +754,15 @@
      ]
     },
     "pmTogether": {
-     "prompt": "She got stuck and took a walk. What do YOU do when you're stuck?",
+     "prompt": "Jessi got stuck and tried again. What's YOUR 3-step plan when you're stuck?",
      "videos": [
       {
-       "id": "yt_GmmOx06Y",
-       "title": "The Most Magnificent Thing (read-aloud)",
-       "tag": "ELAR K.6/2.6 + SEL",
-       "channel": "StorylineOnline",
-       "seconds": 488,
-       "minutes": 8.1
+       "id": "RM04n0-QtNo",
+       "title": "Jessi Has a Problem! (rewatch)",
+       "tag": "Sci 2.1 Eng. design",
+       "channel": "SciShow Kids",
+       "seconds": 307,
+       "minutes": 5.1
       }
      ]
     }
@@ -762,14 +802,6 @@
        "channel": "Scratch Garden",
        "seconds": 472,
        "minutes": 7.9
-      },
-      {
-       "id": "q20CHXs6Q7Q",
-       "title": "Count to 100",
-       "tag": "Math K.2 Counting",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "seconds": 228,
-       "minutes": 3.8
       }
      ]
     },
@@ -795,15 +827,15 @@
      ]
     },
     "pmTogether": {
-     "prompt": "What happened first, next, last?",
+     "prompt": "Teach-back: what makes a tall stack stable? Plan tonight's tallest LEGO tower.",
      "videos": [
       {
-       "id": "7j0OY3236jw",
-       "title": "Harry the Dirty Dog (read-aloud)",
-       "tag": "ELAR K.6/2.6 Retell",
-       "channel": "StorylineOnline",
-       "seconds": 292,
-       "minutes": 4.9
+       "id": "eR2OR3coiX4",
+       "title": "How High Can You Stack? (rewatch)",
+       "tag": "Sci K.1 Eng. practices",
+       "channel": "SciShow Kids",
+       "seconds": 246,
+       "minutes": 4.1
       }
      ]
     }
@@ -843,14 +875,6 @@
        "channel": "Numberblocks",
        "seconds": 275,
        "minutes": 4.6
-      },
-      {
-       "id": "0kZRAeLjKEw",
-       "title": "Russian Numbers Storybook",
-       "tag": "World Lang: Russian",
-       "channel": "Dinolingo - Language learning for kids",
-       "seconds": 205,
-       "minutes": 3.4
       }
      ]
     },
@@ -895,14 +919,6 @@
        "minutes": 5.0
       },
       {
-       "id": "AmsVWgjtyns",
-       "title": "The Gravity Song",
-       "tag": "Sci K.7 Push & pull",
-       "channel": "GenerationGenius",
-       "seconds": 78,
-       "minutes": 1.3
-      },
-      {
        "id": "V73bznBe0ek",
        "title": "Little League Basics: Throwing",
        "tag": "PE: Baseball",
@@ -939,7 +955,7 @@
      ]
     },
     "amYounger": {
-     "prompt": "Clap a pattern: clap, clap, stomp! When you feel wiggly, try a belly breath.",
+     "prompt": "Clap a pattern: clap, clap, stomp! Now invent a harder one and see if your brother can crack it.",
      "videos": [
       {
        "id": "Ev0TbEfkMCU",
@@ -956,14 +972,6 @@
        "channel": "Alphablocks",
        "seconds": 180,
        "minutes": 3.0
-      },
-      {
-       "id": "_mZbzDOpylA",
-       "title": "Belly Breathe with Elmo",
-       "tag": "SEL",
-       "channel": "Sesame Street",
-       "seconds": 146,
-       "minutes": 2.4
       }
      ]
     },
@@ -997,23 +1005,15 @@
      ]
     },
     "pmTogether": {
-     "prompt": "What happened first, next, last? Russian recap: how do you say red? (красный)",
+     "prompt": "Explain one baseball rule to your brother. Russian recap: how do you say red? (красный)",
      "videos": [
       {
-       "id": "WfM9RlGrEtM",
-       "title": "Halloween Hustle (read-aloud)",
-       "tag": "ELAR K.6/2.6 Retell",
-       "channel": "StorylineOnline",
-       "seconds": 324,
-       "minutes": 5.4
-      },
-      {
-       "id": "Res2c4VAiP0",
-       "title": "Russian Colors Song",
-       "tag": "World Lang: Russian",
-       "channel": "Jurussia Учим русский",
-       "seconds": 150,
-       "minutes": 2.5
+       "id": "PFnq0nR4CoQ",
+       "title": "Baseball Basic Rules (animated) (rewatch)",
+       "tag": "PE: Baseball",
+       "channel": "Smile and Learn - English",
+       "seconds": 460,
+       "minutes": 7.7
       }
      ]
     }
@@ -1036,16 +1036,8 @@
      ]
     },
     "amYounger": {
-     "prompt": "Which is heavier, a feather or a shoe? How do you know?",
+     "prompt": "Feather or shoe: which is heavier? Prove it with a hand-scale test.",
      "videos": [
-      {
-       "id": "qUOQrXmfwDM",
-       "title": "Is It Heavy or Light?",
-       "tag": "Math K.7 Measurement",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "seconds": 163,
-       "minutes": 2.7
-      },
       {
        "id": "dh5wGSLw1p4",
        "title": "Why Do Things Float in Space?",
@@ -1195,15 +1187,15 @@
      ]
     },
     "pmTogether": {
-     "prompt": "Jabari was scared to jump. What did he try? What do YOU do when you're stuck?",
+     "prompt": "What can you control when a play goes wrong? What do YOU do when you're stuck?",
      "videos": [
       {
-       "id": "XwNNlgtHFiU",
-       "title": "Jabari Jumps (read-aloud)",
-       "tag": "ELAR K.6/2.6 Retell",
-       "channel": "StorylineOnline",
-       "seconds": 490,
-       "minutes": 8.2
+       "id": "ngD2oXGy6C0",
+       "title": "Focus on What You Can Control (rewatch)",
+       "tag": "SEL",
+       "channel": "Airtoons",
+       "seconds": 81,
+       "minutes": 1.4
       },
       {
        "id": "EGMSjpFMMkQ",
@@ -1234,23 +1226,23 @@
      ]
     },
     "amYounger": {
-     "prompt": "Find circles and triangles out the window! Say \"Привет!\" like Masha.",
+     "prompt": "Find circles and triangles out the window, then sketch a robot using only shapes and label each one. Say \"Привет!\" (pri-VYET = hi).",
      "videos": [
       {
-       "id": "CAxK4S2PRBs",
-       "title": "Draw Candy Using Shapes",
+       "id": "A7EEOlSJIjo",
+       "title": "All About Shapes (art lesson) (rewatch)",
        "tag": "Fine Arts: Shape",
-       "channel": "Art for Kids Hub",
-       "seconds": 382,
-       "minutes": 6.4
+       "channel": "Paint It Kids",
+       "seconds": 330,
+       "minutes": 5.5
       },
       {
-       "id": "1V3ZY_TXKwU",
-       "title": "Masha and the Bear: Episode 1 (Russian)",
-       "tag": "World Lang: Russian",
-       "channel": "Маша и Медведь",
-       "seconds": 394,
-       "minutes": 6.6
+       "id": "Y4Fx3z5fAWY",
+       "title": "Numberblocks: Steps Squads (rewatch)",
+       "tag": "Math K.2 Counting",
+       "channel": "Numberblocks",
+       "seconds": 275,
+       "minutes": 4.6
       }
      ]
     },
@@ -1276,15 +1268,23 @@
      ]
     },
     "pmTogether": {
-     "prompt": "Who got on the broom? What happened first, next, last?",
+     "prompt": "Backyard challenge: 10 catches in a row. What's the one tip from each clip?",
      "videos": [
       {
-       "id": "qg6KK0iv9QI",
-       "title": "Room on the Broom (read-aloud)",
-       "tag": "ELAR K.6/2.6 Retell",
-       "channel": "StorylineOnline",
-       "seconds": 432,
-       "minutes": 7.2
+       "id": "j9AXCjF3CTA",
+       "title": "Little League Basics: Catching (rewatch)",
+       "tag": "PE: Baseball",
+       "channel": "Little League",
+       "seconds": 56,
+       "minutes": 0.9
+      },
+      {
+       "id": "29z_cWCe1Lw",
+       "title": "Little League Basics: Hitting (rewatch)",
+       "tag": "PE: Baseball",
+       "channel": "Little League",
+       "seconds": 57,
+       "minutes": 0.9
       }
      ]
     }
@@ -1294,7 +1294,7 @@
    "focus": "Friction slows things down · Break it down · LEGO arch bridge (carpet vs. tile)",
    "segments": {
     "amTogether": {
-     "prompt": "Slide a sock on the floor and on the carpet tonight. Which one stops first? Guess now!",
+     "prompt": "Slide a sock on the floor and on the carpet tonight. Which one stops first? Predict now!",
      "videos": [
       {
        "id": "Ps90zArJEJY",
@@ -1304,19 +1304,12 @@
        "seconds": 261,
        "minutes": 4.3
       }
-     ]
+     ],
+     "checkpoint": "Prediction locked in: floor or carpet?"
     },
     "amYounger": {
-     "prompt": "Does a toy car roll farther on the rug or the kitchen floor? Say a Russian food word!",
+     "prompt": "Toy-car test tonight: rug or kitchen floor - which goes farther? Sketch it and label the winner. Name one Russian food word.",
      "videos": [
-      {
-       "id": "-elDlUNtP38",
-       "title": "Different Things Move in Different Ways",
-       "tag": "Sci K.7 Push & pull",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "seconds": 235,
-       "minutes": 3.9
-      },
       {
        "id": "OEImTjGGheE",
        "title": "Numberblocks: One's Fix-it Shop",
@@ -1326,6 +1319,15 @@
        "minutes": 4.8
       },
       {
+       "id": "LDdlNazMOV0",
+       "title": "Curling explained: precision on ice",
+       "tag": "Sci K.7 Push & pull",
+       "channel": "Olympic Games",
+       "ask": "Why do curlers sweep the ice? Make a guess - it's friction!",
+       "seconds": 86,
+       "minutes": 1.4
+      },
+      {
        "id": "G4-1d5bTQYM",
        "title": "Russian Food Words",
        "tag": "World Lang: Russian",
@@ -1333,7 +1335,8 @@
        "seconds": 174,
        "minutes": 2.9
       }
-     ]
+     ],
+     "checkpoint": "Rough or smooth: which one slows things down?"
     },
     "pmOlder": {
      "prompt": "Break the arch bridge into 3 steps. Does it hold better on carpet or tile? Why does a ground ball slow down in the grass?",
@@ -1347,6 +1350,15 @@
        "minutes": 5.5
       },
       {
+       "id": "_8Xy_qpTe6M",
+       "title": "The Physics of Baseball: Fielding",
+       "tag": "Sci 2.7 Force & motion",
+       "channel": "Science Channel",
+       "ask": "Why does a grounder slow down in grass but zip across the infield dirt?",
+       "seconds": 151,
+       "minutes": 2.5
+      },
+      {
        "id": "NjFRrxuh2TU",
        "title": "Science Max: Friction (part 1: 0:00-5:00)",
        "tag": "Sci 2.7 Force & motion",
@@ -1355,27 +1367,21 @@
        "end": 300,
        "seconds": 300,
        "minutes": 5.0
-      },
-      {
-       "id": "_8Xy_qpTe6M",
-       "title": "The Physics of Baseball: Fielding",
-       "tag": "Sci 2.7 Force & motion",
-       "channel": "Science Channel",
-       "seconds": 151,
-       "minutes": 2.5
       }
-     ]
+     ],
+     "checkpoint": "Name your 3 bridge-build steps out loud."
     },
     "pmTogether": {
-     "prompt": "What happened first, next, last? Is sliding into base fast or slow? (Friction!)",
+     "prompt": "Which LEGO vehicle had the best grip? Why do runners slide into base? (Friction!)",
      "videos": [
       {
-       "id": "5ISKUMy1980",
-       "title": "Too Much Glue (read-aloud)",
-       "tag": "ELAR K.6/2.6 Retell",
-       "channel": "StorylineOnline",
-       "seconds": 471,
-       "minutes": 7.8
+       "id": "LAIG8-wzrBg",
+       "title": "23 LEGO vehicles tug-of-war",
+       "tag": "Sci 2.7 Force & motion",
+       "channel": "Brick Experiment Channel",
+       "ask": "Which vehicles won? Was it weight, wheels or grip?",
+       "seconds": 166,
+       "minutes": 2.8
       },
       {
        "id": "CSUQzUZrgvA",
@@ -1385,7 +1391,8 @@
        "seconds": 69,
        "minutes": 1.1
       }
-     ]
+     ],
+     "checkpoint": "Friction: helped or hurt the runner? One example each."
     }
    }
   },
@@ -1411,10 +1418,11 @@
        "seconds": 134,
        "minutes": 2.2
       }
-     ]
+     ],
+     "checkpoint": "Name 2 rough and 2 smooth things in the car."
     },
     "amYounger": {
-     "prompt": "Share 6 crackers into 2 equal piles. Is the reed or the oak stronger in a storm?",
+     "prompt": "Share 6 crackers into 2 equal piles. Engineer question: in a big storm, does a stiff tower or a bendy one last longer?",
      "videos": [
       {
        "id": "xC278dXKJzU",
@@ -1431,16 +1439,9 @@
        "channel": "Alphablocks",
        "seconds": 305,
        "minutes": 5.1
-      },
-      {
-       "id": "hDf0GhNK6pk",
-       "title": "The Oak and the Reed (Aesop)",
-       "tag": "SEL",
-       "channel": "Baby Shark - Pinkfong Kids’ Songs & Stories",
-       "seconds": 131,
-       "minutes": 2.2
       }
-     ]
+     ],
+     "checkpoint": "Prove it: split 8 into 2 equal groups with your fingers or bricks."
     },
     "pmOlder": {
      "prompt": "3 piles of 4 bricks: how many? Draw it, solve it, check it. Bishops only go diagonal!",
@@ -1450,6 +1451,7 @@
        "title": "Arrays and Repeated Addition",
        "tag": "Math 2.4C Word problems",
        "channel": "MightyOwl",
+       "ask": "3 piles of 4 bricks: how many? Draw it, solve it, check it.",
        "seconds": 335,
        "minutes": 5.6
       },
@@ -1461,10 +1463,11 @@
        "seconds": 310,
        "minutes": 5.2
       }
-     ]
+     ],
+     "checkpoint": "Bishops: which way do they move? Draw the array for 3 x 4."
     },
     "pmTogether": {
-     "prompt": "What's the code pattern? Russian recap: car is машина (ma-SHI-na)!",
+     "prompt": "Crack the code pattern. Russian challenge: car is машина (ma-SHI-na) - who can say it first? What does Dad's car say in Russian?",
      "videos": [
       {
        "id": "X7bqnSGhI-U",
@@ -1473,16 +1476,9 @@
        "channel": "Odd Squad",
        "seconds": 212,
        "minutes": 3.5
-      },
-      {
-       "id": "KWyVcHnJ9rU",
-       "title": "Russian Vehicles Song",
-       "tag": "World Lang: Russian",
-       "channel": "Dinolingo - Language learning for kids",
-       "seconds": 214,
-       "minutes": 3.6
       }
-     ]
+     ],
+     "checkpoint": "Say машина three times fast."
     }
    }
   },
@@ -1500,10 +1496,11 @@
        "seconds": 227,
        "minutes": 3.8
       }
-     ]
+     ],
+     "checkpoint": "Why do your hands get warm? One word: friction."
     },
     "amYounger": {
-     "prompt": "Red + yellow makes...? Think out loud! How does a pitcher throw?",
+     "prompt": "Color lab: predict red + yellow BEFORE the video tells you. How does a pitcher grip the ball?",
      "videos": [
       {
        "id": "M3Ig3c0PGFc",
@@ -1514,20 +1511,13 @@
        "minutes": 4.5
       },
       {
-       "id": "v9gIj0j7Ba0",
-       "title": "Primary Colors Song",
+       "id": "-PgMk1EzVkk",
+       "title": "Mixing colors: the science",
        "tag": "Fine Arts: Color",
-       "channel": "Sesame Studios",
-       "seconds": 106,
-       "minutes": 1.8
-      },
-      {
-       "id": "vSLUct2kM8k",
-       "title": "Learn About Mixing Colors",
-       "tag": "Fine Arts: Color",
-       "channel": "Rock 'N Learn",
-       "seconds": 124,
-       "minutes": 2.1
+       "channel": "SciShow Kids",
+       "ask": "Predict: blue + yellow = ? Then test it with markers tonight.",
+       "seconds": 231,
+       "minutes": 3.9
       },
       {
        "id": "rjJtbID9CWI",
@@ -1537,7 +1527,8 @@
        "seconds": 155,
        "minutes": 2.6
       }
-     ]
+     ],
+     "checkpoint": "Name the 3 primary colors and one color you can mix."
     },
     "pmOlder": {
      "prompt": "Predict: 2 lamps side by side, brighter or dimmer than in a row? Unscrew one now! Think aloud.",
@@ -1557,6 +1548,7 @@
        "channel": "Science Max - Scholastic",
        "start": 0,
        "end": 300,
+       "ask": "Predict: 2 lamps side by side, brighter or dimmer than in a row? Unscrew one tonight and test.",
        "seconds": 300,
        "minutes": 5.0
       },
@@ -1570,10 +1562,11 @@
        "seconds": 300,
        "minutes": 5.0
       }
-     ]
+     ],
+     "checkpoint": "Series or parallel: which keeps the other lamp on?"
     },
     "pmTogether": {
-     "prompt": "Where does friction help us? When did a worry feel bigger than it really was?",
+     "prompt": "Where does friction help us? Curling teams plan every shot - when did a worry feel bigger than it really was?",
      "videos": [
       {
        "id": "9ePpWrvOXGY",
@@ -1584,14 +1577,16 @@
        "minutes": 1.8
       },
       {
-       "id": "TDFEW3eAIlg",
-       "title": "Telly Is Anxious",
-       "tag": "SEL",
-       "channel": "Sesame Street",
-       "seconds": 107,
-       "minutes": 1.8
+       "id": "zeKu5KWPO4M",
+       "title": "The science of curling (NBC News Learn)",
+       "tag": "Sci 2.7 Force & motion",
+       "channel": "NBC News Learn",
+       "ask": "Sweeping melts a thin layer of ice. More friction or less?",
+       "seconds": 300,
+       "minutes": 5.0
       }
-     ]
+     ],
+     "checkpoint": "One place friction helps, one place it gets in the way."
     }
    }
   },
@@ -1609,10 +1604,11 @@
        "seconds": 274,
        "minutes": 4.6
       }
-     ]
+     ],
+     "checkpoint": "Best idea for a slippery sidewalk: salt, sand, or boots?"
     },
     "amYounger": {
-     "prompt": "Stuck? Try, try again! Count the spider's legs in Russian: один, два, три...",
+     "prompt": "Stuck? Try one more way. Count to 5 in Russian: один, два, три, четыре, пять!",
      "videos": [
       {
        "id": "iFvpDuT6d9I",
@@ -1623,33 +1619,37 @@
        "minutes": 4.6
       },
       {
-       "id": "mQAWSXQ1xOU",
-       "title": "Monster Meditation: Try Try Again",
-       "tag": "SEL",
-       "channel": "Sesame Street",
-       "seconds": 191,
-       "minutes": 3.2
-      },
-      {
-       "id": "vEhS3UQvm9E",
-       "title": "Itsy Bitsy Spider (Russian)",
+       "id": "oE_QegYAvTc",
+       "title": "Learn Russian (part 3: 10:00-15:00)",
        "tag": "World Lang: Russian",
-       "channel": "Dinolingo - Language learning for kids",
-       "seconds": 112,
-       "minutes": 1.9
+       "channel": "Rock 'N Learn",
+       "start": 600,
+       "end": 900,
+       "seconds": 300,
+       "minutes": 5.0
       }
-     ]
+     ],
+     "checkpoint": "Count your fingers in Russian, 1 to 5."
     },
     "pmOlder": {
      "prompt": "Stuck? Try 3 ways: draw groups, skip count, or act it out. What clue helps you infer? Queens move every way!",
      "videos": [
       {
-       "id": "gzFbUZ8VjEg",
-       "title": "Equal Groups Song",
+       "id": "1tjJDdszcZg",
+       "title": "Skip counting equal groups",
        "tag": "Math 2.4C Word problems",
-       "channel": "Numberock",
-       "seconds": 191,
-       "minutes": 3.2
+       "channel": "Khan Academy",
+       "seconds": 167,
+       "minutes": 2.8
+      },
+      {
+       "id": "AKZl3pSN1Cs",
+       "title": "How to Move the Queen",
+       "tag": "Chess",
+       "channel": "ChessKid",
+       "ask": "5 groups of 3 - skip count it out loud. Then: where can a queen go from the center square?",
+       "seconds": 375,
+       "minutes": 6.2
       },
       {
        "id": "XjR2B3YJH9U",
@@ -1658,27 +1658,21 @@
        "channel": "Crash Course Kids",
        "seconds": 313,
        "minutes": 5.2
-      },
-      {
-       "id": "AKZl3pSN1Cs",
-       "title": "How to Move the Queen",
-       "tag": "Chess",
-       "channel": "ChessKid",
-       "seconds": 375,
-       "minutes": 6.2
       }
-     ]
+     ],
+     "checkpoint": "Make an inference: what clue gave it away?"
     },
     "pmTogether": {
-     "prompt": "The kids kept waiting and trying. What was hard? How do you stay ready for the big play?",
+     "prompt": "How does the machine make the ice smooth again? How do you stay ready for the big play?",
      "videos": [
       {
-       "id": "HuEUTaacy_o",
-       "title": "Just SNOW Already! (read-aloud)",
-       "tag": "ELAR K.6/2.6 Retell",
-       "channel": "StorylineOnline",
-       "seconds": 316,
-       "minutes": 5.3
+       "id": "nlkqie6agBE",
+       "title": "Ice rink resurfacing: how do they do it?",
+       "tag": "Sci 2.7 Force & motion",
+       "channel": "Discovery UK",
+       "ask": "Why is fresh ice slipperier than scratched ice?",
+       "seconds": 157,
+       "minutes": 2.6
       },
       {
        "id": "t8GEY0tXkvk",
@@ -1688,7 +1682,8 @@
        "seconds": 168,
        "minutes": 2.8
       }
-     ]
+     ],
+     "checkpoint": "Your 'ready position' in one sentence."
     }
    }
   },
@@ -1706,19 +1701,12 @@
        "seconds": 241,
        "minutes": 4.0
       }
-     ]
+     ],
+     "checkpoint": "One place friction helps and one where it gets in the way."
     },
     "amYounger": {
-     "prompt": "Say \"Привет!\" like Masha. Which colors are warm? Which are cool?",
+     "prompt": "Which colors are warm? Which are cool? Say Привет (pri-VYET) = hi! Paint a color wheel this weekend.",
      "videos": [
-      {
-       "id": "o6wdh1KZeW0",
-       "title": "Masha and the Bear: Episode 2 (Russian)",
-       "tag": "World Lang: Russian",
-       "channel": "Маша и Медведь",
-       "seconds": 400,
-       "minutes": 6.7
-      },
       {
        "id": "XS0hnPs1Aac",
        "title": "Color Wheel",
@@ -1726,8 +1714,19 @@
        "channel": "Art for Kids Hub",
        "seconds": 335,
        "minutes": 5.6
+      },
+      {
+       "id": "oE_QegYAvTc",
+       "title": "Learn Russian (part 4: 15:00-20:00)",
+       "tag": "World Lang: Russian",
+       "channel": "Rock 'N Learn",
+       "start": 900,
+       "end": 1200,
+       "seconds": 300,
+       "minutes": 5.0
       }
-     ]
+     ],
+     "checkpoint": "Point to something warm-colored and something cool-colored."
     },
     "pmOlder": {
      "prompt": "Teach-back: how does \"if touching\" make the sprite stop? Why can skates glide on ice?",
@@ -1748,20 +1747,23 @@
        "seconds": 415,
        "minutes": 6.9
       }
-     ]
+     ],
+     "checkpoint": "How does 'if touching' stop the sprite? Explain it like a coach."
     },
     "pmTogether": {
-     "prompt": "Who did Quackenstein think was hatching? What happened first, next, last?",
+     "prompt": "Teach-back: which obstacle was hardest and why? Was it grip (friction), size, or weight?",
      "videos": [
       {
-       "id": "xoiS5ZFtqVg",
-       "title": "Quackenstein Hatches a Family (read-aloud)",
-       "tag": "ELAR K.6/2.6 Retell",
-       "channel": "StorylineOnline",
-       "seconds": 357,
-       "minutes": 6.0
+       "id": "sL37JqysXSI",
+       "title": "5 LEGO tracked vehicles vs. 6 obstacles",
+       "tag": "Sci 2.1 Eng. practices",
+       "channel": "Brick Experiment Channel",
+       "ask": "Which tracks gripped best? What would you change on your own build?",
+       "seconds": 203,
+       "minutes": 3.4
       }
-     ]
+     ],
+     "checkpoint": "Design your own obstacle for this weekend's LEGO test."
     }
    }
   }
@@ -2113,7 +2115,25 @@
   var overlay = document.getElementById('overlay');
   var wrap = document.getElementById('playerWrap');
   var nowEl = document.getElementById('nowplaying');
-  var player = null, pending = null, queue = [], qi = 0;
+  var player = null, pending = null, queue = [], qi = 0, ctx = {}, timer = null;
+  var upnext = document.getElementById('upnext');
+  // ---- progress (this tablet only): which clips in a segment were finished or skipped today
+  var PROG = {};
+  try { PROG = JSON.parse(localStorage.getItem('kl-progress') || '{}'); } catch (e) { PROG = {}; }
+  function status(key, id) { return (PROG[key] || {})[id] || ''; }
+  function mark(key, id, st) {
+    if (!key) return;
+    var m = PROG[key] = PROG[key] || {};
+    if (m[id] !== 'done') m[id] = st;
+    try { localStorage.setItem('kl-progress', JSON.stringify(PROG)); } catch (e) {}
+  }
+  function firstOpen(key, list) { for (var i = 0; i < list.length; i++) if (status(key, list[i].id) !== 'done') return i; return 0; }
+  function countDone(key, list) { return list.filter(function (v) { return status(key, v.id) === 'done'; }).length; }
+  function dots(key, list, now) {
+    var d = el('span', 'pdots');
+    list.forEach(function (v, i) { d.appendChild(el('span', 'pdot ' + (i === now ? 'now' : status(key, v.id)))); });
+    return d;
+  }
 
   // ---- dates (all as YYYY-MM-DD strings; arithmetic in UTC to avoid DST drift)
   function todayStr() {
@@ -2150,7 +2170,7 @@
   var current = null;
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 
-  function card(v, n, list, idx, segLabel) {
+  function card(v, n, list, idx, c) {
     var b = el('div', 'card');
     b.setAttribute('role', 'button'); b.tabIndex = 0;
     b.innerHTML = '<div class="thumb"><img alt="" loading="lazy"><span class="play"></span><span class="num"></span><span class="dur"></span></div>' +
@@ -2161,14 +2181,17 @@
     b.querySelector('.title').textContent = v.title;
     b.querySelector('.tag').textContent = v.tag || '';
     if (v.ask) { var a = el('div', 'ask'); a.appendChild(el('b', null, 'Ask: ')); a.appendChild(document.createTextNode(v.ask)); b.querySelector('.info').appendChild(a); }
-    function go() { playList(list, idx, segLabel); }
+    function go() { playList(list, idx, c); }
     b.addEventListener('click', go);
     b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
     return b;
   }
 
-  function segmentBox(cls, icon, label, videos, prompt, target) {
+  function segmentBox(cls, icon, label, videos, prompt, target, opt) {
+    opt = opt || {};
     var vids = (videos || []).filter(function (v) { return okId(v.id); });
+    var c = { key: opt.key || '', label: label, checkpoint: opt.checkpoint || '', picks: (opt.picks || []).filter(function (v) { return okId(v.id); }),
+              next: opt.next || null, run: 0 };
     var sec = el('section', 'seg ' + cls);
     var head = el('div', 'seghead');
     head.appendChild(el('span', 'icon', icon));
@@ -2176,17 +2199,45 @@
     var total = vids.reduce(function (a, v) { return a + (v.seconds || Math.round((v.minutes || 0) * 60)); }, 0);
     head.appendChild(el('span', 'segmins', mins(total) + ' min' + (target ? ' \u00B7 goal ' + target : '')));
     if (vids.length) {
-      var pa = el('button', 'playall', '\u25B6 Play all');
+      var nd = c.key ? countDone(c.key, vids) : 0, start = c.key ? firstOpen(c.key, vids) : 0;
+      var pa = el('button', 'playall', nd === 0 ? '\u25B6 Play all' : nd >= vids.length ? '\u25B6 Play again' : '\u25B6 Continue (' + (start + 1) + ' of ' + vids.length + ')');
       pa.type = 'button';
-      pa.addEventListener('click', function () { playList(vids, 0, label); });
+      pa.addEventListener('click', function () { playList(vids, nd >= vids.length ? 0 : start, c); });
       head.appendChild(pa);
     }
     sec.appendChild(head);
-    if (prompt) { var p = el('div', 'prompt'); p.appendChild(el('b', null, 'Car talk: ')); p.appendChild(document.createTextNode(prompt)); sec.appendChild(p); }
+    if (c.key && vids.length > 1) {
+      var pr = el('div', 'progress'); pr.appendChild(dots(c.key, vids, -1));
+      pr.appendChild(el('span', null, countDone(c.key, vids) + ' of ' + vids.length + ' done')); sec.appendChild(pr);
+    }
+    if (prompt) { var p = el('div', 'prompt'); p.appendChild(el('b', null, (opt.promptLabel || 'Car talk') + ': ')); p.appendChild(document.createTextNode(prompt)); sec.appendChild(p); }
     var cards = el('div', 'cards');
-    vids.forEach(function (v, i) { cards.appendChild(card(v, i + 1, vids, i, label)); });
+    vids.forEach(function (v, i) { cards.appendChild(card(v, i + 1, vids, i, c)); });
     sec.appendChild(cards);
+    if (c.picks.length) {
+      var pk = el('div', 'picks'); pk.appendChild(el('div', 'plabel', "\uD83C\uDFAF Boys' pick - after the plan, choose 1:"));
+      var pc = el('div', 'cards');
+      c.picks.forEach(function (v, i) { pc.appendChild(card(v, '\u2605', [v], 0, { key: c.key, label: label + " - Boys' pick", isPick: true, next: c.next, checkpoint: '' })); });
+      pk.appendChild(pc); sec.appendChild(pk);
+    }
+    if (c.checkpoint) { var cp = el('div', 'checkpoint'); cp.appendChild(el('b', null, '\u2705 Checkpoint: ')); cp.appendChild(document.createTextNode(c.checkpoint)); sec.appendChild(cp); }
     return sec;
+  }
+
+  var PICKFOR = { amYounger: 'younger', pmOlder: 'older', pmTogether: 'together' };
+  // Next segment in the same ride (morning -> morning, afternoon -> afternoon), starting at its first unfinished clip.
+  function nextSegFn(s, i) {
+    var segs = DATA.segments, day = DATA.days[s];
+    for (var j = i + 1; j < segs.length; j++) {
+      if (segs[j].icon !== segs[i].icon) return null;
+      var x = day.segments[segs[j].key];
+      if (x && x.videos && x.videos.length) return (function (sg, x) { return function () {
+        var c = { key: s + '|' + sg.key, label: sg.label, checkpoint: x.checkpoint || sg.checkpoint || '',
+                  picks: x.pick || ((nearestWeek(s) || {}).picks || {})[PICKFOR[sg.key]] || [], next: nextSegFn(s, j), run: 0 };
+        return { label: sg.label, go: function () { playList(x.videos, firstOpen(c.key, x.videos), c); } };
+      }; })(segs[j], x);
+    }
+    return null;
   }
 
   function setHeader(s, focus) {
@@ -2205,10 +2256,14 @@
     var day = DATA.days[s];
     if (day) {
       setHeader(s, day.focus);
-      DATA.segments.forEach(function (sg) {
+      var wk0 = nearestWeek(s), segs = DATA.segments;
+      segs.forEach(function (sg, i) {
         var x = day.segments[sg.key];
         if (!x) return;
-        main.appendChild(segmentBox('s-' + sg.key, ICON[sg.icon] || '', sg.label, x.videos, x.prompt, sg.target));
+        main.appendChild(segmentBox('s-' + sg.key, ICON[sg.icon] || '', sg.label, x.videos, x.prompt, sg.target, {
+          key: s + '|' + sg.key, checkpoint: x.checkpoint || sg.checkpoint || '',
+          picks: x.pick || (wk0 && wk0.picks && wk0.picks[PICKFOR[sg.key]]) || [],
+          next: nextSegFn(s, i) }));
       });
       return;
     }
@@ -2218,7 +2273,7 @@
     var note = !weekFor(s) ? 'New lineup coming soon - here are some favorites'
              : isWeekend ? ((wk && wk.note) || 'Weekend!') : 'No lineup for this day yet - here are some favorites';
     setHeader(s, note);
-    if (wk) main.appendChild(segmentBox('s-weekend', ICON.star, wk.title || 'Weekend favorites', wk.videos, null, null));
+    if (wk) main.appendChild(segmentBox('s-weekend', ICON.star, wk.title || 'Weekend favorites', wk.videos, null, null, { key: s + '|weekend' }));
     else main.appendChild(el('div', 'empty', 'No videos for this day yet.'));
     var fs = isWeekend && faithStrip(s); if (fs) main.appendChild(fs);
   }
@@ -2300,7 +2355,7 @@
     top.appendChild(el('div', 'bigidea', w.bigIdea || ''));
     if (FAITH.rhythm) top.appendChild(el('div', 'rhythm', FAITH.rhythm));
     main.appendChild(top);
-    main.appendChild(segmentBox('s-faith', '\uD83C\uDFAC', 'Watch & talk (one clip per session)', w.videos, null, null));
+    main.appendChild(segmentBox('s-faith', '\uD83C\uDFAC', 'Watch & talk (one clip per session)', w.videos, null, null, { key: 'faith|' + w.start }));
     var act = el('section', 'seg s-faith');
     var ah = el('div', 'seghead'); ah.appendChild(el('span', 'icon', '\uD83E\uDDF1')); ah.appendChild(el('span', 'seglabel', 'Hands-on')); act.appendChild(ah);
     var g = el('div', 'fgrid');
@@ -2364,10 +2419,10 @@
   }, 60000);
 
   // ---- player (youtube-nocookie, rel=0, closes at end; autoplays next video in the same segment)
-  function playList(list, idx, label) { queue = list; qi = idx; openVideo(label); }
-  function openVideo(label) {
+  function playList(list, idx, c) { queue = list; qi = idx; ctx = c || {}; ctx.run = ctx.run || 0; openVideo(); }
+  function openVideo() {
     var v = queue[qi];
-    closePlayer();
+    closePlayer(); hideUpNext();
     var src = 'https://www.youtube-nocookie.com/embed/' + v.id +
               '?rel=0&modestbranding=1&playsinline=1&autoplay=1&enablejsapi=1';
     if (v.start) src += '&start=' + v.start;
@@ -2380,16 +2435,16 @@
     f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
     f.allowFullscreen = true; f.referrerPolicy = 'strict-origin-when-cross-origin';
     wrap.appendChild(f);
-    nowEl.textContent = (label ? label + '  \u2022  ' : '') + (qi + 1) + ' of ' + queue.length + ': ' + v.title;
-    nowEl.dataset.label = label || '';
+    nowEl.textContent = (ctx.label ? ctx.label + '  \u2022  ' : '') + (qi + 1) + ' of ' + queue.length + ': ' + v.title;
+    if (queue.length > 1) { nowEl.appendChild(document.createElement('br')); nowEl.appendChild(dots(ctx.key, queue, qi)); }
+    document.getElementById('skip').style.visibility = 'visible';
     overlay.classList.add('open');
     attachApi(f);
   }
   function attachApi(f) {
     if (!(window.YT && YT.Player)) { pending = f; return; }
     player = new YT.Player(f, { events: { onStateChange: function (e) {
-      if (e.data !== YT.PlayerState.ENDED) return;
-      if (qi + 1 < queue.length) { qi++; openVideo(nowEl.dataset.label); } else closeVideo();
+      if (e.data === YT.PlayerState.ENDED) finish('done');
     } } });
   }
   window.onYouTubeIframeAPIReady = function () {
@@ -2400,9 +2455,52 @@
     if (player && player.destroy) { try { player.destroy(); } catch (e) {} }
     player = null; pending = null; wrap.innerHTML = '';
   }
-  function closeVideo() { closePlayer(); queue = []; overlay.classList.remove('open'); }
-  document.getElementById('back').addEventListener('click', closeVideo);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeVideo(); });
+  // ---- "Up next" panel: shown after every clip ends or is skipped, so the plan is always one big tap away.
+  function hideUpNext() { if (timer) { clearInterval(timer); timer = null; } upnext.classList.remove('open'); }
+  function bigBtn(cls, text, fn) { var b = el('button', 'bigbtn ' + cls, text); b.type = 'button'; b.addEventListener('click', fn); return b; }
+  function finish(st) {
+    var v = queue[qi]; if (!v || upnext.classList.contains('open')) return;
+    mark(ctx.key, v.id, st);
+    closePlayer(); ctx.run++;
+    document.getElementById('skip').style.visibility = 'hidden';
+    nowEl.textContent = ctx.label || '';
+    if (queue.length > 1) { nowEl.appendChild(document.createElement('br')); nowEl.appendChild(dots(ctx.key, queue, -1)); }
+    var t = document.getElementById('unTitle'), a = document.getElementById('unAsk'),
+        bs = document.getElementById('unBtns'), ps = document.getElementById('unPicks');
+    bs.innerHTML = ''; ps.innerHTML = ''; a.textContent = '';
+    var home = bigBtn('home', "\u2B05 Back to today's plan", backToPlan);
+    if (!ctx.isPick && qi + 1 < queue.length) {
+      var nx = queue[qi + 1];
+      t.textContent = (st === 'skip' ? 'Skipped - no problem. ' : 'Nice! \u2705 ') + (qi + 1) + ' of ' + queue.length;
+      var ask = v.ask || (ctx.run >= 2 ? 'Quick check before the next one: tell each other one thing you just learned.' : '');
+      if (ask) { a.textContent = '\uD83D\uDCAC ' + ask; ctx.run = 0; }
+      var nb = bigBtn('', "\u25B6 Next in today's ride: " + nx.title, function () { qi++; openVideo(); });
+      bs.appendChild(nb); bs.appendChild(home);
+      if (!ask) { // no question waiting: roll on to the planned next clip after a short countdown
+        var n = 8; nb.textContent = "\u25B6 Next in today's ride: " + nx.title + ' (' + n + ')';
+        timer = setInterval(function () { n--; if (n <= 0) { hideUpNext(); qi++; openVideo(); } else nb.textContent = "\u25B6 Next in today's ride: " + nx.title + ' (' + n + ')'; }, 1000);
+      }
+    } else {
+      t.textContent = ctx.isPick ? "Boys' pick done! \u2705" : 'Segment done! \u2705 ' + countDone(ctx.key, queue) + ' of ' + queue.length + ' watched';
+      if (ctx.checkpoint) a.textContent = '\u2705 Checkpoint: ' + ctx.checkpoint;
+      var nxt = ctx.next && ctx.next();
+      if (nxt) bs.appendChild(bigBtn('', "\u25B6 Next in today's ride: " + nxt.label, function () { hideUpNext(); nxt.go(); }));
+      bs.appendChild(home);
+      if (!ctx.isPick && ctx.picks && ctx.picks.length) {
+        ps.appendChild(el('div', null, "\uD83C\uDFAF Boys' pick - choose 1:"));
+        var c0 = ctx;
+        c0.picks.forEach(function (pv) {
+          ps.appendChild(bigBtn('pick', '\u2605 ' + pv.title, function () { playList([pv], 0, { key: c0.key, label: c0.label + " - Boys' pick", isPick: true, next: c0.next }); }));
+        });
+      }
+    }
+    upnext.classList.add('open');
+  }
+  function closeVideo() { hideUpNext(); closePlayer(); queue = []; overlay.classList.remove('open'); }
+  function backToPlan() { var y = window.scrollY; closeVideo(); route(); window.scrollTo(0, y); }
+  document.getElementById('back').addEventListener('click', backToPlan);
+  document.getElementById('skip').addEventListener('click', function () { finish('skip'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) backToPlan(); });
 
   route();
 })();

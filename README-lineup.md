@@ -14,7 +14,19 @@ The page opens on **today** (America/Chicago time) and shows four sections:
 Buttons: big **Prev / Next** (one day at a time, limited to the dates in `weeks`), **Today**, and **This week** (a Mon-Fri grid plus the weekend favorites). On a Saturday or Sunday, or any date with no `days` entry, the page shows that week's `weekend` list instead.
 Deep links: `#2026-10-21` opens a day, `#week` opens the current week, `#week-2026-10-26` opens a given week.
 
-Player: a youtube-nocookie embed with `rel=0`. **Play all** (or tapping a card) plays that segment in order and auto-advances to the next video in the *same* segment. The player closes after the segment's last video, and **Back** closes it at any time.
+Player: a youtube-nocookie embed with `rel=0`. **Play all** (or tapping a card) plays that segment in order. Nothing is locked: every clip can be skipped, and every segment can be opened in any order.
+
+Anti-derail features (they keep the plan visible, and they don't block anything):
+- **Up next panel**: after each clip (when it ends, or on Skip) the player stays open and shows **Next in today's ride** plus **Back to today's plan**. If the clip has an `ask`, the question is shown and the player waits. If not, it continues by itself after 8 seconds. When a segment ends, it shows the checkpoint, a button for the next segment in the same ride, and the Boys' pick buttons.
+- **Progress strip**: dots in the player ("1 of 4") and an "n of N done" line on each segment. Progress is saved in this browser only (localStorage `kl-progress`), and **Play all** becomes **Continue (k of N)**.
+- **Skip ⏭** (top right of the player): marks the clip as skipped and moves to the next clip *in the planned order*. It never jumps to a random video.
+- **Two-clip rule**: from Nov 2 on, the build warns if a segment has 2 clips in a row with no `ask`. The player also shows a generic question after 2 clips with no ask. Put favorites (Numberblocks, LEGO) first or in between, not all at the end.
+- **Boys' pick**: 2-3 checked choices per ride for after the plan (`weeks[].picks`). They show on the Little Brother, Big Brother and afternoon Together segments.
+- **Checkpoint**: one line at the end of each segment (`checkpoint` on the day segment, falling back to `segments[].checkpoint`).
+
+**If a clip gets skipped:** that's fine. Say its `ask` out loud anyway (or the car-talk line), then go on to the next clip. Don't search YouTube for a replacement in the car. If a whole segment is skipped, use its checkpoint line as the car-talk.
+
+**Ride order:** morning = Together, then Little Brother. Afternoon = Big Brother, then Together. In each segment: play the clips in order, then the question, then the checkpoint, then (optional) one Boys' pick.
 
 ## Data format (`lineup.json`)
 
@@ -59,9 +71,22 @@ VIDEO:
 
 `build.py` warns (it doesn't fail) when a segment's total runs outside its soft range: amTogether 3-7, amYounger 9-16, pmOlder 9-18, pmTogether 3-9 minutes.
 
+Optional fields (all of them pass through `build.py`):
+- video `ask`: a one-line question shown under the card and in the Up next panel.
+- day segment `checkpoint` (string) and `pick` (list of videos): override the week's picks for that segment.
+- `segments[].checkpoint`: the default end-of-segment line.
+- `weeks[].picks`: `{"together": [...], "younger": [...], "older": [...]}`, 2-3 checked videos each.
+
 ## Adding a new week
 
-1. **Pick videos** from reputable kid channels: SciShow Kids, Crash Course Kids, Peekaboo Kidz, Numberblocks, Alphablocks, Jack Hartmann, PBS KIDS, Odd Squad, StorylineOnline, Mark Rober, Scratch Team, Scratch Garden, MightyOwl, and similar. Don't use Shorts, parodies, reaction channels, or game-drama channels.
+1. **Pick videos** from reputable kid channels: SciShow Kids, Crash Course Kids, Peekaboo Kidz, Numberblocks, Alphablocks, PBS KIDS, Odd Squad, Mark Rober, CrunchLabs, Brick Experiment Channel, Khan Academy, Seeker, ChessKid, Science Max, Scratch Team, Scratch Garden, MightyOwl, and similar. Don't use Shorts, parodies, reaction channels, or game-drama channels.
+
+   **Tone rules** (both boys find babyish content boring; Numberblocks is the exception they still love):
+   - No preschool songs (Jack Hartmann, Pinkfong, Sesame songs), no cutesy read-alouds (StorylineOnline), no toddler cartoons (Masha), no sing-song 'meditation' clips.
+   - Story time is a **parent-led story**, a **real-story audiobook**, a **documentary/science clip**, or a **challenge**.
+   - Frame it the way builders do: test, measure, predict, explain, without drama. Use LEGO, Scratch, engineering, sports, chess, puzzles, real places and history, and saints as heroes.
+   - Big Brother (7): a real story plus a big question. Little Brother (5): hands-on and capable, not babyish.
+   - Write copy in a capable voice: "sketch it and label it", "prove it with bricks", "predict, then test". Avoid "use your fingers!" and "say it like Masha".
 2. **Verify every id** (no exceptions):
    ```
    python3 tools/verify_videos.py ID1 ID2 ...

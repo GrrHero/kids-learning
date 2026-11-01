@@ -10,6 +10,7 @@ ID_RE = re.compile(r"^[A-Za-z0-9_-]{11}$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 SEG_KEYS = ["amTogether", "amYounger", "pmOlder", "pmTogether"]
 # Soft limits (minutes) per segment; build warns, never fails, when a segment runs long/short.
+ASK_RULE_FROM = "2026-11-02"  # days from here on follow the ~2-clips-then-a-question rule
 SEG_RANGE = {"amTogether": (3, 7), "amYounger": (9, 16), "pmOlder": (9, 18), "pmTogether": (3, 9)}
 
 TEMPLATE = r"""<!DOCTYPE html>
@@ -23,7 +24,7 @@ TEMPLATE = r"""<!DOCTYPE html>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body { margin: 0; min-height: 100%; }
   body {
-    font-family: "Comic Sans MS", "Chalkboard SE", "Trebuchet MS", system-ui, sans-serif;
+    font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
     background: linear-gradient(160deg, #ffe66d 0%, #ff9f68 45%, #a0e7e5 100%);
     background-attachment: fixed; color: #222; user-select: none;
   }
@@ -104,11 +105,35 @@ TEMPLATE = r"""<!DOCTYPE html>
   #overlay { position: fixed; inset: 0; background: rgba(20,10,60,.94); display: none;
              flex-direction: column; align-items: center; justify-content: center; z-index: 10; padding: 20px; }
   #overlay.open { display: flex; }
-  #back { position: absolute; top: 18px; left: 18px; font-size: 40px; font-weight: bold;
-          padding: 14px 40px; border-radius: 999px; border: none; color: #fff;
-          background: #ff5d8f; box-shadow: 0 8px 0 #c2185b; z-index: 2; }
-  #back:active { transform: translateY(6px); box-shadow: 0 2px 0 #c2185b; }
-  #nowplaying { position: absolute; top: 30px; right: 26px; left: 300px; text-align: right; color: #fff; font-size: 24px; }
+  #topbar { position: absolute; top: 16px; left: 16px; right: 16px; display: flex; align-items: center; gap: 16px; z-index: 4; }
+  #back, #skip { font-size: 32px; font-weight: bold; padding: 14px 30px; border-radius: 999px; border: none; color: #fff; flex: none; }
+  #back { background: #ff5d8f; box-shadow: 0 8px 0 #c2185b; }
+  #skip { background: #4b3fd6; box-shadow: 0 8px 0 #2e2494; }
+  #back:active, #skip:active { transform: translateY(6px); box-shadow: none; }
+  #nowplaying { flex: 1; text-align: center; color: #fff; font-size: 22px; line-height: 1.2; }
+  .pdots { display: inline-flex; gap: 8px; margin-top: 6px; }
+  .pdot { width: 22px; height: 22px; border-radius: 50%; border: 3px solid #fff; display: inline-block; }
+  .pdot.done { background: #2bb673; } .pdot.skip { background: #999; } .pdot.now { background: #ffe66d; }
+  #upnext { position: absolute; inset: 110px 30px 30px; display: none; flex-direction: column; align-items: center; justify-content: center;
+            gap: 18px; z-index: 3; text-align: center; color: #fff; }
+  #upnext.open { display: flex; }
+  #unTitle { font-size: 44px; font-weight: bold; }
+  #unAsk { font-size: 30px; max-width: 1000px; background: rgba(255,255,255,.12); border-radius: 22px; padding: 16px 24px; line-height: 1.3; }
+  #unAsk:empty { display: none; }
+  .bigbtn { font-size: 32px; font-weight: bold; padding: 20px 36px; border-radius: 26px; border: none; color: #fff; max-width: 1000px;
+            background: #2bb673; box-shadow: 0 8px 0 #1b7a4b; }
+  .bigbtn.home { background: #ff5d8f; box-shadow: 0 8px 0 #c2185b; }
+  .bigbtn.pick { background: #4b8bf5; box-shadow: 0 8px 0 #2a5db3; font-size: 26px; padding: 14px 24px; }
+  .bigbtn:active { transform: translateY(6px); box-shadow: none; }
+  #unBtns, #unPicks { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
+  .progress { display: flex; align-items: center; gap: 8px; margin: 8px 4px 0; font-size: 20px; font-weight: bold; color: #333; }
+  .progress .pdot { border-color: var(--c); width: 20px; height: 20px; }
+  .progress .pdot.done { background: var(--c); }
+  .checkpoint { font-size: 20px; margin: 14px 4px 0; padding: 10px 14px; border-radius: 16px; background: #fff; border-left: 8px solid var(--c); }
+  .picks { margin-top: 14px; }
+  .picks .plabel { font-size: 22px; font-weight: bold; color: var(--c); margin: 0 4px 8px; }
+  .picks .cards { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+  .picks .card { opacity: .92; } .picks .title { font-size: 20px; }
   #playerWrap { width: min(92vw, calc((100vh - 150px) * 16 / 9)); height: min(calc(92vw * 9 / 16), calc(100vh - 150px)); margin-top: 80px;
                 border-radius: 20px; overflow: hidden; background: #000; }
   #playerWrap iframe { width: 100%; height: 100%; border: 0; display: block; }
@@ -133,9 +158,13 @@ TEMPLATE = r"""<!DOCTYPE html>
 <main id="main"></main>
 
 <div id="overlay" role="dialog" aria-modal="true">
-  <button id="back" type="button">&#11013; Back</button>
-  <div id="nowplaying"></div>
+  <div id="topbar">
+    <button id="back" type="button">&#11013; Today's plan</button>
+    <div id="nowplaying"></div>
+    <button id="skip" type="button">Skip &#9197;</button>
+  </div>
   <div id="playerWrap"></div>
+  <div id="upnext"><div id="unTitle"></div><div id="unAsk"></div><div id="unBtns"></div><div id="unPicks"></div></div>
 </div>
 
 <script id="lineup-data" type="application/json">__DATA_JSON__</script>
@@ -148,7 +177,25 @@ TEMPLATE = r"""<!DOCTYPE html>
   var overlay = document.getElementById('overlay');
   var wrap = document.getElementById('playerWrap');
   var nowEl = document.getElementById('nowplaying');
-  var player = null, pending = null, queue = [], qi = 0;
+  var player = null, pending = null, queue = [], qi = 0, ctx = {}, timer = null;
+  var upnext = document.getElementById('upnext');
+  // ---- progress (this tablet only): which clips in a segment were finished or skipped today
+  var PROG = {};
+  try { PROG = JSON.parse(localStorage.getItem('kl-progress') || '{}'); } catch (e) { PROG = {}; }
+  function status(key, id) { return (PROG[key] || {})[id] || ''; }
+  function mark(key, id, st) {
+    if (!key) return;
+    var m = PROG[key] = PROG[key] || {};
+    if (m[id] !== 'done') m[id] = st;
+    try { localStorage.setItem('kl-progress', JSON.stringify(PROG)); } catch (e) {}
+  }
+  function firstOpen(key, list) { for (var i = 0; i < list.length; i++) if (status(key, list[i].id) !== 'done') return i; return 0; }
+  function countDone(key, list) { return list.filter(function (v) { return status(key, v.id) === 'done'; }).length; }
+  function dots(key, list, now) {
+    var d = el('span', 'pdots');
+    list.forEach(function (v, i) { d.appendChild(el('span', 'pdot ' + (i === now ? 'now' : status(key, v.id)))); });
+    return d;
+  }
 
   // ---- dates (all as YYYY-MM-DD strings; arithmetic in UTC to avoid DST drift)
   function todayStr() {
@@ -185,7 +232,7 @@ TEMPLATE = r"""<!DOCTYPE html>
   var current = null;
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 
-  function card(v, n, list, idx, segLabel) {
+  function card(v, n, list, idx, c) {
     var b = el('div', 'card');
     b.setAttribute('role', 'button'); b.tabIndex = 0;
     b.innerHTML = '<div class="thumb"><img alt="" loading="lazy"><span class="play"></span><span class="num"></span><span class="dur"></span></div>' +
@@ -196,14 +243,17 @@ TEMPLATE = r"""<!DOCTYPE html>
     b.querySelector('.title').textContent = v.title;
     b.querySelector('.tag').textContent = v.tag || '';
     if (v.ask) { var a = el('div', 'ask'); a.appendChild(el('b', null, 'Ask: ')); a.appendChild(document.createTextNode(v.ask)); b.querySelector('.info').appendChild(a); }
-    function go() { playList(list, idx, segLabel); }
+    function go() { playList(list, idx, c); }
     b.addEventListener('click', go);
     b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
     return b;
   }
 
-  function segmentBox(cls, icon, label, videos, prompt, target) {
+  function segmentBox(cls, icon, label, videos, prompt, target, opt) {
+    opt = opt || {};
     var vids = (videos || []).filter(function (v) { return okId(v.id); });
+    var c = { key: opt.key || '', label: label, checkpoint: opt.checkpoint || '', picks: (opt.picks || []).filter(function (v) { return okId(v.id); }),
+              next: opt.next || null, run: 0 };
     var sec = el('section', 'seg ' + cls);
     var head = el('div', 'seghead');
     head.appendChild(el('span', 'icon', icon));
@@ -211,17 +261,45 @@ TEMPLATE = r"""<!DOCTYPE html>
     var total = vids.reduce(function (a, v) { return a + (v.seconds || Math.round((v.minutes || 0) * 60)); }, 0);
     head.appendChild(el('span', 'segmins', mins(total) + ' min' + (target ? ' \u00B7 goal ' + target : '')));
     if (vids.length) {
-      var pa = el('button', 'playall', '\u25B6 Play all');
+      var nd = c.key ? countDone(c.key, vids) : 0, start = c.key ? firstOpen(c.key, vids) : 0;
+      var pa = el('button', 'playall', nd === 0 ? '\u25B6 Play all' : nd >= vids.length ? '\u25B6 Play again' : '\u25B6 Continue (' + (start + 1) + ' of ' + vids.length + ')');
       pa.type = 'button';
-      pa.addEventListener('click', function () { playList(vids, 0, label); });
+      pa.addEventListener('click', function () { playList(vids, nd >= vids.length ? 0 : start, c); });
       head.appendChild(pa);
     }
     sec.appendChild(head);
-    if (prompt) { var p = el('div', 'prompt'); p.appendChild(el('b', null, 'Car talk: ')); p.appendChild(document.createTextNode(prompt)); sec.appendChild(p); }
+    if (c.key && vids.length > 1) {
+      var pr = el('div', 'progress'); pr.appendChild(dots(c.key, vids, -1));
+      pr.appendChild(el('span', null, countDone(c.key, vids) + ' of ' + vids.length + ' done')); sec.appendChild(pr);
+    }
+    if (prompt) { var p = el('div', 'prompt'); p.appendChild(el('b', null, (opt.promptLabel || 'Car talk') + ': ')); p.appendChild(document.createTextNode(prompt)); sec.appendChild(p); }
     var cards = el('div', 'cards');
-    vids.forEach(function (v, i) { cards.appendChild(card(v, i + 1, vids, i, label)); });
+    vids.forEach(function (v, i) { cards.appendChild(card(v, i + 1, vids, i, c)); });
     sec.appendChild(cards);
+    if (c.picks.length) {
+      var pk = el('div', 'picks'); pk.appendChild(el('div', 'plabel', "\uD83C\uDFAF Boys' pick - after the plan, choose 1:"));
+      var pc = el('div', 'cards');
+      c.picks.forEach(function (v, i) { pc.appendChild(card(v, '\u2605', [v], 0, { key: c.key, label: label + " - Boys' pick", isPick: true, next: c.next, checkpoint: '' })); });
+      pk.appendChild(pc); sec.appendChild(pk);
+    }
+    if (c.checkpoint) { var cp = el('div', 'checkpoint'); cp.appendChild(el('b', null, '\u2705 Checkpoint: ')); cp.appendChild(document.createTextNode(c.checkpoint)); sec.appendChild(cp); }
     return sec;
+  }
+
+  var PICKFOR = { amYounger: 'younger', pmOlder: 'older', pmTogether: 'together' };
+  // Next segment in the same ride (morning -> morning, afternoon -> afternoon), starting at its first unfinished clip.
+  function nextSegFn(s, i) {
+    var segs = DATA.segments, day = DATA.days[s];
+    for (var j = i + 1; j < segs.length; j++) {
+      if (segs[j].icon !== segs[i].icon) return null;
+      var x = day.segments[segs[j].key];
+      if (x && x.videos && x.videos.length) return (function (sg, x) { return function () {
+        var c = { key: s + '|' + sg.key, label: sg.label, checkpoint: x.checkpoint || sg.checkpoint || '',
+                  picks: x.pick || ((nearestWeek(s) || {}).picks || {})[PICKFOR[sg.key]] || [], next: nextSegFn(s, j), run: 0 };
+        return { label: sg.label, go: function () { playList(x.videos, firstOpen(c.key, x.videos), c); } };
+      }; })(segs[j], x);
+    }
+    return null;
   }
 
   function setHeader(s, focus) {
@@ -240,10 +318,14 @@ TEMPLATE = r"""<!DOCTYPE html>
     var day = DATA.days[s];
     if (day) {
       setHeader(s, day.focus);
-      DATA.segments.forEach(function (sg) {
+      var wk0 = nearestWeek(s), segs = DATA.segments;
+      segs.forEach(function (sg, i) {
         var x = day.segments[sg.key];
         if (!x) return;
-        main.appendChild(segmentBox('s-' + sg.key, ICON[sg.icon] || '', sg.label, x.videos, x.prompt, sg.target));
+        main.appendChild(segmentBox('s-' + sg.key, ICON[sg.icon] || '', sg.label, x.videos, x.prompt, sg.target, {
+          key: s + '|' + sg.key, checkpoint: x.checkpoint || sg.checkpoint || '',
+          picks: x.pick || (wk0 && wk0.picks && wk0.picks[PICKFOR[sg.key]]) || [],
+          next: nextSegFn(s, i) }));
       });
       return;
     }
@@ -253,7 +335,7 @@ TEMPLATE = r"""<!DOCTYPE html>
     var note = !weekFor(s) ? 'New lineup coming soon - here are some favorites'
              : isWeekend ? ((wk && wk.note) || 'Weekend!') : 'No lineup for this day yet - here are some favorites';
     setHeader(s, note);
-    if (wk) main.appendChild(segmentBox('s-weekend', ICON.star, wk.title || 'Weekend favorites', wk.videos, null, null));
+    if (wk) main.appendChild(segmentBox('s-weekend', ICON.star, wk.title || 'Weekend favorites', wk.videos, null, null, { key: s + '|weekend' }));
     else main.appendChild(el('div', 'empty', 'No videos for this day yet.'));
     var fs = isWeekend && faithStrip(s); if (fs) main.appendChild(fs);
   }
@@ -335,7 +417,7 @@ TEMPLATE = r"""<!DOCTYPE html>
     top.appendChild(el('div', 'bigidea', w.bigIdea || ''));
     if (FAITH.rhythm) top.appendChild(el('div', 'rhythm', FAITH.rhythm));
     main.appendChild(top);
-    main.appendChild(segmentBox('s-faith', '\uD83C\uDFAC', 'Watch & talk (one clip per session)', w.videos, null, null));
+    main.appendChild(segmentBox('s-faith', '\uD83C\uDFAC', 'Watch & talk (one clip per session)', w.videos, null, null, { key: 'faith|' + w.start }));
     var act = el('section', 'seg s-faith');
     var ah = el('div', 'seghead'); ah.appendChild(el('span', 'icon', '\uD83E\uDDF1')); ah.appendChild(el('span', 'seglabel', 'Hands-on')); act.appendChild(ah);
     var g = el('div', 'fgrid');
@@ -399,10 +481,10 @@ TEMPLATE = r"""<!DOCTYPE html>
   }, 60000);
 
   // ---- player (youtube-nocookie, rel=0, closes at end; autoplays next video in the same segment)
-  function playList(list, idx, label) { queue = list; qi = idx; openVideo(label); }
-  function openVideo(label) {
+  function playList(list, idx, c) { queue = list; qi = idx; ctx = c || {}; ctx.run = ctx.run || 0; openVideo(); }
+  function openVideo() {
     var v = queue[qi];
-    closePlayer();
+    closePlayer(); hideUpNext();
     var src = 'https://www.youtube-nocookie.com/embed/' + v.id +
               '?rel=0&modestbranding=1&playsinline=1&autoplay=1&enablejsapi=1';
     if (v.start) src += '&start=' + v.start;
@@ -415,16 +497,16 @@ TEMPLATE = r"""<!DOCTYPE html>
     f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
     f.allowFullscreen = true; f.referrerPolicy = 'strict-origin-when-cross-origin';
     wrap.appendChild(f);
-    nowEl.textContent = (label ? label + '  \u2022  ' : '') + (qi + 1) + ' of ' + queue.length + ': ' + v.title;
-    nowEl.dataset.label = label || '';
+    nowEl.textContent = (ctx.label ? ctx.label + '  \u2022  ' : '') + (qi + 1) + ' of ' + queue.length + ': ' + v.title;
+    if (queue.length > 1) { nowEl.appendChild(document.createElement('br')); nowEl.appendChild(dots(ctx.key, queue, qi)); }
+    document.getElementById('skip').style.visibility = 'visible';
     overlay.classList.add('open');
     attachApi(f);
   }
   function attachApi(f) {
     if (!(window.YT && YT.Player)) { pending = f; return; }
     player = new YT.Player(f, { events: { onStateChange: function (e) {
-      if (e.data !== YT.PlayerState.ENDED) return;
-      if (qi + 1 < queue.length) { qi++; openVideo(nowEl.dataset.label); } else closeVideo();
+      if (e.data === YT.PlayerState.ENDED) finish('done');
     } } });
   }
   window.onYouTubeIframeAPIReady = function () {
@@ -435,9 +517,52 @@ TEMPLATE = r"""<!DOCTYPE html>
     if (player && player.destroy) { try { player.destroy(); } catch (e) {} }
     player = null; pending = null; wrap.innerHTML = '';
   }
-  function closeVideo() { closePlayer(); queue = []; overlay.classList.remove('open'); }
-  document.getElementById('back').addEventListener('click', closeVideo);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeVideo(); });
+  // ---- "Up next" panel: shown after every clip ends or is skipped, so the plan is always one big tap away.
+  function hideUpNext() { if (timer) { clearInterval(timer); timer = null; } upnext.classList.remove('open'); }
+  function bigBtn(cls, text, fn) { var b = el('button', 'bigbtn ' + cls, text); b.type = 'button'; b.addEventListener('click', fn); return b; }
+  function finish(st) {
+    var v = queue[qi]; if (!v || upnext.classList.contains('open')) return;
+    mark(ctx.key, v.id, st);
+    closePlayer(); ctx.run++;
+    document.getElementById('skip').style.visibility = 'hidden';
+    nowEl.textContent = ctx.label || '';
+    if (queue.length > 1) { nowEl.appendChild(document.createElement('br')); nowEl.appendChild(dots(ctx.key, queue, -1)); }
+    var t = document.getElementById('unTitle'), a = document.getElementById('unAsk'),
+        bs = document.getElementById('unBtns'), ps = document.getElementById('unPicks');
+    bs.innerHTML = ''; ps.innerHTML = ''; a.textContent = '';
+    var home = bigBtn('home', "\u2B05 Back to today's plan", backToPlan);
+    if (!ctx.isPick && qi + 1 < queue.length) {
+      var nx = queue[qi + 1];
+      t.textContent = (st === 'skip' ? 'Skipped - no problem. ' : 'Nice! \u2705 ') + (qi + 1) + ' of ' + queue.length;
+      var ask = v.ask || (ctx.run >= 2 ? 'Quick check before the next one: tell each other one thing you just learned.' : '');
+      if (ask) { a.textContent = '\uD83D\uDCAC ' + ask; ctx.run = 0; }
+      var nb = bigBtn('', "\u25B6 Next in today's ride: " + nx.title, function () { qi++; openVideo(); });
+      bs.appendChild(nb); bs.appendChild(home);
+      if (!ask) { // no question waiting: roll on to the planned next clip after a short countdown
+        var n = 8; nb.textContent = "\u25B6 Next in today's ride: " + nx.title + ' (' + n + ')';
+        timer = setInterval(function () { n--; if (n <= 0) { hideUpNext(); qi++; openVideo(); } else nb.textContent = "\u25B6 Next in today's ride: " + nx.title + ' (' + n + ')'; }, 1000);
+      }
+    } else {
+      t.textContent = ctx.isPick ? "Boys' pick done! \u2705" : 'Segment done! \u2705 ' + countDone(ctx.key, queue) + ' of ' + queue.length + ' watched';
+      if (ctx.checkpoint) a.textContent = '\u2705 Checkpoint: ' + ctx.checkpoint;
+      var nxt = ctx.next && ctx.next();
+      if (nxt) bs.appendChild(bigBtn('', "\u25B6 Next in today's ride: " + nxt.label, function () { hideUpNext(); nxt.go(); }));
+      bs.appendChild(home);
+      if (!ctx.isPick && ctx.picks && ctx.picks.length) {
+        ps.appendChild(el('div', null, "\uD83C\uDFAF Boys' pick - choose 1:"));
+        var c0 = ctx;
+        c0.picks.forEach(function (pv) {
+          ps.appendChild(bigBtn('pick', '\u2605 ' + pv.title, function () { playList([pv], 0, { key: c0.key, label: c0.label + " - Boys' pick", isPick: true, next: c0.next }); }));
+        });
+      }
+    }
+    upnext.classList.add('open');
+  }
+  function closeVideo() { hideUpNext(); closePlayer(); queue = []; overlay.classList.remove('open'); }
+  function backToPlan() { var y = window.scrollY; closeVideo(); route(); window.scrollTo(0, y); }
+  document.getElementById('back').addEventListener('click', backToPlan);
+  document.getElementById('skip').addEventListener('click', function () { finish('skip'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) backToPlan(); });
 
   route();
 })();
@@ -507,7 +632,7 @@ def main():
     for s in data["segments"]:
         if s["key"] not in SEG_KEYS:
             sys.exit(f"Unknown segment key {s['key']!r}")
-        clean["segments"].append({k: str(s[k]) for k in ("key", "label", "icon", "target", "who") if k in s})
+        clean["segments"].append({k: str(s[k]) for k in ("key", "label", "icon", "target", "who", "checkpoint") if k in s})
     for w in sorted(data["weeks"], key=lambda w: w["start"]):
         check_date(w["start"], "week"); check_date(w["end"], "week")
         cw = {"start": w["start"], "end": w["end"], "title": str(w["title"])}
@@ -515,6 +640,8 @@ def main():
             wk = w["weekend"]
             cw["weekend"] = {"title": str(wk.get("title", "Weekend favorites")), "note": str(wk.get("note", "")),
                              "videos": [clean_video(v, f"weekend {w['start']}") for v in wk.get("videos", [])]}
+        if w.get("picks"):  # Boys' pick: 2-3 vetted favorites per audience ("together", "younger", "older")
+            cw["picks"] = {who: [clean_video(v, f"picks {w['start']}/{who}") for v in vs] for who, vs in w["picks"].items()}
         clean["weeks"].append(cw)
     warnings = []
     for d in sorted(data["days"]):
@@ -532,6 +659,16 @@ def main():
             if not lo <= total <= hi:
                 warnings.append(f"{d}/{key}: {total:.1f} min (target {lo}-{hi})")
             cd["segments"][key] = {"prompt": str(seg.get("prompt", "")), "videos": vids}
+            if seg.get("checkpoint"):
+                cd["segments"][key]["checkpoint"] = str(seg["checkpoint"])
+            if seg.get("pick"):
+                cd["segments"][key]["pick"] = [clean_video(v, f"{d}/{key}/pick") for v in seg["pick"]]
+            if d >= ASK_RULE_FROM:  # anti-derail: no more than ~2 clips in a row without a question/hands-on prompt
+                run = 0
+                for v in vids[:-1]:
+                    run = 0 if v.get("ask") else run + 1
+                    if run >= 2 and len(vids) > 2:
+                        warnings.append(f"{d}/{key}: 2+ clips in a row with no 'ask' before the next one"); break
         if not any(w["start"] <= d <= w["end"] for w in clean["weeks"]):
             warnings.append(f"{d}: not inside any week")
         clean["days"][d] = cd

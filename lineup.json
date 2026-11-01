@@ -6,28 +6,32 @@
    "label": "Morning - Together",
    "who": "Both brothers",
    "icon": "sun",
-   "target": "~5 min"
+   "target": "~5 min",
+   "checkpoint": "One sentence each: what's the big idea this morning?"
   },
   {
    "key": "amYounger",
    "label": "Morning - Little Brother",
    "who": "Little Brother",
    "icon": "sun",
-   "target": "10-15 min"
+   "target": "10-15 min",
+   "checkpoint": "Show it: one quick build, sketch or move that proves what you learned."
   },
   {
    "key": "pmOlder",
    "label": "Afternoon - Big Brother",
    "who": "Big Brother",
    "icon": "afternoon",
-   "target": "10-15 min"
+   "target": "10-15 min",
+   "checkpoint": "Coach's recap: explain it in one sentence, then name one thing to test tonight."
   },
   {
    "key": "pmTogether",
    "label": "Afternoon - Together",
    "who": "Both brothers",
    "icon": "afternoon",
-   "target": "~5 min"
+   "target": "~5 min",
+   "checkpoint": "Pick one thing to try at home tonight."
   }
  ],
  "weeks": [
@@ -37,7 +41,7 @@
    "title": "Week 1: Pushes & Pulls (Oct 19-25)",
    "weekend": {
     "title": "Weekend favorites",
-    "note": "Saturday Art Studio: LINE. Sunday bonus: make a Scratch sprite fall.",
+    "note": "Saturday Art Studio: LINE - sketch it and label every kind of line you use. Sunday bonus: make a Scratch sprite fall.",
     "videos": [
      {
       "id": "Tzt0V7J65mQ",
@@ -56,14 +60,6 @@
       "minutes": 8.1
      },
      {
-      "id": "mz6o8b2bFd0",
-      "title": "The King of Kindergarten (read-aloud)",
-      "channel": "StorylineOnline",
-      "tag": "ELAR K.6 Retell",
-      "seconds": 379,
-      "minutes": 6.3
-     },
-     {
       "id": "eR2OR3coiX4",
       "title": "How High Can You Stack?",
       "channel": "SciShow Kids",
@@ -78,14 +74,6 @@
       "tag": "Sci 2.1 Eng. practices",
       "seconds": 225,
       "minutes": 3.8
-     },
-     {
-      "id": "lgZRMptA0Lk",
-      "title": "Clark the Shark (read-aloud)",
-      "channel": "StorylineOnline",
-      "tag": "ELAR K.6/2.6 Retell",
-      "seconds": 441,
-      "minutes": 7.3
      }
     ]
    }
@@ -156,7 +144,7 @@
    "title": "Week 3: Friction (Nov 2-8)",
    "weekend": {
     "title": "Weekend favorites",
-    "note": "Saturday Art Studio: COLOR (primary/secondary mixing, warm vs. cool): paint a color wheel. Sunday bonus: add a jump and a slow sideways slide (friction!) to your Scratch game. Sunday talk: \"Worries in my head are usually bigger than real life.\"",
+    "note": "Saturday Art Studio: COLOR - mix primaries into secondaries, then paint a warm-vs-cool color wheel and label every color. Sunday bonus: add a jump and a slow sideways slide (friction!) to your Scratch game. Sunday talk: \"Worries in my head are usually bigger than real life.\"",
     "videos": [
      {
       "id": "aDbyZlVi33Y",
@@ -166,11 +154,11 @@
       "seconds": 335
      },
      {
-      "id": "N8yuyekP_So",
-      "title": "The Colors Song",
-      "channel": "Scratch Garden",
-      "tag": "Fine Arts: Color",
-      "seconds": 145
+      "id": "t4GJ0KzoGRI",
+      "title": "Turning kids’ drawings into real toys (CrunchLabs)",
+      "channel": "CrunchLabs",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 512
      },
      {
       "id": "DPZzrlFCD_I",
@@ -196,13 +184,70 @@
       "seconds": 300
      },
      {
-      "id": "r7nGtH5SNJE",
-      "title": "Smeshariki: Autumn Cozy (part 1: 0:00-5:00)",
-      "channel": "TVSmeshariki",
+      "id": "oE_QegYAvTc",
+      "title": "Learn Russian (part 5: 20:00-25:00)",
+      "channel": "Rock 'N Learn",
       "tag": "World Lang: Russian",
-      "start": 0,
-      "end": 300,
+      "start": 1200,
+      "end": 1500,
       "seconds": 300
+     }
+    ]
+   },
+   "picks": {
+    "together": [
+     {
+      "id": "NAThvwGJJoI",
+      "title": "The longest LEGO gear train",
+      "channel": "Brick Experiment Channel",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 244
+     },
+     {
+      "id": "S5zjj8FWW04",
+      "title": "Numberblocks: Space Division",
+      "channel": "Numberblocks",
+      "tag": "Math 2.4C Equal groups",
+      "seconds": 305
+     }
+    ],
+    "younger": [
+     {
+      "id": "pwglOlD7e0M",
+      "title": "LEGO car crosses gaps",
+      "channel": "Brick Experiment Channel",
+      "tag": "Sci K.1 Eng. practices",
+      "seconds": 265
+     },
+     {
+      "id": "5ghkoxROcso",
+      "title": "Numberblocks: Grid Unlocked",
+      "channel": "Numberblocks",
+      "tag": "Math K.2 Counting",
+      "seconds": 305
+     },
+     {
+      "id": "b8qe06QXi1Q",
+      "title": "Numberblocks: The Team Factor",
+      "channel": "Numberblocks",
+      "tag": "Math K.2 Counting",
+      "seconds": 275
+     }
+    ],
+    "older": [
+     {
+      "id": "_R6E1_T16_g",
+      "title": "Earthquake-proof LEGO structure",
+      "channel": "Brick Experiment Channel",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 417
+     },
+     {
+      "id": "M1-YeqGynlw",
+      "title": "20 mechanical principles in one LEGO machine",
+      "channel": "Brick Experiment Channel",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 441
      }
     ]
    }
@@ -215,14 +260,6 @@
     "amTogether": {
      "prompt": "What did you push or pull this morning?",
      "videos": [
-      {
-       "id": "E-SnC_WKsCg",
-       "title": "Forces Can Push or Pull (song)",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "tag": "Sci K.7/2.7 Force & motion",
-       "seconds": 158,
-       "minutes": 2.6
-      },
       {
        "id": "oVOnRPefcno",
        "title": "What Makes Bridges So Strong?",
@@ -292,15 +329,15 @@
      ]
     },
     "pmTogether": {
-     "prompt": "Somebody wanted... but... so...: tell the story in one sentence.",
+     "prompt": "Real-story version: a parent tells about one build that failed first. What got changed the second time?",
      "videos": [
       {
-       "id": "7LOuUq4FT6g",
-       "title": "Rosie Revere, Engineer (read-aloud)",
-       "channel": "StorylineOnline",
-       "tag": "ELAR K.6/2.6 Retell",
-       "seconds": 456,
-       "minutes": 7.6
+       "id": "T1KRQ3RcvXA",
+       "title": "World's Largest Super Soaker (Mark Rober) (rewatch)",
+       "channel": "Mark Rober",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 485,
+       "minutes": 8.1
       }
      ]
     }
@@ -355,14 +392,6 @@
        "minutes": 6.2
       },
       {
-       "id": "Zt78cFS5isQ",
-       "title": "The Place Value Song",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "tag": "Math 2.2 Place value",
-       "seconds": 227,
-       "minutes": 3.8
-      },
-      {
        "id": "V_c_c7sANYk",
        "title": "Odd Squad: Patterns & Numbers",
        "channel": "Odd Squad",
@@ -373,15 +402,15 @@
      ]
     },
     "pmTogether": {
-     "prompt": "One-sentence summary: Somebody wanted... but... so...",
+     "prompt": "Sum it up in one sentence: why are triangles and arches strong?",
      "videos": [
       {
-       "id": "-XFQNGJmLEk",
-       "title": "Please Please the Bees (read-aloud)",
-       "channel": "StorylineOnline",
-       "tag": "ELAR K.6/2.6 Retell",
-       "seconds": 312,
-       "minutes": 5.2
+       "id": "oVOnRPefcno",
+       "title": "What Makes Bridges So Strong? (rewatch)",
+       "channel": "SciShow Kids",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 225,
+       "minutes": 3.8
       }
      ]
     }
@@ -412,7 +441,7 @@
      ]
     },
     "amYounger": {
-     "prompt": "Say the sounds! Push or pull: what makes a light switch go on?",
+     "prompt": "Sound it out, then blend it. Push or pull: what makes a light switch go on?",
      "videos": [
       {
        "id": "6XnDWNDpvGE",
@@ -423,20 +452,12 @@
        "minutes": 3.2
       },
       {
-       "id": "59u6KaluscI",
-       "title": "Letter Sounds Workout",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "tag": "ELAR K.2 Phonics",
-       "seconds": 306,
-       "minutes": 5.1
-      },
-      {
-       "id": "E-SnC_WKsCg",
-       "title": "Forces Can Push or Pull (song)",
-       "channel": "Jack Hartmann Kids Music Channel",
+       "id": "JvSClZ3vHOI",
+       "title": "Swings, Slides, and Science (rewatch)",
+       "channel": "SciShow Kids",
        "tag": "Sci K.7 Force & motion",
-       "seconds": 158,
-       "minutes": 2.6
+       "seconds": 218,
+       "minutes": 3.6
       }
      ]
     },
@@ -499,14 +520,6 @@
      "prompt": "Pause, breathe, what do I know, what's one thing I can try?",
      "videos": [
       {
-       "id": "XLeUvZvuvAs",
-       "title": "Sesame Street: The Power of Yet",
-       "channel": "Sesame Street",
-       "tag": "SEL Persistence",
-       "seconds": 162,
-       "minutes": 2.7
-      },
-      {
        "id": "YIV9IUHqW3A",
        "title": "Let's Get Rolling! (wheels & pulls)",
        "channel": "SciShow Kids",
@@ -517,7 +530,7 @@
      ]
     },
     "amYounger": {
-     "prompt": "5 bricks, add 2 more. How many? Use your fingers!",
+     "prompt": "5 bricks, add 2 more. How many? Prove it with real bricks.",
      "videos": [
       {
        "id": "C229LUk380Q",
@@ -540,14 +553,6 @@
     "pmOlder": {
      "prompt": "Who, where, problem, solution? Then: how is a magnet a push AND a pull?",
      "videos": [
-      {
-       "id": "-_nePjWXecQ",
-       "title": "Parts of a Story",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "tag": "ELAR 2.8 Story elements",
-       "seconds": 159,
-       "minutes": 2.6
-      },
       {
        "id": "NpWHZJZQDSE",
        "title": "Plot Mountain!",
@@ -575,15 +580,15 @@
      ]
     },
     "pmTogether": {
-     "prompt": "She got stuck and took a walk. What do YOU do when you're stuck?",
+     "prompt": "Jessi got stuck and tried again. What's YOUR 3-step plan when you're stuck?",
      "videos": [
       {
-       "id": "yt_GmmOx06Y",
-       "title": "The Most Magnificent Thing (read-aloud)",
-       "channel": "StorylineOnline",
-       "tag": "ELAR K.6/2.6 + SEL",
-       "seconds": 488,
-       "minutes": 8.1
+       "id": "RM04n0-QtNo",
+       "title": "Jessi Has a Problem! (rewatch)",
+       "channel": "SciShow Kids",
+       "tag": "Sci 2.1 Eng. design",
+       "seconds": 307,
+       "minutes": 5.1
       }
      ]
     }
@@ -623,14 +628,6 @@
        "tag": "Math K.6 Shapes",
        "seconds": 472,
        "minutes": 7.9
-      },
-      {
-       "id": "q20CHXs6Q7Q",
-       "title": "Count to 100",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "tag": "Math K.2 Counting",
-       "seconds": 228,
-       "minutes": 3.8
       }
      ]
     },
@@ -656,15 +653,15 @@
      ]
     },
     "pmTogether": {
-     "prompt": "What happened first, next, last?",
+     "prompt": "Teach-back: what makes a tall stack stable? Plan tonight's tallest LEGO tower.",
      "videos": [
       {
-       "id": "7j0OY3236jw",
-       "title": "Harry the Dirty Dog (read-aloud)",
-       "channel": "StorylineOnline",
-       "tag": "ELAR K.6/2.6 Retell",
-       "seconds": 292,
-       "minutes": 4.9
+       "id": "eR2OR3coiX4",
+       "title": "How High Can You Stack? (rewatch)",
+       "channel": "SciShow Kids",
+       "tag": "Sci K.1 Eng. practices",
+       "seconds": 246,
+       "minutes": 4.1
       }
      ]
     }
@@ -701,13 +698,6 @@
        "channel": "Numberblocks",
        "tag": "Math K.2 Counting",
        "seconds": 275
-      },
-      {
-       "id": "0kZRAeLjKEw",
-       "title": "Russian Numbers Storybook",
-       "channel": "Dinolingo - Language learning for kids",
-       "tag": "World Lang: Russian",
-       "seconds": 205
       }
      ]
     },
@@ -748,13 +738,6 @@
        "seconds": 297
       },
       {
-       "id": "AmsVWgjtyns",
-       "title": "The Gravity Song",
-       "channel": "GenerationGenius",
-       "tag": "Sci K.7 Push & pull",
-       "seconds": 78
-      },
-      {
        "id": "V73bznBe0ek",
        "title": "Little League Basics: Throwing",
        "channel": "Little League",
@@ -788,7 +771,7 @@
      ]
     },
     "amYounger": {
-     "prompt": "Clap a pattern: clap, clap, stomp! When you feel wiggly, try a belly breath.",
+     "prompt": "Clap a pattern: clap, clap, stomp! Now invent a harder one and see if your brother can crack it.",
      "videos": [
       {
        "id": "Ev0TbEfkMCU",
@@ -803,13 +786,6 @@
        "channel": "Alphablocks",
        "tag": "ELAR K.2 Phonics",
        "seconds": 180
-      },
-      {
-       "id": "_mZbzDOpylA",
-       "title": "Belly Breathe with Elmo",
-       "channel": "Sesame Street",
-       "tag": "SEL",
-       "seconds": 146
       }
      ]
     },
@@ -840,21 +816,14 @@
      ]
     },
     "pmTogether": {
-     "prompt": "What happened first, next, last? Russian recap: how do you say red? (красный)",
+     "prompt": "Explain one baseball rule to your brother. Russian recap: how do you say red? (красный)",
      "videos": [
       {
-       "id": "WfM9RlGrEtM",
-       "title": "Halloween Hustle (read-aloud)",
-       "channel": "StorylineOnline",
-       "tag": "ELAR K.6/2.6 Retell",
-       "seconds": 324
-      },
-      {
-       "id": "Res2c4VAiP0",
-       "title": "Russian Colors Song",
-       "channel": "Jurussia Учим русский",
-       "tag": "World Lang: Russian",
-       "seconds": 150
+       "id": "PFnq0nR4CoQ",
+       "title": "Baseball Basic Rules (animated) (rewatch)",
+       "channel": "Smile and Learn - English",
+       "tag": "PE: Baseball",
+       "seconds": 460
       }
      ]
     }
@@ -876,15 +845,8 @@
      ]
     },
     "amYounger": {
-     "prompt": "Which is heavier, a feather or a shoe? How do you know?",
+     "prompt": "Feather or shoe: which is heavier? Prove it with a hand-scale test.",
      "videos": [
-      {
-       "id": "qUOQrXmfwDM",
-       "title": "Is It Heavy or Light?",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "tag": "Math K.7 Measurement",
-       "seconds": 163
-      },
       {
        "id": "dh5wGSLw1p4",
        "title": "Why Do Things Float in Space?",
@@ -1020,14 +982,14 @@
      ]
     },
     "pmTogether": {
-     "prompt": "Jabari was scared to jump. What did he try? What do YOU do when you're stuck?",
+     "prompt": "What can you control when a play goes wrong? What do YOU do when you're stuck?",
      "videos": [
       {
-       "id": "XwNNlgtHFiU",
-       "title": "Jabari Jumps (read-aloud)",
-       "channel": "StorylineOnline",
-       "tag": "ELAR K.6/2.6 Retell",
-       "seconds": 490
+       "id": "ngD2oXGy6C0",
+       "title": "Focus on What You Can Control (rewatch)",
+       "channel": "Airtoons",
+       "tag": "SEL",
+       "seconds": 81
       },
       {
        "id": "EGMSjpFMMkQ",
@@ -1056,21 +1018,21 @@
      ]
     },
     "amYounger": {
-     "prompt": "Find circles and triangles out the window! Say \"Привет!\" like Masha.",
+     "prompt": "Find circles and triangles out the window, then sketch a robot using only shapes and label each one. Say \"Привет!\" (pri-VYET = hi).",
      "videos": [
       {
-       "id": "CAxK4S2PRBs",
-       "title": "Draw Candy Using Shapes",
-       "channel": "Art for Kids Hub",
+       "id": "A7EEOlSJIjo",
+       "title": "All About Shapes (art lesson) (rewatch)",
+       "channel": "Paint It Kids",
        "tag": "Fine Arts: Shape",
-       "seconds": 382
+       "seconds": 330
       },
       {
-       "id": "1V3ZY_TXKwU",
-       "title": "Masha and the Bear: Episode 1 (Russian)",
-       "channel": "Маша и Медведь",
-       "tag": "World Lang: Russian",
-       "seconds": 394
+       "id": "Y4Fx3z5fAWY",
+       "title": "Numberblocks: Steps Squads (rewatch)",
+       "channel": "Numberblocks",
+       "tag": "Math K.2 Counting",
+       "seconds": 275
       }
      ]
     },
@@ -1094,14 +1056,21 @@
      ]
     },
     "pmTogether": {
-     "prompt": "Who got on the broom? What happened first, next, last?",
+     "prompt": "Backyard challenge: 10 catches in a row. What's the one tip from each clip?",
      "videos": [
       {
-       "id": "qg6KK0iv9QI",
-       "title": "Room on the Broom (read-aloud)",
-       "channel": "StorylineOnline",
-       "tag": "ELAR K.6/2.6 Retell",
-       "seconds": 432
+       "id": "j9AXCjF3CTA",
+       "title": "Little League Basics: Catching (rewatch)",
+       "channel": "Little League",
+       "tag": "PE: Baseball",
+       "seconds": 56
+      },
+      {
+       "id": "29z_cWCe1Lw",
+       "title": "Little League Basics: Hitting (rewatch)",
+       "channel": "Little League",
+       "tag": "PE: Baseball",
+       "seconds": 57
       }
      ]
     }
@@ -1111,7 +1080,7 @@
    "focus": "Friction slows things down · Break it down · LEGO arch bridge (carpet vs. tile)",
    "segments": {
     "amTogether": {
-     "prompt": "Slide a sock on the floor and on the carpet tonight. Which one stops first? Guess now!",
+     "prompt": "Slide a sock on the floor and on the carpet tonight. Which one stops first? Predict now!",
      "videos": [
       {
        "id": "Ps90zArJEJY",
@@ -1120,18 +1089,12 @@
        "tag": "Sci 2.7 Force & motion",
        "seconds": 261
       }
-     ]
+     ],
+     "checkpoint": "Prediction locked in: floor or carpet?"
     },
     "amYounger": {
-     "prompt": "Does a toy car roll farther on the rug or the kitchen floor? Say a Russian food word!",
+     "prompt": "Toy-car test tonight: rug or kitchen floor - which goes farther? Sketch it and label the winner. Name one Russian food word.",
      "videos": [
-      {
-       "id": "-elDlUNtP38",
-       "title": "Different Things Move in Different Ways",
-       "channel": "Jack Hartmann Kids Music Channel",
-       "tag": "Sci K.7 Push & pull",
-       "seconds": 235
-      },
       {
        "id": "OEImTjGGheE",
        "title": "Numberblocks: One's Fix-it Shop",
@@ -1140,13 +1103,22 @@
        "seconds": 285
       },
       {
+       "id": "LDdlNazMOV0",
+       "title": "Curling explained: precision on ice",
+       "channel": "Olympic Games",
+       "tag": "Sci K.7 Push & pull",
+       "seconds": 86,
+       "ask": "Why do curlers sweep the ice? Make a guess - it's friction!"
+      },
+      {
        "id": "G4-1d5bTQYM",
        "title": "Russian Food Words",
        "channel": "Dinolingo - Language learning for kids",
        "tag": "World Lang: Russian",
        "seconds": 174
       }
-     ]
+     ],
+     "checkpoint": "Rough or smooth: which one slows things down?"
     },
     "pmOlder": {
      "prompt": "Break the arch bridge into 3 steps. Does it hold better on carpet or tile? Why does a ground ball slow down in the grass?",
@@ -1159,6 +1131,14 @@
        "seconds": 333
       },
       {
+       "id": "_8Xy_qpTe6M",
+       "title": "The Physics of Baseball: Fielding",
+       "channel": "Science Channel",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 151,
+       "ask": "Why does a grounder slow down in grass but zip across the infield dirt?"
+      },
+      {
        "id": "NjFRrxuh2TU",
        "title": "Science Max: Friction (part 1: 0:00-5:00)",
        "channel": "Science Max - Scholastic",
@@ -1166,25 +1146,20 @@
        "start": 0,
        "end": 300,
        "seconds": 300
-      },
-      {
-       "id": "_8Xy_qpTe6M",
-       "title": "The Physics of Baseball: Fielding",
-       "channel": "Science Channel",
-       "tag": "Sci 2.7 Force & motion",
-       "seconds": 151
       }
-     ]
+     ],
+     "checkpoint": "Name your 3 bridge-build steps out loud."
     },
     "pmTogether": {
-     "prompt": "What happened first, next, last? Is sliding into base fast or slow? (Friction!)",
+     "prompt": "Which LEGO vehicle had the best grip? Why do runners slide into base? (Friction!)",
      "videos": [
       {
-       "id": "5ISKUMy1980",
-       "title": "Too Much Glue (read-aloud)",
-       "channel": "StorylineOnline",
-       "tag": "ELAR K.6/2.6 Retell",
-       "seconds": 471
+       "id": "LAIG8-wzrBg",
+       "title": "23 LEGO vehicles tug-of-war",
+       "channel": "Brick Experiment Channel",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 166,
+       "ask": "Which vehicles won? Was it weight, wheels or grip?"
       },
       {
        "id": "CSUQzUZrgvA",
@@ -1193,7 +1168,8 @@
        "tag": "PE: Baseball",
        "seconds": 69
       }
-     ]
+     ],
+     "checkpoint": "Friction: helped or hurt the runner? One example each."
     }
    }
   },
@@ -1217,10 +1193,11 @@
        "tag": "Math 2.7 Patterns",
        "seconds": 134
       }
-     ]
+     ],
+     "checkpoint": "Name 2 rough and 2 smooth things in the car."
     },
     "amYounger": {
-     "prompt": "Share 6 crackers into 2 equal piles. Is the reed or the oak stronger in a storm?",
+     "prompt": "Share 6 crackers into 2 equal piles. Engineer question: in a big storm, does a stiff tower or a bendy one last longer?",
      "videos": [
       {
        "id": "xC278dXKJzU",
@@ -1235,15 +1212,9 @@
        "channel": "Alphablocks",
        "tag": "ELAR K.2 Phonics",
        "seconds": 305
-      },
-      {
-       "id": "hDf0GhNK6pk",
-       "title": "The Oak and the Reed (Aesop)",
-       "channel": "Baby Shark - Pinkfong Kids’ Songs & Stories",
-       "tag": "SEL",
-       "seconds": 131
       }
-     ]
+     ],
+     "checkpoint": "Prove it: split 8 into 2 equal groups with your fingers or bricks."
     },
     "pmOlder": {
      "prompt": "3 piles of 4 bricks: how many? Draw it, solve it, check it. Bishops only go diagonal!",
@@ -1253,7 +1224,8 @@
        "title": "Arrays and Repeated Addition",
        "channel": "MightyOwl",
        "tag": "Math 2.4C Word problems",
-       "seconds": 335
+       "seconds": 335,
+       "ask": "3 piles of 4 bricks: how many? Draw it, solve it, check it."
       },
       {
        "id": "MKLW3oh7_wE",
@@ -1262,10 +1234,11 @@
        "tag": "Chess",
        "seconds": 310
       }
-     ]
+     ],
+     "checkpoint": "Bishops: which way do they move? Draw the array for 3 x 4."
     },
     "pmTogether": {
-     "prompt": "What's the code pattern? Russian recap: car is машина (ma-SHI-na)!",
+     "prompt": "Crack the code pattern. Russian challenge: car is машина (ma-SHI-na) - who can say it first? What does Dad's car say in Russian?",
      "videos": [
       {
        "id": "X7bqnSGhI-U",
@@ -1273,15 +1246,9 @@
        "channel": "Odd Squad",
        "tag": "Math 2.7 Patterns",
        "seconds": 212
-      },
-      {
-       "id": "KWyVcHnJ9rU",
-       "title": "Russian Vehicles Song",
-       "channel": "Dinolingo - Language learning for kids",
-       "tag": "World Lang: Russian",
-       "seconds": 214
       }
-     ]
+     ],
+     "checkpoint": "Say машина three times fast."
     }
    }
   },
@@ -1298,10 +1265,11 @@
        "tag": "Sci 2.7 Force & motion",
        "seconds": 227
       }
-     ]
+     ],
+     "checkpoint": "Why do your hands get warm? One word: friction."
     },
     "amYounger": {
-     "prompt": "Red + yellow makes...? Think out loud! How does a pitcher throw?",
+     "prompt": "Color lab: predict red + yellow BEFORE the video tells you. How does a pitcher grip the ball?",
      "videos": [
       {
        "id": "M3Ig3c0PGFc",
@@ -1311,18 +1279,12 @@
        "seconds": 270
       },
       {
-       "id": "v9gIj0j7Ba0",
-       "title": "Primary Colors Song",
-       "channel": "Sesame Studios",
+       "id": "-PgMk1EzVkk",
+       "title": "Mixing colors: the science",
+       "channel": "SciShow Kids",
        "tag": "Fine Arts: Color",
-       "seconds": 106
-      },
-      {
-       "id": "vSLUct2kM8k",
-       "title": "Learn About Mixing Colors",
-       "channel": "Rock 'N Learn",
-       "tag": "Fine Arts: Color",
-       "seconds": 124
+       "seconds": 231,
+       "ask": "Predict: blue + yellow = ? Then test it with markers tonight."
       },
       {
        "id": "rjJtbID9CWI",
@@ -1331,7 +1293,8 @@
        "tag": "PE: Baseball",
        "seconds": 155
       }
-     ]
+     ],
+     "checkpoint": "Name the 3 primary colors and one color you can mix."
     },
     "pmOlder": {
      "prompt": "Predict: 2 lamps side by side, brighter or dimmer than in a row? Unscrew one now! Think aloud.",
@@ -1350,7 +1313,8 @@
        "tag": "Sci 2.7 Force & motion",
        "start": 0,
        "end": 300,
-       "seconds": 300
+       "seconds": 300,
+       "ask": "Predict: 2 lamps side by side, brighter or dimmer than in a row? Unscrew one tonight and test."
       },
       {
        "id": "oE_QegYAvTc",
@@ -1361,10 +1325,11 @@
        "end": 600,
        "seconds": 300
       }
-     ]
+     ],
+     "checkpoint": "Series or parallel: which keeps the other lamp on?"
     },
     "pmTogether": {
-     "prompt": "Where does friction help us? When did a worry feel bigger than it really was?",
+     "prompt": "Where does friction help us? Curling teams plan every shot - when did a worry feel bigger than it really was?",
      "videos": [
       {
        "id": "9ePpWrvOXGY",
@@ -1374,13 +1339,15 @@
        "seconds": 110
       },
       {
-       "id": "TDFEW3eAIlg",
-       "title": "Telly Is Anxious",
-       "channel": "Sesame Street",
-       "tag": "SEL",
-       "seconds": 107
+       "id": "zeKu5KWPO4M",
+       "title": "The science of curling (NBC News Learn)",
+       "channel": "NBC News Learn",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 300,
+       "ask": "Sweeping melts a thin layer of ice. More friction or less?"
       }
-     ]
+     ],
+     "checkpoint": "One place friction helps, one place it gets in the way."
     }
    }
   },
@@ -1397,10 +1364,11 @@
        "tag": "Sci 2.7 Force & motion",
        "seconds": 274
       }
-     ]
+     ],
+     "checkpoint": "Best idea for a slippery sidewalk: salt, sand, or boots?"
     },
     "amYounger": {
-     "prompt": "Stuck? Try, try again! Count the spider's legs in Russian: один, два, три...",
+     "prompt": "Stuck? Try one more way. Count to 5 in Russian: один, два, три, четыре, пять!",
      "videos": [
       {
        "id": "iFvpDuT6d9I",
@@ -1410,30 +1378,34 @@
        "seconds": 275
       },
       {
-       "id": "mQAWSXQ1xOU",
-       "title": "Monster Meditation: Try Try Again",
-       "channel": "Sesame Street",
-       "tag": "SEL",
-       "seconds": 191
-      },
-      {
-       "id": "vEhS3UQvm9E",
-       "title": "Itsy Bitsy Spider (Russian)",
-       "channel": "Dinolingo - Language learning for kids",
+       "id": "oE_QegYAvTc",
+       "title": "Learn Russian (part 3: 10:00-15:00)",
+       "channel": "Rock 'N Learn",
        "tag": "World Lang: Russian",
-       "seconds": 112
+       "start": 600,
+       "end": 900,
+       "seconds": 300
       }
-     ]
+     ],
+     "checkpoint": "Count your fingers in Russian, 1 to 5."
     },
     "pmOlder": {
      "prompt": "Stuck? Try 3 ways: draw groups, skip count, or act it out. What clue helps you infer? Queens move every way!",
      "videos": [
       {
-       "id": "gzFbUZ8VjEg",
-       "title": "Equal Groups Song",
-       "channel": "Numberock",
+       "id": "1tjJDdszcZg",
+       "title": "Skip counting equal groups",
+       "channel": "Khan Academy",
        "tag": "Math 2.4C Word problems",
-       "seconds": 191
+       "seconds": 167
+      },
+      {
+       "id": "AKZl3pSN1Cs",
+       "title": "How to Move the Queen",
+       "channel": "ChessKid",
+       "tag": "Chess",
+       "seconds": 375,
+       "ask": "5 groups of 3 - skip count it out loud. Then: where can a queen go from the center square?"
       },
       {
        "id": "XjR2B3YJH9U",
@@ -1441,25 +1413,20 @@
        "channel": "Crash Course Kids",
        "tag": "ELAR 2.6 Comprehension",
        "seconds": 313
-      },
-      {
-       "id": "AKZl3pSN1Cs",
-       "title": "How to Move the Queen",
-       "channel": "ChessKid",
-       "tag": "Chess",
-       "seconds": 375
       }
-     ]
+     ],
+     "checkpoint": "Make an inference: what clue gave it away?"
     },
     "pmTogether": {
-     "prompt": "The kids kept waiting and trying. What was hard? How do you stay ready for the big play?",
+     "prompt": "How does the machine make the ice smooth again? How do you stay ready for the big play?",
      "videos": [
       {
-       "id": "HuEUTaacy_o",
-       "title": "Just SNOW Already! (read-aloud)",
-       "channel": "StorylineOnline",
-       "tag": "ELAR K.6/2.6 Retell",
-       "seconds": 316
+       "id": "nlkqie6agBE",
+       "title": "Ice rink resurfacing: how do they do it?",
+       "channel": "Discovery UK",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 157,
+       "ask": "Why is fresh ice slipperier than scratched ice?"
       },
       {
        "id": "t8GEY0tXkvk",
@@ -1468,7 +1435,8 @@
        "tag": "PE: Baseball",
        "seconds": 168
       }
-     ]
+     ],
+     "checkpoint": "Your 'ready position' in one sentence."
     }
    }
   },
@@ -1485,26 +1453,30 @@
        "tag": "PE: Baseball",
        "seconds": 241
       }
-     ]
+     ],
+     "checkpoint": "One place friction helps and one where it gets in the way."
     },
     "amYounger": {
-     "prompt": "Say \"Привет!\" like Masha. Which colors are warm? Which are cool?",
+     "prompt": "Which colors are warm? Which are cool? Say Привет (pri-VYET) = hi! Paint a color wheel this weekend.",
      "videos": [
-      {
-       "id": "o6wdh1KZeW0",
-       "title": "Masha and the Bear: Episode 2 (Russian)",
-       "channel": "Маша и Медведь",
-       "tag": "World Lang: Russian",
-       "seconds": 400
-      },
       {
        "id": "XS0hnPs1Aac",
        "title": "Color Wheel",
        "channel": "Art for Kids Hub",
        "tag": "Fine Arts: Color",
        "seconds": 335
+      },
+      {
+       "id": "oE_QegYAvTc",
+       "title": "Learn Russian (part 4: 15:00-20:00)",
+       "channel": "Rock 'N Learn",
+       "tag": "World Lang: Russian",
+       "start": 900,
+       "end": 1200,
+       "seconds": 300
       }
-     ]
+     ],
+     "checkpoint": "Point to something warm-colored and something cool-colored."
     },
     "pmOlder": {
      "prompt": "Teach-back: how does \"if touching\" make the sprite stop? Why can skates glide on ice?",
@@ -1523,19 +1495,22 @@
        "tag": "Sci 2.7 Force & motion",
        "seconds": 415
       }
-     ]
+     ],
+     "checkpoint": "How does 'if touching' stop the sprite? Explain it like a coach."
     },
     "pmTogether": {
-     "prompt": "Who did Quackenstein think was hatching? What happened first, next, last?",
+     "prompt": "Teach-back: which obstacle was hardest and why? Was it grip (friction), size, or weight?",
      "videos": [
       {
-       "id": "xoiS5ZFtqVg",
-       "title": "Quackenstein Hatches a Family (read-aloud)",
-       "channel": "StorylineOnline",
-       "tag": "ELAR K.6/2.6 Retell",
-       "seconds": 357
+       "id": "sL37JqysXSI",
+       "title": "5 LEGO tracked vehicles vs. 6 obstacles",
+       "channel": "Brick Experiment Channel",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 203,
+       "ask": "Which tracks gripped best? What would you change on your own build?"
       }
-     ]
+     ],
+     "checkpoint": "Design your own obstacle for this weekend's LEGO test."
     }
    }
   }
