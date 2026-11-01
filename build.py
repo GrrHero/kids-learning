@@ -79,7 +79,21 @@ TEMPLATE = r"""<!DOCTYPE html>
   .tag { display: inline-block; margin-top: 8px; padding: 3px 12px; border-radius: 999px; background: #eee;
          color: #444; font-size: 15px; font-family: system-ui, sans-serif; }
   .s-amTogether { --c: #f5a300; } .s-amYounger { --c: #2bb673; }
-  .s-pmOlder { --c: #4b8bf5; } .s-pmTogether { --c: #c24bf5; } .s-weekend { --c: #ff5d8f; }
+  .s-pmOlder { --c: #4b8bf5; } .s-pmTogether { --c: #c24bf5; } .s-weekend { --c: #ff5d8f; } .s-faith { --c: #2f5d9e; }
+  .navbtn.faith { background: #2f5d9e; box-shadow: 0 7px 0 #1d3c6b; }
+  .ask { font-size: 18px; margin-top: 8px; color: #333; line-height: 1.25; }
+  .ask b { color: var(--c); }
+  .fgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 16px; margin-top: 10px; }
+  .fbox { background: #fff; border-radius: 20px; padding: 14px 18px; font-size: 21px; line-height: 1.3; }
+  .fbox h3 { margin: 0 0 6px; color: var(--c); font-size: 25px; }
+  .bigidea { font-size: 24px; line-height: 1.3; margin: 8px 4px 4px; }
+  .rhythm { font-size: 19px; color: #333; margin: 6px 4px 0; }
+  .openbtn { margin-left: auto; font-size: 24px; font-weight: bold; padding: 8px 24px; border-radius: 999px; border: none;
+             color: #fff; background: var(--c); box-shadow: 0 6px 0 rgba(0,0,0,.25); }
+  .ref details { background: #fff; border-radius: 18px; padding: 10px 16px; margin-top: 10px; font-size: 20px; }
+  .ref summary { font-size: 24px; font-weight: bold; color: var(--c); cursor: pointer; }
+  .ref .line { margin: 6px 0; line-height: 1.3; user-select: text; }
+  .ref a { color: #2f5d9e; font-weight: bold; margin-right: 16px; display: inline-block; margin-top: 6px; }
   /* week view */
   .weekgrid { display: grid; grid-template-columns: 210px repeat(5, 1fr); gap: 10px; }
   .wcell { background: #fff; border-radius: 16px; padding: 10px 12px; font-size: 17px; line-height: 1.2; }
@@ -114,6 +128,7 @@ TEMPLATE = r"""<!DOCTYPE html>
 <nav>
   <button class="navbtn alt" id="todayBtn" type="button">Today</button>
   <button class="navbtn alt" id="weekBtn" type="button">This week</button>
+  <button class="navbtn faith" id="faithBtn" type="button">&#10013; Faith</button>
 </nav>
 <main id="main"></main>
 
@@ -180,6 +195,7 @@ TEMPLATE = r"""<!DOCTYPE html>
     b.querySelector('.dur').textContent = v.seconds ? mmss(v.seconds) : (v.minutes + ' min');
     b.querySelector('.title').textContent = v.title;
     b.querySelector('.tag').textContent = v.tag || '';
+    if (v.ask) { var a = el('div', 'ask'); a.appendChild(el('b', null, 'Ask: ')); a.appendChild(document.createTextNode(v.ask)); b.querySelector('.info').appendChild(a); }
     function go() { playList(list, idx, segLabel); }
     b.addEventListener('click', go);
     b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
@@ -239,6 +255,7 @@ TEMPLATE = r"""<!DOCTYPE html>
     setHeader(s, note);
     if (wk) main.appendChild(segmentBox('s-weekend', ICON.star, wk.title || 'Weekend favorites', wk.videos, null, null));
     else main.appendChild(el('div', 'empty', 'No videos for this day yet.'));
+    var fs = isWeekend && faithStrip(s); if (fs) main.appendChild(fs);
   }
 
   function showWeek(s) {
@@ -272,29 +289,107 @@ TEMPLATE = r"""<!DOCTYPE html>
     });
     main.appendChild(g);
     if (w && w.weekend) main.appendChild(segmentBox('s-weekend', ICON.star, w.weekend.title || 'Weekend favorites', w.weekend.videos, w.weekend.note, null));
+    var fs = faithStrip(start); if (fs) main.appendChild(fs);
+  }
+
+  // ---- Faith strand (#faith, #faith-YYYY-MM-DD): one week at a time, light (~10 min, 2-3x a week + Sunday)
+  var FAITH = DATA.faith || null;
+  function faithWeekFor(s) {
+    if (!FAITH || !FAITH.weeks.length) return null;
+    var best = FAITH.weeks[0];
+    FAITH.weeks.forEach(function (w) { if (w.start <= s) best = w; });
+    return best;
+  }
+  function rangeText(w) { return niceDate(w.start, true).replace(/^\w+, /, '') + ' - ' + niceDate(w.end, true).replace(/^\w+, /, ''); }
+  function faithStrip(s) {
+    var w = faithWeekFor(s); if (!w) return null;
+    var sec = el('section', 'seg s-faith');
+    var head = el('div', 'seghead');
+    head.appendChild(el('span', 'icon', '\u271D\uFE0F'));
+    head.appendChild(el('span', 'seglabel', 'Faith: ' + w.title));
+    var b = el('button', 'openbtn', 'Open \u25B6'); b.type = 'button';
+    b.addEventListener('click', function () { location.hash = 'faith-' + w.start; });
+    head.appendChild(b); sec.appendChild(head);
+    if (FAITH.rhythm) sec.appendChild(el('div', 'rhythm', FAITH.rhythm));
+    if (w.sunday) { var p = el('div', 'prompt'); p.appendChild(el('b', null, 'Sunday family moment: ')); p.appendChild(document.createTextNode(w.sunday)); sec.appendChild(p); }
+    return sec;
+  }
+  function fbox(title, text) { var b = el('div', 'fbox'); b.appendChild(el('h3', null, title)); b.appendChild(el('div', null, text)); return b; }
+  function showFaith(s) {
+    var w = faithWeekFor(s);
+    main.innerHTML = '';
+    if (!w) { main.appendChild(el('div', 'empty', 'No faith weeks yet.')); return; }
+    current = w.start;
+    var i = FAITH.weeks.indexOf(w);
+    document.getElementById('weektitle').textContent = FAITH.title;
+    var dn = document.getElementById('dayname'); dn.textContent = w.title;
+    var t = todayStr(); if (t >= w.start && t <= w.end) dn.appendChild(el('span', 'today-pill', 'This week'));
+    document.getElementById('focus').textContent = rangeText(w) + (w.liturgy ? '  \u00B7  ' + w.liturgy : '');
+    document.getElementById('prev').disabled = i <= 0;
+    document.getElementById('next').disabled = i >= FAITH.weeks.length - 1;
+    var top = el('section', 'seg s-faith');
+    var head = el('div', 'seghead');
+    head.appendChild(el('span', 'icon', '\u271D\uFE0F'));
+    head.appendChild(el('span', 'seglabel', 'Big idea'));
+    top.appendChild(head);
+    top.appendChild(el('div', 'bigidea', w.bigIdea || ''));
+    if (FAITH.rhythm) top.appendChild(el('div', 'rhythm', FAITH.rhythm));
+    main.appendChild(top);
+    main.appendChild(segmentBox('s-faith', '\uD83C\uDFAC', 'Watch & talk (one clip per session)', w.videos, null, null));
+    var act = el('section', 'seg s-faith');
+    var ah = el('div', 'seghead'); ah.appendChild(el('span', 'icon', '\uD83E\uDDF1')); ah.appendChild(el('span', 'seglabel', 'Hands-on')); act.appendChild(ah);
+    var g = el('div', 'fgrid');
+    if (w.activity) {
+      if (w.activity.younger) g.appendChild(fbox('Little Brother', w.activity.younger));
+      if (w.activity.older) g.appendChild(fbox('Big Brother', w.activity.older));
+    }
+    if (w.sunday) g.appendChild(fbox('Sunday family moment', w.sunday));
+    act.appendChild(g); main.appendChild(act);
+    if (FAITH.reference && FAITH.reference.length) {
+      var ref = el('section', 'seg s-faith ref');
+      var rh = el('div', 'seghead'); rh.appendChild(el('span', 'icon', '\uD83D\uDCD6')); rh.appendChild(el('span', 'seglabel', 'Parent mini-reference')); ref.appendChild(rh);
+      FAITH.reference.forEach(function (r) {
+        var d = el('details'); d.appendChild(el('summary', null, r.title));
+        (r.lines || []).forEach(function (ln) { d.appendChild(el('div', 'line', ln)); });
+        if (r.links && r.links.length) {
+          var lk = el('div');
+          r.links.forEach(function (l) { var a = el('a', null, l.label + ' \u2197'); a.href = l.url; a.target = '_blank'; a.rel = 'noopener'; lk.appendChild(a); });
+          d.appendChild(lk);
+        }
+        ref.appendChild(d);
+      });
+      main.appendChild(ref);
+    }
   }
 
   // ---- routing: #YYYY-MM-DD or #week or #week-YYYY-MM-DD; default = today (Chicago)
   function route() {
     var h = location.hash.replace(/^#/, '');
     var m = /^week(?:-(\d{4}-\d{2}-\d{2}))?$/.exec(h);
+    var fm = /^faith(?:-(\d{4}-\d{2}-\d{2}))?$/.exec(h);
     if (m) showWeek(m[1] || current || todayStr());
+    else if (fm) showFaith(fm[1] || todayStr());
     else showDay(/^\d{4}-\d{2}-\d{2}$/.test(h) ? h : todayStr());
     window.scrollTo(0, 0);
   }
   function inWeekView() { return /^#week/.test(location.hash); }
+  function inFaithView() { return /^#faith/.test(location.hash); }
+  function faithStep(n) { var w = faithWeekFor(current), i = FAITH.weeks.indexOf(w) + n; if (i >= 0 && i < FAITH.weeks.length) location.hash = 'faith-' + FAITH.weeks[i].start; }
+  document.getElementById('faithBtn').addEventListener('click', function () { location.hash = 'faith-' + (faithWeekFor(todayStr()) || {start: todayStr()}).start; });
   document.getElementById('prev').addEventListener('click', function () {
+    if (inFaithView()) { faithStep(-1); return; }
     if (inWeekView()) { location.hash = 'week-' + addDays(nearestWeek(current).start, -7); return; }
     location.hash = addDays(current, -1);
   });
   document.getElementById('next').addEventListener('click', function () {
+    if (inFaithView()) { faithStep(1); return; }
     if (inWeekView()) { location.hash = 'week-' + addDays(nearestWeek(current).start, 7); return; }
     location.hash = addDays(current, 1);
   });
   document.getElementById('todayBtn').addEventListener('click', function () {
     if (location.hash === '' || location.hash === '#') route(); else location.hash = '';
   });
-  document.getElementById('weekBtn').addEventListener('click', function () { location.hash = 'week-' + (current || todayStr()); });
+  document.getElementById('weekBtn').addEventListener('click', function () { location.hash = 'week-' + (inFaithView() ? todayStr() : (current || todayStr())); });
   window.addEventListener('hashchange', route);
   // If the page is left open overnight, roll to the new day when no date is pinned.
   var lastToday = todayStr();
@@ -363,6 +458,9 @@ def clean_video(v, where):
     for k in ("start", "end"):  # optional chunk of a long video, in seconds
         if v.get(k) is not None:
             out[k] = int(v[k])
+    for k in ("ask", "note", "day"):  # optional talk question / parent note / suggested day
+        if v.get(k):
+            out[k] = str(v[k])
     if v.get("seconds"):
         out["seconds"] = int(v["seconds"])
     if v.get("minutes") is not None:
@@ -371,6 +469,29 @@ def clean_video(v, where):
         out["minutes"] = round(out["seconds"] / 60, 1)
     else:
         sys.exit(f"{where}: video {vid} needs 'minutes' or 'seconds'")
+    return out
+
+
+def clean_faith(f):
+    out = {"title": str(f.get("title", "Faith")), "rhythm": str(f.get("rhythm", "")), "weeks": [], "reference": []}
+    for w in sorted(f.get("weeks", []), key=lambda w: w["start"]):
+        check_date(w["start"], "faith week"); check_date(w["end"], "faith week")
+        where = f"faith {w['start']}"
+        act = w.get("activity", {})
+        out["weeks"].append({"start": w["start"], "end": w["end"], "title": str(w["title"]),
+                             "liturgy": str(w.get("liturgy", "")), "bigIdea": str(w.get("bigIdea", "")),
+                             "videos": [clean_video(v, where) for v in w.get("videos", [])],
+                             "activity": {k: str(act[k]) for k in ("younger", "older") if act.get(k)},
+                             "sunday": str(w.get("sunday", ""))})
+        if not 2 <= len(out["weeks"][-1]["videos"]) <= 3:
+            print(f"warning: {where}: {len(out['weeks'][-1]['videos'])} videos (aim for 2-3)")
+    for r in f.get("reference", []):
+        links = []
+        for l in r.get("links", []):
+            if not str(l["url"]).startswith("https://"):
+                sys.exit(f"faith reference: link must be https: {l['url']!r}")
+            links.append({"label": str(l["label"]), "url": str(l["url"])})
+        out["reference"].append({"title": str(r["title"]), "lines": [str(x) for x in r.get("lines", [])], "links": links})
     return out
 
 
@@ -414,6 +535,8 @@ def main():
         if not any(w["start"] <= d <= w["end"] for w in clean["weeks"]):
             warnings.append(f"{d}: not inside any week")
         clean["days"][d] = cd
+    if data.get("faith"):
+        clean["faith"] = clean_faith(data["faith"])
     # Safe to embed inside <script>: escape '<' so '</script>' can't break out.
     blob = json.dumps(clean, ensure_ascii=False, indent=1).replace("<", "\\u003c")
     week_title = clean["weeks"][-1]["title"] if clean["weeks"] else ""

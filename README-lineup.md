@@ -79,3 +79,25 @@ VIDEO:
 Weekly pattern (from the family agenda): Mon break it down + LEGO structures; Tue spot the pattern + Growth Skills (reading → word problem → self-check); Wed think aloud + Snap Circuits; Thu stuck practice (3 strategies) + Growth Skills; Fri teach-back + Scratch, with flexible fun picks (Mark Rober, LEGO, art, music, a favorite rewatch).
 
 Keep the page free of personal information: no names, photos or school names. Use only generic labels like "Big Brother" and "Little Brother".
+
+## Faith strand (`faith` in `lineup.json`)
+
+A light, separate strand: **Faith: Jesus & the Catholic Church**. It's about 10 minutes on Tue and Thu after school, an optional Saturday build, and a Sunday family moment. It is **not** part of the car rides. Open it with the **✝ Faith** button, `#faith` (the current faith week), or `#faith-2026-11-16`. Prev/Next step one faith week at a time. A small Faith strip also appears under the **This week** grid and on weekend days.
+
+```jsonc
+"faith": {
+  "title": "Faith: Jesus & the Catholic Church",
+  "rhythm": "About 10 minutes: Tue and Thu ...",
+  "weeks": [
+    {"start": "2026-11-02", "end": "2026-11-08", "title": "Part 1 - ...",
+     "liturgy": "Sun Nov 1 All Saints · Mon Nov 2 All Souls",
+     "bigIdea": "One or two sentences, with a Bible reference",
+     "videos": [ VIDEO + "ask" (discussion prompt shown on the card), optional "day" and "note" (source caveat) ],  // 2-3
+     "activity": {"younger": "hands-on, not babyish", "older": "real story + big question"},
+     "sunday": "Sunday family moment"}
+  ],
+  "reference": [ {"title": "...", "lines": ["..."], "links": [{"label": "...", "url": "https://..."}]} ]
+}
+```
+
+Faith sources: prefer Catholic channels (Loyola Press, Catholic Central, Father Roderick - LEGO Brickpriest, Ascension, diocesan channels). If you use a general history, travel or nature clip, say so in `note`. Be accurate to Catholic teaching. Skip toddler cartoons and graphic martyrdom stories.

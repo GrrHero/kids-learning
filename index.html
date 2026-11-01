@@ -65,7 +65,21 @@
   .tag { display: inline-block; margin-top: 8px; padding: 3px 12px; border-radius: 999px; background: #eee;
          color: #444; font-size: 15px; font-family: system-ui, sans-serif; }
   .s-amTogether { --c: #f5a300; } .s-amYounger { --c: #2bb673; }
-  .s-pmOlder { --c: #4b8bf5; } .s-pmTogether { --c: #c24bf5; } .s-weekend { --c: #ff5d8f; }
+  .s-pmOlder { --c: #4b8bf5; } .s-pmTogether { --c: #c24bf5; } .s-weekend { --c: #ff5d8f; } .s-faith { --c: #2f5d9e; }
+  .navbtn.faith { background: #2f5d9e; box-shadow: 0 7px 0 #1d3c6b; }
+  .ask { font-size: 18px; margin-top: 8px; color: #333; line-height: 1.25; }
+  .ask b { color: var(--c); }
+  .fgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 16px; margin-top: 10px; }
+  .fbox { background: #fff; border-radius: 20px; padding: 14px 18px; font-size: 21px; line-height: 1.3; }
+  .fbox h3 { margin: 0 0 6px; color: var(--c); font-size: 25px; }
+  .bigidea { font-size: 24px; line-height: 1.3; margin: 8px 4px 4px; }
+  .rhythm { font-size: 19px; color: #333; margin: 6px 4px 0; }
+  .openbtn { margin-left: auto; font-size: 24px; font-weight: bold; padding: 8px 24px; border-radius: 999px; border: none;
+             color: #fff; background: var(--c); box-shadow: 0 6px 0 rgba(0,0,0,.25); }
+  .ref details { background: #fff; border-radius: 18px; padding: 10px 16px; margin-top: 10px; font-size: 20px; }
+  .ref summary { font-size: 24px; font-weight: bold; color: var(--c); cursor: pointer; }
+  .ref .line { margin: 6px 0; line-height: 1.3; user-select: text; }
+  .ref a { color: #2f5d9e; font-weight: bold; margin-right: 16px; display: inline-block; margin-top: 6px; }
   /* week view */
   .weekgrid { display: grid; grid-template-columns: 210px repeat(5, 1fr); gap: 10px; }
   .wcell { background: #fff; border-radius: 16px; padding: 10px 12px; font-size: 17px; line-height: 1.2; }
@@ -100,6 +114,7 @@
 <nav>
   <button class="navbtn alt" id="todayBtn" type="button">Today</button>
   <button class="navbtn alt" id="weekBtn" type="button">This week</button>
+  <button class="navbtn faith" id="faithBtn" type="button">&#10013; Faith</button>
 </nav>
 <main id="main"></main>
 
@@ -1750,6 +1765,343 @@
     }
    }
   }
+ },
+ "faith": {
+  "title": "Faith: Jesus & the Catholic Church",
+  "rhythm": "About 10 minutes: Tue and Thu after school (one clip + its question + the hands-on build), optional Sat build, plus a Sunday family moment. Not part of the car rides.",
+  "weeks": [
+   {
+    "start": "2026-11-02",
+    "end": "2026-11-08",
+    "title": "Part 1 - Jesus the Good Shepherd & the saints",
+    "liturgy": "Sun Nov 1 All Saints · Mon Nov 2 All Souls",
+    "bigIdea": "Jesus says, \"I am the good shepherd. I know mine and mine know me\" (John 10:14). The saints are real people from history who learned to recognize His voice and follow Him - and they are still on our team, praying for us.",
+    "videos": [
+     {
+      "id": "xO6pefqjw3c",
+      "title": "All Saints' & All Souls explained with LEGO",
+      "tag": "Faith: saints",
+      "channel": "Father Roderick - LEGO Brickpriest",
+      "ask": "Big Brother: what's the difference between All Saints (Nov 1) and All Souls (Nov 2)? Little Brother: which saint would you build?",
+      "day": "Tue",
+      "seconds": 381,
+      "minutes": 6.3
+     },
+     {
+      "id": "e45dVgWgV64",
+      "title": "Do sheep only follow their shepherd's voice? (real test)",
+      "tag": "Faith: Good Shepherd",
+      "channel": "Øyvind Kleiveland",
+      "ask": "The sheep ignored the strangers and ran to the real shepherd. How do we get to know Jesus's voice? (prayer, Mass, the Bible, family)",
+      "note": "Real farm footage, not a Catholic channel; pair with John 10:11-14.",
+      "day": "Thu",
+      "seconds": 121,
+      "minutes": 2.0
+     },
+     {
+      "id": "VD13JlAyl38",
+      "title": "Pop-Up Catechesis: November, month of All Souls",
+      "tag": "Faith: All Souls",
+      "channel": "Loyola Press",
+      "ask": "Who in our family has died that we can pray for this month?",
+      "note": "Short Loyola Press explainer; preview it and use it as your talking points.",
+      "day": "Mon (parent intro)",
+      "seconds": 154,
+      "minutes": 2.6
+     }
+    ],
+    "activity": {
+     "younger": "Build a LEGO sheep pen with ONE gate (Jesus said \"I am the gate,\" John 10:9). Then the voice test: eyes closed, a parent and a \"stranger\" both call; follow only the right voice to the pen.",
+     "older": "Engineer the sheepfold: walls a wolf minifig can't get over, one gate, and a spot where the shepherd sleeps across the gate. Tally your sheep (100 brothers in a flock? estimate!). Big question: why would a shepherd risk his life for sheep?"
+    },
+    "sunday": "Light a candle at dinner. Each person names one saint or one family member who has died, then pray together: \"Eternal rest grant unto them, O Lord, and let perpetual light shine upon them. May they rest in peace. Amen.\""
+   },
+   {
+    "start": "2026-11-09",
+    "end": "2026-11-15",
+    "title": "Part 2 - Jesus grew up in a real town & taught with stories",
+    "liturgy": "Mon Nov 9 Dedication of the Lateran Basilica (the Pope's cathedral in Rome) · Wed Nov 11 St. Martin of Tours",
+    "bigIdea": "Jesus was a real man who grew up in Nazareth with Mary and Joseph and worked as a carpenter (Mark 6:3). He taught with parables - short stories with a hidden lesson. St. Martin of Tours, a Roman soldier, lived one out when he cut his cloak in half for a freezing beggar.",
+    "videos": [
+     {
+      "id": "CyDyIyn-yRE",
+      "title": "1st-century Nazareth Village comes to life",
+      "tag": "Faith: Holy Land",
+      "channel": "Sergio & Rhoda in Israel",
+      "ask": "What tools and jobs did you spot? What would a workday with Joseph in the carpenter shop look like?",
+      "note": "Filmed at a living-history village in Nazareth, Israel (travel channel, not a Catholic channel).",
+      "day": "Tue",
+      "seconds": 348,
+      "minutes": 5.8
+     },
+     {
+      "id": "ycBln5E_0Wk",
+      "title": "St. Martin of Tours in 60 seconds (LEGO)",
+      "tag": "Faith: saints",
+      "channel": "Father Roderick - LEGO Brickpriest",
+      "ask": "Martin shared half his cloak. That night he dreamed Jesus was wearing it (Matthew 25:40). What could you share this week?",
+      "day": "Wed Nov 11",
+      "seconds": 82,
+      "minutes": 1.4
+     },
+     {
+      "id": "9JRTgjKuAW8",
+      "title": "Catholic Central: Parables (part 1: 0:00-5:00)",
+      "tag": "Faith: parables",
+      "channel": "Catholic Central",
+      "start": 0,
+      "end": 300,
+      "ask": "Why would Jesus tell a story instead of just giving a rule? Which parable would make the best LEGO build?",
+      "day": "Thu",
+      "seconds": 300,
+      "minutes": 5.0
+     }
+    ],
+    "activity": {
+     "younger": "Build a Nazareth house: flat roof with a ladder (families worked and slept up there), one room, and a carpenter's workbench. Then plant a seed in a cup (the mustard-seed parable, Matthew 13:31-32) and check it every day.",
+     "older": "Map it: find Nazareth, Bethlehem, Jerusalem and the Sea of Galilee. Nazareth to Jerusalem is about 65 miles - about a 3-4 day walk. How many of your school-run rides is that? Then build the parable of the lost sheep (Luke 15:3-7) as a 3-scene LEGO comic and teach it back."
+    },
+    "sunday": "Before dinner, read one parable straight from the Bible (Luke 15:3-7, the lost sheep) and ask: \"What's the hidden lesson? Who is the shepherd, who is the sheep?\""
+   },
+   {
+    "start": "2026-11-16",
+    "end": "2026-11-22",
+    "title": "Part 3 - Jesus our King",
+    "liturgy": "Sun Nov 22 Christ the King (last Sunday of the Church year)",
+    "bigIdea": "On the last Sunday of the Church year we celebrate Christ the King. Jesus is a different kind of king: He came \"not to be served but to serve\" (Mark 10:45), and His throne was the cross. Catholics built churches and huge cathedrals as houses fit for that King.",
+    "videos": [
+     {
+      "id": "4_X4wlAzC1U",
+      "title": "Pop-Up Catechesis: Christ the King",
+      "tag": "Faith: Christ the King",
+      "channel": "Loyola Press",
+      "ask": "What kind of king serves other people? What would a 'servant king' do in our house?",
+      "day": "Tue",
+      "seconds": 167,
+      "minutes": 2.8
+     },
+     {
+      "id": "WiX2amY7G-I",
+      "title": "How Gothic cathedrals stay up (engineering models)",
+      "tag": "Faith: cathedrals",
+      "channel": "Engineering Models",
+      "ask": "Why don't those thin walls with giant windows fall over? Find the flying buttress - it pushes back!",
+      "note": "Engineering channel, not religious content.",
+      "day": "Thu",
+      "seconds": 315,
+      "minutes": 5.2
+     },
+     {
+      "id": "2IhRcY6tVWo",
+      "title": "The story of St. Peter's Basilica",
+      "tag": "Faith: Rome",
+      "channel": "Bedtime History",
+      "ask": "St. Peter's is built over the tomb of St. Peter, the first Pope. Find Rome and Vatican City on a map.",
+      "note": "History channel (Bedtime History / Simple History), not a Catholic channel.",
+      "day": "Sat",
+      "seconds": 323,
+      "minutes": 5.4
+     }
+    ],
+    "activity": {
+     "younger": "Build a LEGO church: a door, an altar, a tall tower. Make a paper crown and draw on it one way you'll serve someone this week.",
+     "older": "Cathedral challenge: build a LEGO wall as tall as you can with a big window, push it, then add buttresses and test again. Chess tie-in: the king is the most important piece but moves only one square - the whole army protects him. Big question: how is Jesus the opposite kind of king?"
+    },
+    "sunday": "Christ the King Sunday: everyone does one \"servant king\" job for someone else today (set the table, help a brother) and reports it at dinner. Pray: \"Jesus, King of the universe, help me serve like You.\""
+   },
+   {
+    "start": "2026-11-23",
+    "end": "2026-11-29",
+    "title": "Part 4 - Giving thanks - and getting ready for Advent",
+    "liturgy": "Thu Nov 26 Thanksgiving · Sun Nov 29 First Sunday of Advent (the Church's new year)",
+    "bigIdea": "The word \"Eucharist\" comes from the Greek word for \"thanksgiving\" - at every Mass we thank God for Jesus. Advent starts this Sunday: four weeks of getting ready for Jesus's birthday at Christmas and for His coming again.",
+    "videos": [
+     {
+      "id": "Gz1VBwL6Zks",
+      "title": "The life of St. Francis explained with LEGO",
+      "tag": "Faith: saints",
+      "channel": "Father Roderick - LEGO Brickpriest",
+      "ask": "Francis thanked God for Brother Sun and Sister Moon. Name 3 things in creation you're thankful for.",
+      "day": "Tue",
+      "seconds": 113,
+      "minutes": 1.9
+     },
+     {
+      "id": "FFh2vemurik",
+      "title": "Catholic Central: The Liturgical Year",
+      "tag": "Faith: Church year",
+      "channel": "Catholic Central",
+      "ask": "The Church year has seasons, like a sports season. Which season are we starting Sunday, and what color goes with it? (Advent - violet)",
+      "note": "Best for Big Brother; Little Brother can just call out the colors.",
+      "day": "Wed",
+      "seconds": 436,
+      "minutes": 7.3
+     },
+     {
+      "id": "GN6y8ZVEnIc",
+      "title": "Hey, Father! What the Advent wreath means",
+      "tag": "Faith: Advent",
+      "channel": "Diocese of Springfield in Illinois",
+      "ask": "Why 4 candles? Why is one pink (rose)?",
+      "day": "Sat",
+      "seconds": 176,
+      "minutes": 2.9
+     }
+    ],
+    "activity": {
+     "younger": "Build an Advent wreath out of LEGO or play-dough: a green ring with 3 violet candles and 1 rose candle. Count the Sundays to Christmas on the calendar.",
+     "older": "Make a Church-year wheel: a paper plate split into Advent (violet), Christmas (white), Ordinary Time (green), Lent (violet), Easter (white), with a spinner arrow. Scratch bonus: a sprite that changes color for each season when you press a key."
+    },
+    "sunday": "First Sunday of Advent: light the first violet candle at dinner. Each person names one thing to do to get ready for Jesus before Christmas. On Thanksgiving Thursday, add one sentence to grace: \"Thank you, God, for...\""
+   },
+   {
+    "start": "2026-11-30",
+    "end": "2026-12-06",
+    "title": "Part 5 - Advent - prepare the way (+ St. Nicholas)",
+    "liturgy": "Mon Nov 30 St. Andrew · Sun Dec 6 St. Nicholas day (also the 2nd Sunday of Advent) · Tue Dec 8 Immaculate Conception (holy day: Mass)",
+    "bigIdea": "In Advent we get ready like people expecting a King's visit. John the Baptist told everyone, \"Prepare the way of the Lord\" (Mark 1:3). St. Nicholas was a real bishop in Myra (today's Turkey) around 300 AD who secretly gave gifts to people in need - because he loved Jesus.",
+    "videos": [
+     {
+      "id": "K5Zyi0rSLjQ",
+      "title": "Pop-Up Catechesis: Advent reminds us we need a Savior",
+      "tag": "Faith: Advent",
+      "channel": "Loyola Press",
+      "ask": "What are we waiting for in Advent? How do you get ready for a big game - and how can we get ready for Jesus?",
+      "day": "Tue",
+      "seconds": 158,
+      "minutes": 2.6
+     },
+     {
+      "id": "3jLO6A2NpPU",
+      "title": "Who was Saint Nicholas? (National Geographic)",
+      "tag": "Faith: saints",
+      "channel": "National Geographic",
+      "ask": "Nicholas gave in secret. Why would a hero not want credit?",
+      "note": "History channel. It explains how St. Nicholas connects to Santa Claus - preview first if Santa talk matters at your house.",
+      "day": "Thu",
+      "seconds": 169,
+      "minutes": 2.8
+     },
+     {
+      "id": "zZ2wYemHfNA",
+      "title": "Catholic Central: The Nativity",
+      "tag": "Faith: Christmas story",
+      "channel": "Catholic Central",
+      "ask": "Where was Jesus born, and who came to see Him first?",
+      "note": "Best for Big Brother; good preview of the Christmas story.",
+      "day": "Sat",
+      "seconds": 219,
+      "minutes": 3.6
+     }
+    ],
+    "activity": {
+     "younger": "Build an empty LEGO manger. Every kind thing you do this week earns one \"straw\" (a yellow brick or paper strip) so it's soft for baby Jesus at Christmas.",
+     "older": "Map the trip: Nazareth to Bethlehem is about 90 miles - about a week on foot for Mary and Joseph. Then build a LEGO Bethlehem scene and add one piece each week of Advent (the manger stays empty until Christmas)."
+    },
+    "sunday": "St. Nicholas: set shoes out Saturday night for a small treat. At dinner light two violet candles and ask: \"How did St. Nicholas give like Jesus?\" Remember Tuesday Dec 8 is a holy day (Immaculate Conception) - plan Mass."
+   }
+  ],
+  "reference": [
+   {
+    "title": "Sign of the Cross",
+    "lines": [
+     "\"In the name of the Father, and of the Son, and of the Holy Spirit. Amen.\"",
+     "Right hand: forehead (Father), chest (Son), left shoulder then right shoulder (Holy Spirit). We start and end every prayer with it."
+    ],
+    "links": [
+     {
+      "label": "USCCB prayers",
+      "url": "https://www.usccb.org/prayers"
+     }
+    ]
+   },
+   {
+    "title": "Our Father (the prayer Jesus taught us)",
+    "lines": [
+     "Our Father, who art in heaven, hallowed be thy name; thy kingdom come, thy will be done on earth as it is in heaven. Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen.",
+     "Kid terms: hallowed = holy; trespasses = the wrong things we do. Jesus gave this prayer to His friends in Matthew 6:9-13."
+    ],
+    "links": [
+     {
+      "label": "USCCB: Our Father",
+      "url": "https://www.usccb.org/prayers/our-father"
+     }
+    ]
+   },
+   {
+    "title": "Hail Mary",
+    "lines": [
+     "Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen.",
+     "The first half is the angel Gabriel's and Elizabeth's words from Luke 1. We ask Mary to pray for us, the way we'd ask a friend to."
+    ],
+    "links": [
+     {
+      "label": "USCCB: Hail Mary",
+      "url": "https://www.usccb.org/prayers/hail-mary"
+     }
+    ]
+   },
+   {
+    "title": "Mass basics (what's happening when)",
+    "lines": [
+     "1. Gathering: holy water + Sign of the Cross at the door; genuflect (right knee down) toward the tabernacle - the red candle nearby means Jesus is present.",
+     "2. Liturgy of the Word: readings from the Bible; stand for the Gospel (the words and life of Jesus); the homily explains it.",
+     "3. Liturgy of the Eucharist: the bread and wine become the Body and Blood of Jesus - Catholics believe He is truly present. Many parishes prepare kids for First Communion around 2nd grade; ask yours.",
+     "4. Sending: \"Go in peace\" - take it home. Car game afterward: \"What was the Gospel about?\""
+    ],
+    "links": [
+     {
+      "label": "USCCB: The Mass",
+      "url": "https://www.usccb.org/prayer-and-worship/the-mass"
+     },
+     {
+      "label": "Today's readings",
+      "url": "https://bible.usccb.org/"
+     }
+    ]
+   },
+   {
+    "title": "Church seasons in kid terms",
+    "lines": [
+     "Advent (violet, 4 weeks): getting ready - training camp before Christmas.",
+     "Christmas (white/gold): Jesus is born - the big celebration.",
+     "Ordinary Time (green): the regular season - growing as a team.",
+     "Lent (violet, 40 days): spring training - pray, give, and give up something, like Jesus in the desert.",
+     "Easter (white, 50 days): the championship - Jesus rose! Ends at Pentecost (red), the Holy Spirit's birthday of the Church."
+    ],
+    "links": [
+     {
+      "label": "USCCB: Liturgical year",
+      "url": "https://www.usccb.org/prayer-worship/liturgical-year"
+     },
+     {
+      "label": "Loyola Press: Liturgical year",
+      "url": "https://www.loyolapress.com/catholic-resources/liturgical-year/"
+     },
+     {
+      "label": "Loyola Press: Advent",
+      "url": "https://www.loyolapress.com/catholic-resources/liturgical-year/advent/"
+     }
+    ]
+   },
+   {
+    "title": "More for parents",
+    "lines": [
+     "Loyola Press has kid-friendly versions of the traditional prayers; the Catechism is the official source when a big question comes up.",
+     "Tone: these are real stories about real people and places. Answer honestly, keep it short, and it's fine to say \"Great question - let's look it up together.\""
+    ],
+    "links": [
+     {
+      "label": "Loyola Press: Catholic prayers",
+      "url": "https://www.loyolapress.com/catholic-resources/prayer/traditional-catholic-prayers/"
+     },
+     {
+      "label": "Catechism of the Catholic Church",
+      "url": "https://www.vatican.va/archive/ENG0015/_INDEX.HTM"
+     }
+    ]
+   }
+  ]
  }
 }</script>
 <script>
@@ -1808,6 +2160,7 @@
     b.querySelector('.dur').textContent = v.seconds ? mmss(v.seconds) : (v.minutes + ' min');
     b.querySelector('.title').textContent = v.title;
     b.querySelector('.tag').textContent = v.tag || '';
+    if (v.ask) { var a = el('div', 'ask'); a.appendChild(el('b', null, 'Ask: ')); a.appendChild(document.createTextNode(v.ask)); b.querySelector('.info').appendChild(a); }
     function go() { playList(list, idx, segLabel); }
     b.addEventListener('click', go);
     b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
@@ -1867,6 +2220,7 @@
     setHeader(s, note);
     if (wk) main.appendChild(segmentBox('s-weekend', ICON.star, wk.title || 'Weekend favorites', wk.videos, null, null));
     else main.appendChild(el('div', 'empty', 'No videos for this day yet.'));
+    var fs = isWeekend && faithStrip(s); if (fs) main.appendChild(fs);
   }
 
   function showWeek(s) {
@@ -1900,29 +2254,107 @@
     });
     main.appendChild(g);
     if (w && w.weekend) main.appendChild(segmentBox('s-weekend', ICON.star, w.weekend.title || 'Weekend favorites', w.weekend.videos, w.weekend.note, null));
+    var fs = faithStrip(start); if (fs) main.appendChild(fs);
+  }
+
+  // ---- Faith strand (#faith, #faith-YYYY-MM-DD): one week at a time, light (~10 min, 2-3x a week + Sunday)
+  var FAITH = DATA.faith || null;
+  function faithWeekFor(s) {
+    if (!FAITH || !FAITH.weeks.length) return null;
+    var best = FAITH.weeks[0];
+    FAITH.weeks.forEach(function (w) { if (w.start <= s) best = w; });
+    return best;
+  }
+  function rangeText(w) { return niceDate(w.start, true).replace(/^\w+, /, '') + ' - ' + niceDate(w.end, true).replace(/^\w+, /, ''); }
+  function faithStrip(s) {
+    var w = faithWeekFor(s); if (!w) return null;
+    var sec = el('section', 'seg s-faith');
+    var head = el('div', 'seghead');
+    head.appendChild(el('span', 'icon', '\u271D\uFE0F'));
+    head.appendChild(el('span', 'seglabel', 'Faith: ' + w.title));
+    var b = el('button', 'openbtn', 'Open \u25B6'); b.type = 'button';
+    b.addEventListener('click', function () { location.hash = 'faith-' + w.start; });
+    head.appendChild(b); sec.appendChild(head);
+    if (FAITH.rhythm) sec.appendChild(el('div', 'rhythm', FAITH.rhythm));
+    if (w.sunday) { var p = el('div', 'prompt'); p.appendChild(el('b', null, 'Sunday family moment: ')); p.appendChild(document.createTextNode(w.sunday)); sec.appendChild(p); }
+    return sec;
+  }
+  function fbox(title, text) { var b = el('div', 'fbox'); b.appendChild(el('h3', null, title)); b.appendChild(el('div', null, text)); return b; }
+  function showFaith(s) {
+    var w = faithWeekFor(s);
+    main.innerHTML = '';
+    if (!w) { main.appendChild(el('div', 'empty', 'No faith weeks yet.')); return; }
+    current = w.start;
+    var i = FAITH.weeks.indexOf(w);
+    document.getElementById('weektitle').textContent = FAITH.title;
+    var dn = document.getElementById('dayname'); dn.textContent = w.title;
+    var t = todayStr(); if (t >= w.start && t <= w.end) dn.appendChild(el('span', 'today-pill', 'This week'));
+    document.getElementById('focus').textContent = rangeText(w) + (w.liturgy ? '  \u00B7  ' + w.liturgy : '');
+    document.getElementById('prev').disabled = i <= 0;
+    document.getElementById('next').disabled = i >= FAITH.weeks.length - 1;
+    var top = el('section', 'seg s-faith');
+    var head = el('div', 'seghead');
+    head.appendChild(el('span', 'icon', '\u271D\uFE0F'));
+    head.appendChild(el('span', 'seglabel', 'Big idea'));
+    top.appendChild(head);
+    top.appendChild(el('div', 'bigidea', w.bigIdea || ''));
+    if (FAITH.rhythm) top.appendChild(el('div', 'rhythm', FAITH.rhythm));
+    main.appendChild(top);
+    main.appendChild(segmentBox('s-faith', '\uD83C\uDFAC', 'Watch & talk (one clip per session)', w.videos, null, null));
+    var act = el('section', 'seg s-faith');
+    var ah = el('div', 'seghead'); ah.appendChild(el('span', 'icon', '\uD83E\uDDF1')); ah.appendChild(el('span', 'seglabel', 'Hands-on')); act.appendChild(ah);
+    var g = el('div', 'fgrid');
+    if (w.activity) {
+      if (w.activity.younger) g.appendChild(fbox('Little Brother', w.activity.younger));
+      if (w.activity.older) g.appendChild(fbox('Big Brother', w.activity.older));
+    }
+    if (w.sunday) g.appendChild(fbox('Sunday family moment', w.sunday));
+    act.appendChild(g); main.appendChild(act);
+    if (FAITH.reference && FAITH.reference.length) {
+      var ref = el('section', 'seg s-faith ref');
+      var rh = el('div', 'seghead'); rh.appendChild(el('span', 'icon', '\uD83D\uDCD6')); rh.appendChild(el('span', 'seglabel', 'Parent mini-reference')); ref.appendChild(rh);
+      FAITH.reference.forEach(function (r) {
+        var d = el('details'); d.appendChild(el('summary', null, r.title));
+        (r.lines || []).forEach(function (ln) { d.appendChild(el('div', 'line', ln)); });
+        if (r.links && r.links.length) {
+          var lk = el('div');
+          r.links.forEach(function (l) { var a = el('a', null, l.label + ' \u2197'); a.href = l.url; a.target = '_blank'; a.rel = 'noopener'; lk.appendChild(a); });
+          d.appendChild(lk);
+        }
+        ref.appendChild(d);
+      });
+      main.appendChild(ref);
+    }
   }
 
   // ---- routing: #YYYY-MM-DD or #week or #week-YYYY-MM-DD; default = today (Chicago)
   function route() {
     var h = location.hash.replace(/^#/, '');
     var m = /^week(?:-(\d{4}-\d{2}-\d{2}))?$/.exec(h);
+    var fm = /^faith(?:-(\d{4}-\d{2}-\d{2}))?$/.exec(h);
     if (m) showWeek(m[1] || current || todayStr());
+    else if (fm) showFaith(fm[1] || todayStr());
     else showDay(/^\d{4}-\d{2}-\d{2}$/.test(h) ? h : todayStr());
     window.scrollTo(0, 0);
   }
   function inWeekView() { return /^#week/.test(location.hash); }
+  function inFaithView() { return /^#faith/.test(location.hash); }
+  function faithStep(n) { var w = faithWeekFor(current), i = FAITH.weeks.indexOf(w) + n; if (i >= 0 && i < FAITH.weeks.length) location.hash = 'faith-' + FAITH.weeks[i].start; }
+  document.getElementById('faithBtn').addEventListener('click', function () { location.hash = 'faith-' + (faithWeekFor(todayStr()) || {start: todayStr()}).start; });
   document.getElementById('prev').addEventListener('click', function () {
+    if (inFaithView()) { faithStep(-1); return; }
     if (inWeekView()) { location.hash = 'week-' + addDays(nearestWeek(current).start, -7); return; }
     location.hash = addDays(current, -1);
   });
   document.getElementById('next').addEventListener('click', function () {
+    if (inFaithView()) { faithStep(1); return; }
     if (inWeekView()) { location.hash = 'week-' + addDays(nearestWeek(current).start, 7); return; }
     location.hash = addDays(current, 1);
   });
   document.getElementById('todayBtn').addEventListener('click', function () {
     if (location.hash === '' || location.hash === '#') route(); else location.hash = '';
   });
-  document.getElementById('weekBtn').addEventListener('click', function () { location.hash = 'week-' + (current || todayStr()); });
+  document.getElementById('weekBtn').addEventListener('click', function () { location.hash = 'week-' + (inFaithView() ? todayStr() : (current || todayStr())); });
   window.addEventListener('hashchange', route);
   // If the page is left open overnight, roll to the new day when no date is pinned.
   var lastToday = todayStr();
