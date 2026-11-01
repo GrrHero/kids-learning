@@ -83,6 +83,7 @@ Optional fields (all of them pass through `build.py`):
 
    **Tone rules** (both boys find babyish content boring; Numberblocks is the exception they still love):
    - No preschool songs (Jack Hartmann, Pinkfong, Sesame songs), no cutesy read-alouds (StorylineOnline), no toddler cartoons (Masha), no sing-song 'meditation' clips.
+   - Never use Jack Hartmann for any slot (Big Brother dislikes him), including in faith, art, math, and movement items.
    - Story time is a **parent-led story**, a **real-story audiobook**, a **documentary/science clip**, or a **challenge**.
    - Frame it the way builders do: test, measure, predict, explain, without drama. Use LEGO, Scratch, engineering, sports, chess, puzzles, real places and history, and saints as heroes.
    - Big Brother (7): a real story plus a big question. Little Brother (5): hands-on and capable, not babyish.
