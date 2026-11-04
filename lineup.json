@@ -144,7 +144,7 @@
    "title": "Week 3: Friction (Nov 2-8)",
    "weekend": {
     "title": "Weekend favorites",
-    "note": "Saturday Art Studio: COLOR - mix primaries into secondaries, then paint a warm-vs-cool color wheel and label every color. Sunday bonus: add a jump and a slow sideways slide (friction!) to your Scratch game. Sunday talk: \"Worries in my head are usually bigger than real life.\"",
+    "note": "Saturday Art Studio: COLOR - mix primaries into secondaries, then paint a warm-vs-cool color wheel and label every color. Sunday bonus: add a jump and a slow sideways slide (friction!) to your Scratch game. Sunday talk: \"Worries in my head are usually bigger than real life.\" Bonus clips (marked Bonus) are extra picks for any day this week.",
     "videos": [
      {
       "id": "aDbyZlVi33Y",
@@ -191,6 +191,75 @@
       "start": 1200,
       "end": 1500,
       "seconds": 300
+     },
+     {
+      "id": "tMKXbLBgkEc",
+      "title": "Car vs. World's Strongest Trampoline (Mark Rober)",
+      "channel": "Mark Rober",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 877,
+      "ask": "Predict before the drop: will the car bounce?"
+     },
+     {
+      "id": "2yde0fz61rk",
+      "title": "Science Max: Simple Machines (part 1: 0:00-5:00)",
+      "channel": "Science Max - Scholastic",
+      "tag": "Sci 2.7 Force & motion",
+      "seconds": 300,
+      "start": 0,
+      "end": 300
+     },
+     {
+      "id": "q9hIZ_Sd94g",
+      "title": "Amazing Double Plays (MLB Clubhouse)",
+      "channel": "MLB Clubhouse",
+      "tag": "PE: Baseball",
+      "seconds": 400
+     },
+     {
+      "id": "O3Y5Ww1IUGU",
+      "title": "What Color Are Stars?",
+      "channel": "SciShow Kids",
+      "tag": "Fine Arts: Color",
+      "seconds": 201,
+      "ask": "Hottest star color: red or blue? Predict, then check."
+     },
+     {
+      "id": "T7NQVoq-kbI",
+      "title": "Pop-Up Catechesis: All Saints Day",
+      "channel": "Loyola Press",
+      "tag": "Faith",
+      "seconds": 135
+     },
+     {
+      "id": "M6t26J-Bbkg",
+      "title": "Bonus: Think Like an Engineer",
+      "channel": "SciShow Kids",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 335
+     },
+     {
+      "id": "w4Jgh9V9gwE",
+      "title": "Bonus: Parachute Adventure",
+      "channel": "SciShow Kids",
+      "tag": "Sci 2.7 Force & motion",
+      "seconds": 287,
+      "ask": "Big parachute or small: which falls slower? Test it with a napkin."
+     },
+     {
+      "id": "lSdaf8_Mr8E",
+      "title": "Bonus: Let's Fly! (Crash Course Kids)",
+      "channel": "Crash Course Kids",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 330
+     },
+     {
+      "id": "4TYLXqrdUMw",
+      "title": "Bonus: Engineering Games (Crash Course Kids)",
+      "channel": "Crash Course Kids",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 198,
+      "ask": "Design one rule for a backyard engineering game."
      }
     ]
    },
@@ -1259,6 +1328,21 @@
      "prompt": "Rub your hands fast. What do you feel? Say your thinking out loud.",
      "videos": [
       {
+       "id": "Ht99eQYwpaI",
+       "title": "Making a LEGO car WIN tug-of-war",
+       "channel": "Brick Experiment Channel",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 185,
+       "ask": "Predict: what made it win: weight, wheels or grip?"
+      },
+      {
+       "id": "4XS8BNdVszs",
+       "title": "Odd Squad: Olympia Meets Otis",
+       "channel": "PBS KIDS",
+       "tag": "Math K.2 Counting",
+       "seconds": 109
+      },
+      {
        "id": "JjypCDNSavw",
        "title": "Science Max: Friction",
        "channel": "Science Max - Scholastic",
@@ -1271,6 +1355,29 @@
     "amYounger": {
      "prompt": "Color lab: predict red + yellow BEFORE the video tells you. How does a pitcher grip the ball?",
      "videos": [
+      {
+       "id": "bIsfrNofqYo",
+       "title": "Russian for Kids: Animals",
+       "channel": "Dinolingo - Language learning for kids",
+       "tag": "World Lang: Russian",
+       "seconds": 253
+      },
+      {
+       "id": "DJDBTNbAWOE",
+       "title": "How Do We See Color?",
+       "channel": "SciShow Kids",
+       "tag": "Fine Arts: Color",
+       "seconds": 257,
+       "ask": "Which color is easiest to see in the dark car? Predict, then check."
+      },
+      {
+       "id": "B5U0vHux5-Y",
+       "title": "Requested LEGO Experiments 3",
+       "channel": "Brick Experiment Channel",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 204,
+       "ask": "Which test would you run with your own bricks?"
+      },
       {
        "id": "M3Ig3c0PGFc",
        "title": "Numberblocks: Double Doors, Double Locked",
@@ -1299,6 +1406,29 @@
     "pmOlder": {
      "prompt": "Predict: 2 lamps side by side, brighter or dimmer than in a row? Unscrew one now! Think aloud.",
      "videos": [
+      {
+       "id": "1Cq4v1ZXeRs",
+       "title": "Electricity: Create a Circuit",
+       "channel": "Smile and Learn - English",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 213
+      },
+      {
+       "id": "D8ugfSjOWfs",
+       "title": "Snap Circuits: lamp and fan in parallel",
+       "channel": "Andrew's Musings",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 142,
+       "ask": "In parallel, if the lamp is out, does the fan still spin? Prove it tonight."
+      },
+      {
+       "id": "cDpcdVf39kA",
+       "title": "33 LEGO wheels and tracks on wood (worst to best)",
+       "channel": "Brick Experiment Channel",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 182,
+       "ask": "Which wheel gripped best? Rank your top 3 and say why."
+      },
       {
        "id": "OkmeRKcFIqQ",
        "title": "What Is a Parallel Circuit?",
@@ -1332,6 +1462,22 @@
      "prompt": "Where does friction help us? Curling teams plan every shot - when did a worry feel bigger than it really was?",
      "videos": [
       {
+       "id": "L9zwduYp9G0",
+       "title": "Circle of Control",
+       "channel": "Mental Health Center Kids",
+       "tag": "SEL",
+       "seconds": 211,
+       "ask": "Name one worry you can control and one you can't."
+      },
+      {
+       "id": "9e9D7ABgHpU",
+       "title": "Unbreakable Ice Cream Safe (Mark Rober)",
+       "channel": "Mark Rober",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 98,
+       "ask": "How many ways did it stop the thief? Pick the smartest one."
+      },
+      {
        "id": "9ePpWrvOXGY",
        "title": "Motion and Friction",
        "channel": "GenerationGenius",
@@ -1358,6 +1504,21 @@
      "prompt": "Ice is slippery. How do we make it less slippery? Name 3 ideas!",
      "videos": [
       {
+       "id": "wh0OS4MrN3E",
+       "title": "The Growth Mindset",
+       "channel": "Khan Academy",
+       "tag": "SEL",
+       "seconds": 187,
+       "ask": "When you got stuck this week, what was your next strategy?"
+      },
+      {
+       "id": "JC82Il2cjqA",
+       "title": "You Can Learn Anything",
+       "channel": "Khan Academy",
+       "tag": "SEL",
+       "seconds": 91
+      },
+      {
        "id": "1vg6ef-Udes",
        "title": "Why Do We Put Salt on Icy Sidewalks?",
        "channel": "SciShow Kids",
@@ -1370,6 +1531,30 @@
     "amYounger": {
      "prompt": "Stuck? Try one more way. Count to 5 in Russian: один, два, три, четыре, пять!",
      "videos": [
+      {
+       "id": "zrAl6JQ3sb4",
+       "title": "Build a Better Back-Scratcher",
+       "channel": "SciShow Kids",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 271,
+       "ask": "What would you change first: the handle or the tip? Sketch it and label it."
+      },
+      {
+       "id": "lYDNA3XQV_0",
+       "title": "Why Are Flamingos Pink?",
+       "channel": "SciShow Kids",
+       "tag": "Fine Arts: Color",
+       "seconds": 261,
+       "ask": "Predict: what color would a flamingo be without its food?"
+      },
+      {
+       "id": "WGDjeCe1iCQ",
+       "title": "Requested LEGO Experiments 2",
+       "channel": "Brick Experiment Channel",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 134,
+       "ask": "Which experiment surprised you? Predict what happens if you try it at home."
+      },
       {
        "id": "iFvpDuT6d9I",
        "title": "Numberblocks: Building Blocks",
@@ -1392,6 +1577,37 @@
     "pmOlder": {
      "prompt": "Stuck? Try 3 ways: draw groups, skip count, or act it out. What clue helps you infer? Queens move every way!",
      "videos": [
+      {
+       "id": "_Os4Mc_iCzQ",
+       "title": "How the Queen Gained Its Power",
+       "channel": "ChessKid",
+       "tag": "Chess",
+       "seconds": 169
+      },
+      {
+       "id": "8oRIgMdL-Wg",
+       "title": "Fool's Mate (watch the queen)",
+       "channel": "ChessKid",
+       "tag": "Chess",
+       "seconds": 195,
+       "ask": "How did the queen finish so fast? Which pawn move left the door open?"
+      },
+      {
+       "id": "TcUX6eNT2j4",
+       "title": "Succeed by Failing",
+       "channel": "Crash Course Kids",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 246,
+       "ask": "Name a build that failed first. What did the fail teach you?"
+      },
+      {
+       "id": "rf8FX2sI3gU",
+       "title": "The Truth About Your Brain",
+       "channel": "Khan Academy",
+       "tag": "SEL",
+       "seconds": 193,
+       "ask": "Your brain grows when it's stuck. What hard thing will you practice tonight?"
+      },
       {
        "id": "1tjJDdszcZg",
        "title": "Skip counting equal groups",
@@ -1421,6 +1637,22 @@
      "prompt": "How does the machine make the ice smooth again? How do you stay ready for the big play?",
      "videos": [
       {
+       "id": "bNyvEJKqqaA",
+       "title": "Little Lessons from the Saints: St. Francis",
+       "channel": "Loyola Press",
+       "tag": "Faith",
+       "seconds": 94,
+       "ask": "St. Francis cared for creation. What is one way you can help today?"
+      },
+      {
+       "id": "n42yJfLfylo",
+       "title": "The Doug Out!: The Power of Patience",
+       "channel": "MLB Clubhouse",
+       "tag": "PE: Baseball",
+       "seconds": 184,
+       "ask": "When does waiting help a batter win?"
+      },
+      {
        "id": "nlkqie6agBE",
        "title": "Ice rink resurfacing: how do they do it?",
        "channel": "Discovery UK",
@@ -1447,6 +1679,14 @@
      "prompt": "Teach-back: tell me one place friction helps and one place it gets in the way!",
      "videos": [
       {
+       "id": "PTVp98W_MFk",
+       "title": "Odd Squad: The Blackholeinator",
+       "channel": "PBS KIDS",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 232,
+       "ask": "Predict: how would you fix the gadget? Teach it back in one sentence."
+      },
+      {
        "id": "tgIKj8za6hg",
        "title": "The Doug Out!: The GOAT of Baseball",
        "channel": "MLB Clubhouse",
@@ -1459,6 +1699,30 @@
     "amYounger": {
      "prompt": "Which colors are warm? Which are cool? Say Привет (pri-VYET) = hi! Paint a color wheel this weekend.",
      "videos": [
+      {
+       "id": "KIug9Foou3s",
+       "title": "Color-Changing Celery Experiment",
+       "channel": "SciShow Kids",
+       "tag": "Fine Arts: Color",
+       "seconds": 253,
+       "ask": "Predict: how long until the leaves change color?"
+      },
+      {
+       "id": "bg9Zm7X5Eo4",
+       "title": "Warm and Cool Colors",
+       "channel": "Play in Color!",
+       "tag": "Fine Arts: Color",
+       "seconds": 191,
+       "ask": "Name 2 warm and 2 cool colors you can see right now."
+      },
+      {
+       "id": "tRc2XGEHiGo",
+       "title": "Requested LEGO Experiments 4",
+       "channel": "Brick Experiment Channel",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 193,
+       "ask": "Which test would you run with your own bricks this weekend?"
+      },
       {
        "id": "XS0hnPs1Aac",
        "title": "Color Wheel",
@@ -1482,6 +1746,22 @@
      "prompt": "Teach-back: how does \"if touching\" make the sprite stop? Why can skates glide on ice?",
      "videos": [
       {
+       "id": "irhNLRWwhv0",
+       "title": "Make a Virtual Pet in Scratch",
+       "channel": "Scratch Team",
+       "tag": "Tech Apps: coding",
+       "seconds": 409,
+       "ask": "Which block makes the pet react when it's touched or clicked? Explain it like a coach."
+      },
+      {
+       "id": "5mGn6mrlrfw",
+       "title": "The Coolest Machine Ever!",
+       "channel": "SciShow Kids",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 356,
+       "ask": "Trace the chain: what pushes what? Sketch your own 3-step machine."
+      },
+      {
        "id": "7NN5v2wSL4U",
        "title": "Make a Catch Game in Scratch",
        "channel": "Scratch Team",
@@ -1501,6 +1781,14 @@
     "pmTogether": {
      "prompt": "Teach-back: which obstacle was hardest and why? Was it grip (friction), size, or weight?",
      "videos": [
+      {
+       "id": "JinpVA6p8Mo",
+       "title": "Snowball Machine (Mark Rober)",
+       "channel": "Mark Rober",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 315,
+       "ask": "What part spins and throws? Where does friction help it grip?"
+      },
       {
        "id": "sL37JqysXSI",
        "title": "5 LEGO tracked vehicles vs. 6 obstacles",
