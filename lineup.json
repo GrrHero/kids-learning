@@ -320,6 +320,142 @@
      }
     ]
    }
+  },
+  {
+   "start": "2026-11-09",
+   "end": "2026-11-15",
+   "title": "Week 4: Ramps & Motion (Nov 9-15)",
+   "picks": {
+    "together": [
+     {
+      "id": "HGM2aJANpu0",
+      "title": "Numberblocks: How Many Smoothies?",
+      "channel": "Numberblocks",
+      "tag": "Math 2.4C Equal groups",
+      "seconds": 270
+     },
+     {
+      "id": "RsuD6iC-Foc",
+      "title": "200-wheel LEGO vehicle",
+      "channel": "Brick Experiment Channel",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 285
+     }
+    ],
+    "younger": [
+     {
+      "id": "UjdzGWkK9pI",
+      "title": "Numberblocks: Fifty",
+      "channel": "Numberblocks",
+      "tag": "Math K.2 Counting",
+      "seconds": 273
+     },
+     {
+      "id": "5fbwPTt_f4g",
+      "title": "Numberblocks: The Big One",
+      "channel": "Numberblocks",
+      "tag": "Math K.2 Counting",
+      "seconds": 275
+     },
+     {
+      "id": "V9ZNvN7PedY",
+      "title": "Numberblocks: The Many Friends of Twenty",
+      "channel": "Numberblocks",
+      "tag": "Math K.2 Counting",
+      "seconds": 275
+     }
+    ],
+    "older": [
+     {
+      "id": "rU_KmdqSfUI",
+      "title": "LEGO mini tank",
+      "channel": "Brick Experiment Channel",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 466
+     },
+     {
+      "id": "pcupjiD2xVk",
+      "title": "10 motorized LEGO doors",
+      "channel": "Brick Experiment Channel",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 629
+     }
+    ]
+   },
+   "weekend": {
+    "title": "Weekend favorites",
+    "note": "Saturday Art Studio: TEXTURE - collect 4 surfaces (bark, brick, fabric, Lego studs), do crayon rubbings, and label each one. Sunday bonus: in Scratch, make a sprite roll down a ramp (change x and y, or glide down a slant). Sunday talk: \"I can't choose what happens, but I can choose what I do next.\" Faith stays after school: Nazareth village (Tue), St. Martin (Wed Nov 11), parables (Thu).",
+    "videos": [
+     {
+      "id": "Osazem7kQzI",
+      "title": "All About Texture (art lesson)",
+      "channel": "Paint It Kids",
+      "tag": "Fine Arts: Texture",
+      "seconds": 195,
+      "ask": "Name 2 textures you can feel right now. Which one would make the bumpiest crayon rubbing?"
+     },
+     {
+      "id": "3Jc6DAxyh4M",
+      "title": "Mark Rober vs. Ryan: Frisbee Challenge",
+      "channel": "CrunchLabs",
+      "tag": "Sci 2.1 Eng. practices",
+      "seconds": 488,
+      "ask": "What did they change after a throw missed? Name one fix you'd try next."
+     },
+     {
+      "id": "lLXNc7unIT4",
+      "title": "Can a LEGO car roll downhill forever?",
+      "channel": "Brick Technology",
+      "tag": "Sci 2.7 Force & motion",
+      "seconds": 551,
+      "ask": "Predict: what would finally stop a car on a never-ending ramp?"
+     },
+     {
+      "id": "VsWL5AqNokk",
+      "title": "How to Move the Knight",
+      "channel": "ChessKid",
+      "tag": "Chess",
+      "seconds": 212,
+      "ask": "A knight jumps in an L: 2 then 1. Can you show the L with your fingers?"
+     },
+     {
+      "id": "YdnvlntAQH8",
+      "title": "How to Play Chess (part 2: 5:00-10:00)",
+      "channel": "ChessKid",
+      "tag": "Chess",
+      "seconds": 300,
+      "start": 300,
+      "end": 600
+     },
+     {
+      "id": "oE_QegYAvTc",
+      "title": "Learn Russian (part 8: 35:00-37:07)",
+      "channel": "Rock 'N Learn",
+      "tag": "World Lang: Russian",
+      "seconds": 127,
+      "start": 2100,
+      "end": 2227
+     },
+     {
+      "id": "ycBln5E_0Wk",
+      "title": "St. Martin of Tours in 60 seconds (LEGO)",
+      "channel": "Father Roderick - LEGO Brickpriest",
+      "tag": "Faith: saints",
+      "seconds": 82,
+      "ask": "Martin shared half his cloak. What could you share this week?",
+      "note": "Also in the Faith section for Wed Nov 11."
+     },
+     {
+      "id": "XX-aAg4_U2Q",
+      "title": "Why Jesus Told Parables",
+      "channel": "BibleProject",
+      "tag": "Faith: parables",
+      "seconds": 342,
+      "ask": "Why would Jesus tell a story instead of just giving a rule?",
+      "note": "BibleProject is a Christian explainer channel, not a Catholic channel. Pair with Thursday's Catholic Central parables clip in the Faith section."
+     }
+    ]
+   }
   }
  ],
  "days": {
@@ -1799,6 +1935,459 @@
       }
      ],
      "checkpoint": "Design your own obstacle for this weekend's LEGO test."
+    }
+   }
+  },
+  "2026-11-09": {
+   "focus": "Ramps make work easier · Break it down · LEGO ramp race (steep vs. gentle)",
+   "segments": {
+    "amTogether": {
+     "prompt": "Predict: which ramp is easier to push a heavy box up - a short steep one, or a long gentle one?",
+     "videos": [
+      {
+       "id": "3COvm0TtxWg",
+       "title": "Ramps: A Super, Simple Machine!",
+       "channel": "SciShow Kids",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 249,
+       "ask": "Steep or gentle: which ramp takes less force? Why does the gentle one have to be longer?"
+      }
+     ],
+     "checkpoint": "Steep or gentle: which one takes less force to go up?"
+    },
+    "amYounger": {
+     "prompt": "Toy-car ramp tonight: predict which goes farther - a steep book stack or a gentle one. Sketch it and label the winner. Name one Russian word you heard.",
+     "videos": [
+      {
+       "id": "V13dlKqRL1E",
+       "title": "Numberblocks: The Wrong Number",
+       "channel": "Numberblocks",
+       "tag": "Math K.2 Counting",
+       "seconds": 275
+      },
+      {
+       "id": "5Osk3cCK6G8",
+       "title": "LEGO car climbs slopes",
+       "channel": "Brick Experiment Channel",
+       "tag": "Sci K.7 Force & motion",
+       "seconds": 200,
+       "ask": "What did they change to climb a steeper slope: wheels, weight, or both? What would you try first?"
+      },
+      {
+       "id": "oE_QegYAvTc",
+       "title": "Learn Russian (part 6: 25:00-30:00)",
+       "channel": "Rock 'N Learn",
+       "tag": "World Lang: Russian",
+       "seconds": 300,
+       "start": 1500,
+       "end": 1800
+      }
+     ],
+     "checkpoint": "Steep or gentle: which car goes farther? Prove it with books and a toy car."
+    },
+    "pmOlder": {
+     "prompt": "Break the LEGO ramp race into 3 steps: build, predict, measure. Why does a steeper ramp change the result? How does a bat work like a push?",
+     "videos": [
+      {
+       "id": "5c4J_PW9wsg",
+       "title": "The Inclined Plane",
+       "channel": "funsciencedemos",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 365,
+       "ask": "A ramp trades force for distance. Say it in one sentence, like a coach."
+      },
+      {
+       "id": "dg5AuYCsg98",
+       "title": "The Physics of Baseball: Hitting",
+       "channel": "Science Channel",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 181,
+       "ask": "The bat is a push. What happens to the ball's motion when the bat hits it harder?"
+      },
+      {
+       "id": "Jx2fIXB28lY",
+       "title": "100-cylinder LEGO car",
+       "channel": "Brick Experiment Channel",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 150,
+       "ask": "If you changed the wheels on your ramp car, what would you test first?"
+      }
+     ],
+     "checkpoint": "Name your 3 ramp-race steps out loud, then predict steep vs. gentle."
+    },
+    "pmTogether": {
+     "prompt": "Tonight's backyard test: field a bounce, then set up the ramp race. Which run do you think goes farther?",
+     "videos": [
+      {
+       "id": "Iyl0xxRGqT8",
+       "title": "Let's Play Ball: Outfielding",
+       "channel": "MLB Clubhouse",
+       "tag": "PE: Baseball",
+       "seconds": 215,
+       "ask": "Ready position: feet and hands. How do you get in front of the bounce?"
+      }
+     ],
+     "checkpoint": "Your ramp-race prediction, locked in: steep or gentle goes farther?"
+    }
+   }
+  },
+  "2026-11-10": {
+   "focus": "Steep vs. gentle · Spot the pattern · Read → compare lengths → self-check",
+   "segments": {
+    "amTogether": {
+     "prompt": "Spot the pattern: on a coaster, when is the ride fastest - going up a hill, or down?",
+     "videos": [
+      {
+       "id": "VcRFh-dCxWE",
+       "title": "Why Roller Coasters Are Awesome!",
+       "channel": "SciShow Kids",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 229,
+       "ask": "Steep drop or gentle drop: which one should make the car faster? Predict, then check."
+      }
+     ],
+     "checkpoint": "Name the pattern: steeper downhill, faster ride. Where else do you see that?"
+    },
+    "amYounger": {
+     "prompt": "Spot the pattern in the alarm puzzle. Then: when something looks huge (like the Green Monster), what can you still choose to do next?",
+     "videos": [
+      {
+       "id": "0PqBotiDjG8",
+       "title": "Numberblocks: Land of the Giants",
+       "channel": "Numberblocks",
+       "tag": "Math K.2 Counting",
+       "seconds": 275
+      },
+      {
+       "id": "rC0R32G3tbw",
+       "title": "Odd Squad: Alarm Pattern Puzzle",
+       "channel": "Odd Squad",
+       "tag": "Math K.7 Patterns",
+       "seconds": 198,
+       "ask": "What's the pattern in the alarm? Say the next step before they do."
+      },
+      {
+       "id": "NLK3DN45wj8",
+       "title": "The Doug Out!: The Green Monster",
+       "channel": "MLB Clubhouse",
+       "tag": "SEL",
+       "seconds": 198,
+       "ask": "Doug can't shrink the wall. What can he choose to do next?"
+      }
+     ],
+     "checkpoint": "One pattern you spotted, and one choice you can still make when something looks too big."
+    },
+    "pmOlder": {
+     "prompt": "After reading: two ramp runs - 14 inches and 9 inches. How much farther is the long one? Draw it, solve it, check it. Then: the king moves only one square.",
+     "videos": [
+      {
+       "id": "2wUsdsae0ro",
+       "title": "Measuring!",
+       "channel": "Scratch Garden",
+       "tag": "Math 2.9 Measurement",
+       "seconds": 464
+      },
+      {
+       "id": "o-D-8B_5ibU",
+       "title": "Comparing lengths",
+       "channel": "Khan Academy",
+       "tag": "Math 2.9 Measurement",
+       "seconds": 186,
+       "ask": "14 inches and 9 inches: how much farther is 14? Draw the two lines, subtract, and check."
+      },
+      {
+       "id": "iwcQFMRYOdU",
+       "title": "How to Move the King",
+       "channel": "ChessKid",
+       "tag": "Chess",
+       "seconds": 139,
+       "ask": "The king is the most important piece, but it only moves one square. Why is that a good rule?"
+      }
+     ],
+     "checkpoint": "How much farther? Say the difference, then show a king move on the board."
+    },
+    "pmTogether": {
+     "prompt": "Spot the ramp (inclined plane) in the simple-machine lineup. Russian challenge: say машина (ma-SHI-na) - car - three times.",
+     "videos": [
+      {
+       "id": "fvOmaf2GfCY",
+       "title": "Simple Machines (spot the ramp)",
+       "channel": "Free School",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 372,
+       "ask": "Which simple machine is the ramp? Name one place you already used one today."
+      }
+     ],
+     "checkpoint": "Point to a ramp in real life, then say машина three times."
+    }
+   }
+  },
+  "2026-11-11": {
+   "focus": "Rolling vs. sliding · Think aloud · Snap Circuits: motor + switch",
+   "segments": {
+    "amTogether": {
+     "prompt": "Think aloud: why do wheels help a car go up (or down) when a sliding box gets stuck?",
+     "videos": [
+      {
+       "id": "MN-85_Nx7pg",
+       "title": "LEGO car climbs more obstacles",
+       "channel": "Brick Experiment Channel",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 356,
+       "ask": "When the car got stuck, what did they change first? Say your thinking out loud."
+      }
+     ],
+     "checkpoint": "Wheels roll; a box slides. Which one loses less speed, and why?"
+    },
+    "amYounger": {
+     "prompt": "Think aloud: would a car or a sliding brick go farther down the same ramp? Then watch how a giant bat changes a swing.",
+     "videos": [
+      {
+       "id": "eHFsbZU2xlg",
+       "title": "Numberblocks: One Hundred",
+       "channel": "Numberblocks",
+       "tag": "Math K.2 Counting",
+       "seconds": 275
+      },
+      {
+       "id": "fPvHJJ9CzcA",
+       "title": "LEGO car crosses narrow bridges",
+       "channel": "Brick Experiment Channel",
+       "tag": "Sci K.1 Eng. practices",
+       "seconds": 201,
+       "ask": "What would you change so the car stays on a skinny bridge: width, speed, or both?"
+      },
+      {
+       "id": "eUwyTJsZIKM",
+       "title": "The Doug Out!: Mega Baseball Bat",
+       "channel": "MLB Clubhouse",
+       "tag": "PE: Baseball",
+       "seconds": 197
+      }
+     ],
+     "checkpoint": "Car or sliding brick: which goes farther? Say why, then test it tonight."
+    },
+    "pmOlder": {
+     "prompt": "Think aloud: a motor turns electricity into motion. Predict: if you open the switch, does the motor stop? Prove it with Snap Circuits tonight.",
+     "videos": [
+      {
+       "id": "DDmzQmeIbN4",
+       "title": "Snap Circuits: motor and switch",
+       "channel": "Andrew's Musings",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 186,
+       "ask": "If you open the switch, does the motor stop? Predict, then test."
+      },
+      {
+       "id": "utJq81nB-3s",
+       "title": "World's Simplest Motor",
+       "channel": "SciShow",
+       "tag": "Sci 2.1 Eng. practices",
+       "seconds": 221,
+       "ask": "What two things make this motor spin? (Hint: electricity and a magnet.)"
+      },
+      {
+       "id": "oE_QegYAvTc",
+       "title": "Learn Russian (part 7: 30:00-35:00)",
+       "channel": "Rock 'N Learn",
+       "tag": "World Lang: Russian",
+       "seconds": 300,
+       "start": 1800,
+       "end": 2100
+      }
+     ],
+     "checkpoint": "Series or switch: what do you flip to start and stop the motion?"
+    },
+    "pmTogether": {
+     "prompt": "This week's line: \"I can't choose what happens, but I can choose what I do next.\" After a tough game (or a loss), what do you choose?",
+     "videos": [
+      {
+       "id": "G5KaxBW7rlU",
+       "title": "Fair Play (part 1: 0:00-5:00)",
+       "channel": "ChessKid",
+       "tag": "SEL",
+       "seconds": 300,
+       "start": 0,
+       "end": 300,
+       "ask": "After you lose, what's one thing you can still choose? (Shake hands, look at the move, try again.)"
+      }
+     ],
+     "checkpoint": "Say the line in your own words, then give one example from today."
+    }
+   }
+  },
+  "2026-11-12": {
+   "focus": "Measure the run · Stuck practice: try 3 strategies · Read → how much farther? → self-check",
+   "segments": {
+    "amTogether": {
+     "prompt": "Tonight we measure the ramp run. First: estimate, then measure. Which tool would you pick - a ruler, steps, or a string?",
+     "videos": [
+      {
+       "id": "0B91xPrwcPE",
+       "title": "Estimating lengths",
+       "channel": "Khan Academy",
+       "tag": "Math 2.9 Measurement",
+       "seconds": 122,
+       "ask": "Estimate first: is the car ride from school longer than a football field, or shorter?"
+      },
+      {
+       "id": "_irJM-um6HE",
+       "title": "Measuring with different units",
+       "channel": "Khan Academy",
+       "tag": "Math 2.9 Measurement",
+       "seconds": 173,
+       "ask": "If you measure the same ramp in inches and in centimeters, which number will be bigger? Why?"
+      }
+     ],
+     "checkpoint": "Tonight's plan: estimate the run, measure it, then compare steep vs. gentle."
+    },
+    "amYounger": {
+     "prompt": "Stuck? Try 3 ways to measure a ramp run: footsteps, a ruler, or a string. Then count in Russian.",
+     "videos": [
+      {
+       "id": "DFXx5nVIz_w",
+       "title": "Numberblocks: Square on the Moon",
+       "channel": "Numberblocks",
+       "tag": "Math K.2 Counting",
+       "seconds": 274
+      },
+      {
+       "id": "MwHHErfX9hI",
+       "title": "LEGO car climbs obstacles",
+       "channel": "Brick Experiment Channel",
+       "tag": "Sci K.1 Eng. practices",
+       "seconds": 352,
+       "ask": "If the car stops, what's your next try: a shallower ramp, different wheels, or a running start?"
+      },
+      {
+       "id": "0kZRAeLjKEw",
+       "title": "Russian Number Words",
+       "channel": "Dinolingo - Language learning for kids",
+       "tag": "World Lang: Russian",
+       "seconds": 205,
+       "ask": "Count 5 bricks out loud in Russian: один, два, три, четыре, пять."
+      }
+     ],
+     "checkpoint": "Measure one ramp run three ways. Which way was most exact?"
+    },
+    "pmOlder": {
+     "prompt": "Stuck on 'how much farther?' Try 3 strategies: draw the two runs, subtract, or measure again. Then: pawns march forward.",
+     "videos": [
+      {
+       "id": "pyx-6vfCuW0",
+       "title": "Meters and centimeters",
+       "channel": "Khan Academy",
+       "tag": "Math 2.9 Measurement",
+       "seconds": 388,
+       "ask": "A gentle run is 80 cm. A steep run is 1 meter. How much farther is the steep run? (Hint: 1 m = 100 cm.)"
+      },
+      {
+       "id": "AdhhG13bIvc",
+       "title": "How to Move the Pawn",
+       "channel": "ChessKid",
+       "tag": "Chess",
+       "seconds": 288,
+       "ask": "Pawns walk forward, but they capture on a diagonal. Show both moves on the board."
+      }
+     ],
+     "checkpoint": "How much farther is 1 meter than 80 cm? Then show a pawn's first move."
+    },
+    "pmTogether": {
+     "prompt": "A fly ball is motion through the air. Then: stealing a base is a timing problem. What's the pattern?",
+     "videos": [
+      {
+       "id": "oph9BP4lKjs",
+       "title": "The Physics of Baseball: Flight of the Ball",
+       "channel": "Science Channel",
+       "tag": "Sci 2.7 Force & motion",
+       "seconds": 150,
+       "ask": "What pulls the ball back down after it leaves the bat?"
+      },
+      {
+       "id": "q7UpT1Dl__M",
+       "title": "The Doug Out!: Scout Explains Stealing",
+       "channel": "MLB Clubhouse",
+       "tag": "PE: Baseball",
+       "seconds": 175,
+       "ask": "Stealing a base: what do you watch for before you run?"
+      }
+     ],
+     "checkpoint": "Gravity pulls the ball down. Name one other motion you measured this week."
+    }
+   }
+  },
+  "2026-11-13": {
+   "focus": "Fun Friday · Teach-back · Scratch: Pong (angles and motion)",
+   "segments": {
+    "amTogether": {
+     "prompt": "Teach-back: tell me why a steeper ramp changes the result - in one sentence, like a coach.",
+     "videos": [
+      {
+       "id": "daiZtbGFdDM",
+       "title": "Intro to Baseball",
+       "channel": "MLB",
+       "tag": "PE: Baseball",
+       "seconds": 229,
+       "ask": "Teach-back: what's one baseball rule you'd teach a brand-new player?"
+      }
+     ],
+     "checkpoint": "One sentence: why a steeper ramp changes how far (or how fast) the car goes."
+    },
+    "amYounger": {
+     "prompt": "This weekend is TEXTURE. What would a crayon rubbing of Lego studs look like? Teach-back one ramp idea too.",
+     "videos": [
+      {
+       "id": "JC-YYFXol1k",
+       "title": "Numberblocks: Octonaughty and the Fractionator",
+       "channel": "Numberblocks",
+       "tag": "Math K.2 Counting",
+       "seconds": 284
+      },
+      {
+       "id": "Osazem7kQzI",
+       "title": "All About Texture (art lesson)",
+       "channel": "Paint It Kids",
+       "tag": "Fine Arts: Texture",
+       "seconds": 195,
+       "ask": "Name 2 textures you can feel in the car. Which one would make the bumpiest rubbing?"
+      },
+      {
+       "id": "ZORpBQ5CSTo",
+       "title": "Numberblocks: Ten Vaulting",
+       "channel": "Numberblocks",
+       "tag": "Math K.2 Counting",
+       "seconds": 274
+      }
+     ],
+     "checkpoint": "Point to something smooth and something bumpy, then teach back one ramp fact."
+    },
+    "pmOlder": {
+     "prompt": "Teach-back: in Pong, what makes the ball change direction? This weekend, try a Scratch sprite that rolls down a ramp.",
+     "videos": [
+      {
+       "id": "BlmBDrnhd2I",
+       "title": "Make a Pong Game in Scratch",
+       "channel": "Scratch Team",
+       "tag": "Tech Apps: coding",
+       "seconds": 655,
+       "ask": "Which block sends the ball back? Explain the bounce like a coach."
+      }
+     ],
+     "checkpoint": "How does the ball change direction? Then sketch a sprite rolling down a ramp."
+    },
+    "pmTogether": {
+     "prompt": "Teach-back: what's one soccer rule from this episode you'd use in the yard this weekend?",
+     "videos": [
+      {
+       "id": "4wvpypFvCZw",
+       "title": "Soccer Basic Rules, Episode 3",
+       "channel": "Smile and Learn - English",
+       "tag": "PE: Soccer",
+       "seconds": 227,
+       "ask": "Name one rule you'd teach before a backyard game."
+      }
+     ],
+     "checkpoint": "Design this weekend's tests: one ramp race, one crayon rubbing, one Scratch bounce or roll."
     }
    }
   }
